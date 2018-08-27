@@ -2,6 +2,7 @@ let EstudioModel = require('../model/estudioModel');
 
 exports.salvarEstudio = function(data) {
     return new Promise(function(resolve, reject) {
+        console.log(data);
         let estudio = new EstudioModel(data);
 
         estudio.save(function(err) {
@@ -15,11 +16,50 @@ exports.salvarEstudio = function(data) {
     });
 }
 
+exports.updateEstudio = function(id_estudio, data) {
+    return new Promise(function(resolve, reject) {
+        // let sala = new EstudioModel(data);
+        // console.log('id_estudio:   ',id_estudio);
+        EstudioModel.where({
+            '_id' : id_estudio
+        }).update({
+            $push : { salas : data}
+        },function (err) {
+            if (err) {
+                resolve(JSON.stringify(err));
+            } else {
+                resolve(JSON.stringify({
+                    "status": true,
+                    "message": "Sala salva com sucesso.",
+                    "sala": data
+                }));
+            }
+        });
+        // sala.where({
+        //     "salas": data.salas
+        // }).update({
+        //     $push: {
+        //         salas: data
+        //     }
+        // }, function (err) {
+        //     if (err) {
+        //         resolve(JSON.stringify(err));
+        //     } else {
+        //         resolve(JSON.stringify({
+        //             "status": true,
+        //             "message": "Sala salva com sucesso.",
+        //             "sala": data
+        //         }));
+        //     }
+        // });
+    });
+}
+
 exports.consultarEstudio = function(data) {
     return new Promise(function(resolve, reject) {
-        EstudioModel.findOne({login : data.login, senha : data.senha}, function(err, usuario) {
-            if(usuario) {
-                resolve({status : true, 'estudio': estudio});
+        EstudioModel.find(function(err, estudios) {
+            if(estudios) {
+                resolve({status : true, 'estudios': estudios});
             } else {
                 reject({status :false, erro: err});
             }
