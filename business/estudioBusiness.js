@@ -35,23 +35,6 @@ exports.updateEstudio = function(id_estudio, data) {
                 }));
             }
         });
-        // sala.where({
-        //     "salas": data.salas
-        // }).update({
-        //     $push: {
-        //         salas: data
-        //     }
-        // }, function (err) {
-        //     if (err) {
-        //         resolve(JSON.stringify(err));
-        //     } else {
-        //         resolve(JSON.stringify({
-        //             "status": true,
-        //             "message": "Sala salva com sucesso.",
-        //             "sala": data
-        //         }));
-        //     }
-        // });
     });
 }
 
