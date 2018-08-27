@@ -14,5 +14,18 @@
     "http-errors": "~1.6.2",
     "mongoose": "^5.2.9",
     "morgan": "~1.9.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prisleey/TCC_MONGO.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prisleey/TCC_MONGO/issues"
+  },
+  "homepage": "https://github.com/Prisleey/TCC_MONGO#readme",
+  "description": ""
 }

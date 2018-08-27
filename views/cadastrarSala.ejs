@@ -95,11 +95,7 @@
                                     <label for="id_estudio">Estúdio</label>
                                     <select class="form-control" id="id_estudio" name="id_estudio" required>
                                         <option value="0">Selecione Estúdio</option>
-                                        <% if(estudios.length > 0) { %>
-                                            <% for(var i = 0; i < estudios.length; i++) { %>
-                                                <option value="<%= estudios[i].id_estudio %>"><%= estudios[i].nomeEstudio %></option>
-                                            <% } %>
-                                        <% } %>
+                                        <!-- aqui vai um loop lendo uma lista de estudios -->
                                     </select>
                                 </div>
                                 <div class="col-5">

@@ -8,8 +8,10 @@ let mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/PortalDaMusicaDB');
 mongoose.Promise = require('bluebird');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/indexRoute');
 var usersRouter = require('./routes/usuarioRoute');
+var estudioRouter = require('./routes/estudioRoute');
+var salaRouter = require('./routes/salaRoute');
 
 var app = express();
 
@@ -23,8 +25,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', estudioRouter);
+app.use('/', salaRouter);
 
 
 // catch 404 and forward to error handler
