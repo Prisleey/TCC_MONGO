@@ -2,7 +2,7 @@ var express = require('express');
 var EstudioBusiness = require('../business/estudioBusiness');
 var router = express.Router();
 
-router.get('/view-cadastro-sala', function(req, res, next) {
+router.get('/cadastro-sala', function(req, res, next) {
 
     EstudioBusiness.consultarEstudio().then(function(objeto) {
         res.render('cadastrarSala', {autenticado : true, estudios: objeto.estudios});
