@@ -22,7 +22,7 @@ router.post('/cadastro-estudio', function(req, res, next) {
     delete dadosFormEstudio["horarioFuncionamento"]; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
     delete dadosFormEstudio["diaSemana"];//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
 
-console.log(dadosFormEstudio);
+//console.log(dadosFormEstudio);
 
     // EstudioBusiness.consultarEstudio(dadosFormEstudio).then(function(objeto) {
 
@@ -44,5 +44,7 @@ console.log(dadosFormEstudio);
     //     });
     // });
 });
+
+
 
 module.exports = router;
