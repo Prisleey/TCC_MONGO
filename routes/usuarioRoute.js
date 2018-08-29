@@ -23,10 +23,6 @@ router.post('/cadastro', function(req, res, next) {
     });
 });
 
-router.get('/logoff', function(req, res, next) {
-    res.render('index', { autenticado : false });
-});
-
 router.post('/login', function(req, res, next) {
     var login = req.body.login;
     var senha = req.body.senha;
@@ -42,6 +38,10 @@ router.post('/login', function(req, res, next) {
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });
+});
+
+router.get('/logoff', function(req, res, next) {
+    res.render('index', { autenticado : false });
 });
 
 module.exports = router;
