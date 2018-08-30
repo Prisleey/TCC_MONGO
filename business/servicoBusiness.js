@@ -1,7 +1,6 @@
 let EstudioModel = require('../model/estudioModel');
 
 exports.buscar = function(data) {
-console.log('felipebd');
     return new Promise(function(resolve, reject) {
 
         if(data.nomeBusca.trim() != "" && data.local.trim() != "") {
@@ -21,7 +20,9 @@ console.log('felipebd');
                 cidade: 1,
                 estado:1,
                 bairro: 1,
-                telefone: 1
+                telefone: 1,
+                rua: 1,
+                salas: 1
             }, function(erro, resultado){
                 if(resultado){
                     resolve({status : true, 'resultado': resultado});
@@ -39,7 +40,9 @@ console.log('felipebd');
                 cidade: 1,
                 estado:1,
                 bairro: 1,
-                telefone: 1
+                telefone: 1,
+                rua: 1,
+                salas: 1
             }, function(erro, resultado){
                 if(resultado){
                     resolve({status : true, 'resultado': resultado});
@@ -61,7 +64,27 @@ console.log('felipebd');
                 cidade: 1,
                 estado:1,
                 bairro: 1,
-                telefone: 1
+                telefone: 1,
+                rua: 1,
+                salas: 1
+            }, function(erro, resultado){
+                if(resultado){
+                    resolve({status : true, 'resultado': resultado});
+                }else{
+                    reject({status :false, erro: erro});
+                }
+            });
+        } else {
+            console.log('else:   ');
+            EstudioModel.find({
+            }, {
+                nomeEstudio: 1,
+                cidade: 1,
+                estado:1,
+                bairro: 1,
+                telefone: 1,
+                rua: 1,
+                salas: 1
             }, function(erro, resultado){
                 if(resultado){
                     resolve({status : true, 'resultado': resultado});

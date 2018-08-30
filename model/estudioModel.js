@@ -18,7 +18,7 @@ let estudioSchema = new Schema({
     telefone: {type: String, trim: true, required: true},
     salas: {
         type: [salaSchema],
-        select: true
+        select: true,
     },
 }, {collection : 'Estudio'});
 
