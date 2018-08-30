@@ -13,10 +13,17 @@ router.get('/listar-estudios', function(req, res, next){
 
     ServicoBusiness.buscar(busca).then(function(objeto){
         //console.log(objeto.resultado[0].salas[0]);
+        console.log(objeto.resultado);
         res.render('listarEstudios', {estudios: objeto.resultado});
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
     });
+});
+
+router.get('/detalhe-estudio', function(req, res, next) {
+    let idEstudio = req.query.id_estudio;
+
+    res.end(JSON.stringify('KAPPA ' + idEstudio));
 });
 
 module.exports = router;
