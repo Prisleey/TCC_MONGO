@@ -163,8 +163,44 @@
                     <div class="row light-bg detail-options-wrap">
 
 
+                        <% for(var i = 0; i < estudios.length; i++) { %>
                         <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-                            
+                            <div class="featured-place-wrap">
+                                <a href="/detalhe-estudio?estudio=<%=estudios[i]._id%>">
+                                    <!--
+									<img src="images/featured1.jpg" class="img-fluid" alt="#">
+                                    <span class="featured-rating-orange ">6.5</span>
+									-->
+                                    <div class="featured-title-box">
+                                        <h6><%= estudios[i].nomeEstudio %></h6>
+                                        <p>Estúdio </p> <!--<span>• </span>
+                                        <p>3 Reviews</p> <span> • </span>
+                                        <p><span>$$$</span>$$</p>
+										-->
+                                        <ul>
+                                            <li><span class="icon-location-pin"></span>
+                                                <p><%= estudios[i].rua%>, <%= estudios[i].bairro%> - <%= estudios[i].cidade%> - <%= estudios[i].estado%></p>
+                                            </li>
+                                            <li><span class="icon-screen-smartphone"></span>
+                                                <p><%= estudios[i].telefone%></p>
+                                            </li>
+                                            <!--
+                                            <li><span class="icon-link"></span>
+                                                <p>https://burgerandlobster.com</p>
+                                            </li>
+                                            -->
+                                        </ul>
+                                        <div class="bottom-icons">
+                                            <div class="open-now">OPEN NOW</div>
+                                            <span class="ti-heart"></span>
+                                            <span class="ti-bookmark"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <% } %>
+
                         </div>
 
 						<!--
@@ -347,7 +383,7 @@
         }*/
     </script>
     <!-- Map JS (Please change the API key below. Read documentation for more info) -->
-    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyDMTUkJAmi1ahsx9uCGSgmcSmqDTBF9ygg"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyBDehpSHub3v7eW_edJ-9ijm0XBeCOP3W4"></script>
 </body>
 
 </html>

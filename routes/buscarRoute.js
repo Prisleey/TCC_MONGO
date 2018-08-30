@@ -11,12 +11,12 @@ router.get('/listar-estudios', function(req, res, next){
         "local": local
     };
 
-
     ServicoBusiness.buscar(busca).then(function(objeto){
-        console.log(objeto);
-       res.render('listarEstudios', {resultado: objeto});
+        console.log(objeto.resultado);
+        res.render('listarEstudios', {estudios: objeto.resultado});
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
     });
 });
+
 module.exports = router;

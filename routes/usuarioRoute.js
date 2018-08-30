@@ -3,16 +3,18 @@ let UsuarioBusiness = require('../business/usuarioBusiness');
 var router = express.Router();
 
 router.post('/cadastro', function(req, res, next) {
-    var nome = req.body.nome;
-    var login = req.body.login;
-    var email = req.body.email;
-    var senha = req.body.senha;
+    let nome = req.body.nome;
+    let login = req.body.login;
+    let email = req.body.email;
+    let senha = req.body.senha;
+    let tpUser = req.body.tpUser;
 
     let usuario = {
         'nome' : nome,
         'login' : login,
         'email' : email,
-        'senha' : senha
+        'senha' : senha,
+        'tipo'  : tpUser
     };
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {

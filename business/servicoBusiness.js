@@ -20,7 +20,8 @@ console.log('felipebd');
                 nomeEstudio: 1,
                 cidade: 1,
                 estado:1,
-                bairro: 1
+                bairro: 1,
+                telefone: 1
             }, function(erro, resultado){
                 if(resultado){
                     resolve({status : true, 'resultado': resultado});
@@ -37,7 +38,8 @@ console.log('felipebd');
                 nomeEstudio: 1,
                 cidade: 1,
                 estado:1,
-                bairro: 1
+                bairro: 1,
+                telefone: 1
             }, function(erro, resultado){
                 if(resultado){
                     resolve({status : true, 'resultado': resultado});
@@ -58,7 +60,8 @@ console.log('felipebd');
                 nomeEstudio: 1,
                 cidade: 1,
                 estado:1,
-                bairro: 1
+                bairro: 1,
+                telefone: 1
             }, function(erro, resultado){
                 if(resultado){
                     resolve({status : true, 'resultado': resultado});

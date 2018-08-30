@@ -4,12 +4,23 @@ exports.salvarUsuario = function(data) {
     return new Promise(function(resolve, reject) {
         let usuario = new UsuarioModel(data);
 
-        usuario.save(function(err) {
-
-            if(err) {
-                reject({status: false, erro: 'bosta'});
-            } else {
-                resolve({status: true, 'usuario': usuario});
+        UsuarioModel.findOne({
+            "$or": [{
+                login: data.login
+            }, {
+                email: data.email
+            }]
+        }, function(erro, resultado){
+            if(resultado){
+                reject({status :false, erro: "Usuário já tá cadastrado"});
+            }else{
+                usuario.save(function(err) {
+                    if(err) {
+                        reject({status: false, erro: err});
+                    } else {
+                        resolve({status: true, 'usuario': usuario});
+                    }
+                });
             }
         });
     });

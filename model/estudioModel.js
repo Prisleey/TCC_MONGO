@@ -15,6 +15,7 @@ let estudioSchema = new Schema({
     bairro: {type: String, trim: true, required: true},
     rua: {type: String, trim: true, required: true},
     cep: {type: String, trim: true, required: true},
+    telefone: {type: String, trim: true, required: true},
     salas: {
         type: [salaSchema],
         select: true

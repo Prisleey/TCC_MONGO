@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 let userSchema = new Schema({
@@ -6,9 +6,9 @@ let userSchema = new Schema({
     senha: {type: String, required: true}, 
     login: {type: String, trim: true, index: true, required: true},
     email: {type: String, trim: true, index: true, required: true},
-    tipo: {
+    tipo: {type: String, trim:true, required: true},/*
         desc : {type: String}
-    }
+    }*/
 }, {collection : 'Usuario'});
 
 var userModel = mongoose.model('Usuario', userSchema);
