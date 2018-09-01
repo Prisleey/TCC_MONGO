@@ -17,8 +17,6 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
         <!-- Simple line Icon -->
         <link rel="stylesheet" href="/css/simple-line-icons.css">
-        <!-- estilos extras -->
-        <link rel="stylesheet" href="/css/estilosExtras.css">
         <!-- Themify Icon -->
         <link rel="stylesheet" href="/css/themify-icons.css">
         <!-- Hover Effects -->
@@ -361,10 +359,7 @@
                                     'id' : dataJson[i]._id
                                 }).appendTo('.container'+i);
                                 document.getElementById(dataJson[i]._id).innerHTML = " "+dataJson[i].desc;
-                                //$('#'+dataJson[i]._id).html($(dataJson[i].desc));
-                                /*
-                                $(dataJson[i].desc).attr({
-                                }).appendTo('.container'+i);*/
+
                             }
                         }
                     });

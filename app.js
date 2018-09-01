@@ -10,7 +10,7 @@ var indexRoute = require('./routes/indexRoute');
 var usersRoute = require('./routes/usuarioRoute');
 var estudioRoute = require('./routes/estudioRoute');
 var salaRoute = require('./routes/salaRoute');
-var buscarRoute = require('./routes/buscarRoute');
+var buscaRoute = require('./routes/buscaRoute');
 
 var app = express();
 
@@ -26,7 +26,7 @@ app.use('/', indexRoute);
 app.use('/', usersRoute);
 app.use('/', estudioRoute);
 app.use('/', salaRoute);
-app.use('/', buscarRoute);
+app.use('/', buscaRoute);
 
 
 app.use(function(req, res, next) {
