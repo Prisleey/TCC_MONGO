@@ -2,6 +2,12 @@ var express = require('express');
 let UsuarioBusiness = require('../business/usuarioBusiness');
 var router = express.Router();
 
+router.get('/cadastro', function(req, res, next) {
+    UsuarioBusiness.listTipoUsuario().then(function(objeto) {
+        res.end(JSON.stringify(objeto.tipos));
+    });
+});
+
 router.post('/cadastro', function(req, res, next) {
     let nome = req.body.nome;
     let login = req.body.login;
@@ -18,7 +24,7 @@ router.post('/cadastro', function(req, res, next) {
     };
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
-        res.render('index', { autenticado : false });
+        res.render('index', { autenticado : false, tipos : {} });
     }).catch (function(erro) {
         console.log(erro);
         res.render('index', { autenticado : erro });
@@ -36,14 +42,14 @@ router.post('/login', function(req, res, next) {
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto){
         // res.end(JSON.stringify(objeto));
-        res.render('index', {autenticado : true })
+        res.render('index', {autenticado : true, tipos : {} })
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });
 });
 
 router.get('/logoff', function(req, res, next) {
-    res.render('index', { autenticado : false });
+    res.render('index', { autenticado : false, tipos : {} });
 });
 
 module.exports = router;

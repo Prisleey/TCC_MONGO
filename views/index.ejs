@@ -56,8 +56,8 @@
                                                     <a href="logoff" id='btLogoff' class="btn btn-outline-light top-btn" data-toggle="modal"> Logoff</a>
                                                 </li>
                                             <% } else { %>
-                                                <li>
-                                                    <a href="/" id='btCadastroUser' class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#cadastro-modal"> Novo Usuário</a>
+                                                <li><!-- data-toggle="modal" data-target="#cadastro-modal" -->
+                                                    <a href="/" id='btCadastroUser' class="btn btn-outline-light top-btn" data-toggle="modal" > Novo Usuário</a>
                                                 </li>
                                                 <li>
                                                     <a href="/" id='btLogin' class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#login-modal"> Login</a>
@@ -270,9 +270,17 @@
                                 <label for="pwd">Senha:</label>
                                 <input type="password" class="form-control" id="pwd" name="senha">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group optionsTpUser">
                                 <label>Tipo de Usuário:</label><br />
-                                <label class="container">
+                                <% if(tipos.length > 0) { %>
+                                    <% for(let i = 0; i < tipos.length; i++) { %>
+                                        <label class="container">
+                                            <input type="radio" checked="checked" value="<%= tipos[i]._id %>" name="tpUser">
+                                            <span class="checkmark"><%= tipos[i].desc %></span>
+                                        </label>
+                                    <% } %>
+                                <%}%>
+                                <!--<label class="container">
                                     <input type="radio" checked="checked" value="Músico" name="tpUser">
                                     <span class="checkmark">Músico</span>
                                 </label>
@@ -287,7 +295,7 @@
                                 <label class="container">
                                     <input type="radio" value="Estúdio" name="tpUser">
                                     <span class="checkmark">Estúdio</span>
-                                </label>
+                                </label>-->
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
                         </form>
@@ -326,6 +334,43 @@
         <script src="js/bootstrap.min.js"></script>
 
         <script>
+
+            $(document).ready(function() {
+                $('#btCadastroUser').on('click', function() {
+                    console.log('teste');
+                    $('#cadastro-modal').modal('show');
+                    //window.location.replace('cadastro');
+                    $.ajax({
+                        type: "get",
+                        url: "/cadastro",
+                        success: function (data) {
+
+                            let dataJson = eval(data);
+                            console.log(dataJson);
+                            for(let i=0; i<dataJson.length; i++) {
+                                let label = $('<label/>').attr({
+                                    'class': 'container container'+i,
+                                }).appendTo('.optionsTpUser');
+                                let input = $('<input/>').attr({
+                                    'type': 'radio',
+                                    'value': dataJson[i]._id,
+                                    'name': 'tpUser'
+                                }).appendTo('.container'+i);
+                                let span = $('<span/>').attr({
+                                    'class' : 'checkmark',
+                                    'id' : dataJson[i]._id
+                                }).appendTo('.container'+i);
+                                document.getElementById(dataJson[i]._id).innerHTML = " "+dataJson[i].desc;
+                                //$('#'+dataJson[i]._id).html($(dataJson[i].desc));
+                                /*
+                                $(dataJson[i].desc).attr({
+                                }).appendTo('.container'+i);*/
+                            }
+                        }
+                    });
+                });
+            });
+
             $(window).scroll(function() {
                 // 100 = The point you would like to fade the nav in.
 

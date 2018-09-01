@@ -3,7 +3,6 @@ let ServicoBusiness = require('../business/servicoBusiness');
 var router = express.Router();
 
 router.get('/listar-estudios', function(req, res, next){
-
     let nomeBusca = req.query.nome;
     let local = req.query.local;
     let busca= {
@@ -23,7 +22,9 @@ router.get('/listar-estudios', function(req, res, next){
 router.get('/detalhe-estudio', function(req, res, next) {
     let idEstudio = req.query.id_estudio;
 
-    res.end(JSON.stringify('KAPPA ' + idEstudio));
+    EstudioBusiness.
+
+    res.end(JSON.stringify('ID ESTUDIO: ' + idEstudio));
 });
 
 module.exports = router;

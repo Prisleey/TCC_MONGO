@@ -1,4 +1,19 @@
 let UsuarioModel = require('../model/usuarioModel');
+let TipoUsuarioModel = require('../model/tipoUsuarioModel');
+
+exports.listTipoUsuario = function() {
+    return new Promise(function(resolve, reject) {
+        let tpUser = new TipoUsuarioModel();
+
+        TipoUsuarioModel.find({}, function(erro, tipoUser) {
+            if(tipoUser) {
+                resolve({status : true, tipos : tipoUser});
+            } else {
+                reject({status : false, erro : erro});
+            }
+        });
+    });
+}
 
 exports.salvarUsuario = function(data) {
     return new Promise(function(resolve, reject) {

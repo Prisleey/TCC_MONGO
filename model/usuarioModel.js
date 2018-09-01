@@ -6,9 +6,7 @@ let userSchema = new Schema({
     senha: {type: String, required: true}, 
     login: {type: String, trim: true, index: true, required: true},
     email: {type: String, trim: true, index: true, required: true},
-    tipo: {type: String, trim:true, required: true},/*
-        desc : {type: String}
-    }*/
+    tipo: [{type: Schema.Types.ObjectId, trim:true, required: true, ref: 'TipoUsuario'}]
 }, {collection : 'Usuario'});
 
 var userModel = mongoose.model('Usuario', userSchema);

@@ -1,4 +1,4 @@
-let mongoose = require('mongoose'),
+let mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 let salaSchema = new Schema({

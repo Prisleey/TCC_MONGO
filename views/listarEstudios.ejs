@@ -169,9 +169,6 @@
                                 <a href="/detalhe-estudio?id_estudio=<%=estudios[i]._id%>">
                                     <div class="featured-title-box">
                                         <h6><%= estudios[i].nomeEstudio %></h6>
-                                        <% for(let contSala = 0; contSala < estudios[i].salas.length; contSala++) { %>
-                                            <p><%= estudios[i].salas[contSala].nomeSala %> </p><span> • </span><p>R$ <span><%= estudios[i].salas[contSala].valorSala %></span></p><br />
-                                        <% } %>
                                         <ul>
                                             <li><span class="icon-location-pin"></span>
                                                 <p><%= estudios[i].rua%>, <%= estudios[i].bairro%> - <%= estudios[i].cidade%> - <%= estudios[i].estado%></p>
@@ -179,7 +176,10 @@
                                             <li><span class="icon-screen-smartphone"></span>
                                                 <p><%= estudios[i].telefone%></p>
                                             </li>
-                                        </ul>
+                                        </ul><br />
+                                        <% for(let contSala = 0; contSala < estudios[i].salas.length; contSala++) { %>
+                                            <p><%= estudios[i].salas[contSala].nomeSala %> </p><span> • </span><p>R$ <span><%= estudios[i].salas[contSala].valorSala %></span></p><br />
+                                        <% } %>
                                         <div class="bottom-icons">
                                             <div class="open-now">OPEN NOW</div>
                                             <span class="ti-heart"></span>
