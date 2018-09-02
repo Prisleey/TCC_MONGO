@@ -114,10 +114,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <% if(estudio.length > 0) { %>
-                        <h5><%= estudio[0].nomeEstudio %></h5><br>
+                    <% if(salas.length > 0) { %>
+                        <h5><%= salas[0].nomeEstudio %></h5><br>
                     <% } %>
-                    <!-- <p class="reserve-description"><%= estudio[0].descricao %></p> -->
+                    <!-- <p class="reserve-description"><%= /*salas[0].descricao*/ %></p> -->
                 </div>
                 <!-- <div class="col-md-6">
                     <div class="reserve-seat-block">
@@ -150,21 +150,14 @@
                             <div align="col-md-1">
                                 <h5>Descrição</h5>
                             </div>
-                            <% if(estudio.length > 0) { %>
-                                <p><%= estudio[0].descricao %></p>
+                            <% if(salas.length > 0) { %>
+                                <p><%= salas[0].descricao %></p>
                             <% } %>
                             <hr>
                         </div>
 						<div>
                             <h5>Serviço</h5>
-							<select class='form-control' id='selectServico' required>
-								 <option value="" disabled selected>Selectione o tipo de serviço desejado.</option>
-                                    <% if(servicos.length > 0) { %>
-                                        <% for(var i = 0; i < servicos.length; i++) { %>
-                                            <option value="<%= servicos[i].id_servico %>"><%= servicos[i].nome %></option>
-                                        <% } %>
-                                    <% } %>
-                            </select>
+							<!-- TA NO CTRL C -->
                             <br>
                             <div>
                                 <h5>Salas:</h5>
@@ -172,7 +165,7 @@
                             <% if(salas.length > 0) { %>
                                 <% for(var i = 0; i < salas.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].id_estudio %>&id_sala=<%= salas[i].id_sala %>&'><%= salas[i].nome_sala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= salas[0]._id %>&id_sala=<%= salas[i].id_sala %>&'><%= salas[i].nome_sala %></a>
                                     </div>
                                 <% } %>
                             <% } %>

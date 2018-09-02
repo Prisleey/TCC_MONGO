@@ -49,3 +49,22 @@ exports.consultarEstudio = function(data) {
         });
     });
 }
+
+exports.detalheEstudio = function(data) {
+    return new Promise(function(resolve, reject) {
+        EstudioModel.find({_id: data
+        }, {
+            _id: 1,
+            nomeEstudio: 1,
+            descricao: 1,
+            salas: 1
+        }, function(err, salas) {
+            console.log(salas);
+            if(salas) {
+                resolve({status : true, 'salas': salas});
+            } else {
+                reject({status:false, erro: err})
+            }
+        });
+    });
+}

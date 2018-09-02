@@ -75,7 +75,6 @@ exports.buscar = function(data) {
                 }
             });
         } else {
-            console.log('else:   ');
             EstudioModel.find({
             }, {
                 nomeEstudio: 1,
