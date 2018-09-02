@@ -114,8 +114,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <% if(salas.length > 0) { %>
-                        <h5><%= salas[0].nomeEstudio %></h5><br>
+                    <% if(estudio.length > 0) { %>
+                        <h5><%= estudio[0].nomeEstudio %></h5><br>
                     <% } %>
                     <!-- <p class="reserve-description"><%= /*salas[0].descricao*/ %></p> -->
                 </div>
@@ -150,8 +150,8 @@
                             <div align="col-md-1">
                                 <h5>Descrição</h5>
                             </div>
-                            <% if(salas.length > 0) { %>
-                                <p><%= salas[0].descricao %></p>
+                            <% if(estudio.length > 0) { %>
+                                <p><%= estudio[0].descricao %></p>
                             <% } %>
                             <hr>
                         </div>
@@ -159,13 +159,14 @@
                             <h5>Serviço</h5>
 							<!-- TA NO CTRL C -->
                             <br>
+                            <hr>
                             <div>
                                 <h5>Salas:</h5>
                             </div>
-                            <% if(salas.length > 0) { %>
-                                <% for(var i = 0; i < salas.length; i++) { %>
+                            <% if(estudio.length > 0) { %>
+                                <% for(var i = 0; i < estudio.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= salas[0]._id %>&id_sala=<%= salas[i].id_sala %>&'><%= salas[i].nome_sala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].salas[i]._id %>&id_sala=<%= estudio[i].salas[i]._id %>&'><%= estudio[i].salas[i].nomeSala %></a>
                                     </div>
                                 <% } %>
                             <% } %>

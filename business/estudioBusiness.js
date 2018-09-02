@@ -58,10 +58,9 @@ exports.detalheEstudio = function(data) {
             nomeEstudio: 1,
             descricao: 1,
             salas: 1
-        }, function(err, salas) {
-            console.log(salas);
-            if(salas) {
-                resolve({status : true, 'salas': salas});
+        }, function(err, estudio) {
+            if(estudio) {
+                resolve({status : true, 'estudio': estudio});
             } else {
                 reject({status:false, erro: err})
             }

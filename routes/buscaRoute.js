@@ -24,7 +24,8 @@ router.get('/detalhe-estudio', function(req, res, next) {
     let idEstudio = req.query.id_estudio;
 
     EstudioBusiness.detalheEstudio(idEstudio).then(function(objeto) {
-        res.render('detalheEstudio', {salas: objeto});
+        console.log(objeto.estudio);
+        res.render('detalheEstudio', {estudio: objeto.estudio});
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });
