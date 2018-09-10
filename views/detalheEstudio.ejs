@@ -164,9 +164,9 @@
                                 <h5>Salas:</h5>
                             </div>
                             <% if(estudio.length > 0) { %>
-                                <% for(var i = 0; i < estudio.length; i++) { %>
+                                <% for(let i = 0; i < estudio[0].salas.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].salas[i]._id %>&id_sala=<%= estudio[i].salas[i]._id %>&'><%= estudio[i].salas[i].nomeSala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].salas[i]._id %>&id_sala=<%= estudio[0].salas[i]._id %>&'><%= estudio[0].salas[i].nomeSala %></a>
                                     </div>
                                 <% } %>
                             <% } %>

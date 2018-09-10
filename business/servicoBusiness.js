@@ -1,4 +1,5 @@
 let EstudioModel = require('../model/estudioModel');
+let TipoServicoModel = require('../model/tipoServicoModel');
 
 exports.buscar = function(data) {
     return new Promise(function(resolve, reject) {
@@ -92,5 +93,24 @@ exports.buscar = function(data) {
                 }
             });
         }
+    });
+}
+
+exports.consultarServicos = function(id_estudio) {
+    return new Promise(function(resolve, reject) {
+
+        TipoServicoModel.find({_id: data
+        }, {
+            _id: 1,
+            nomeEstudio: 1,
+            descricao: 1,
+            salas: 1
+        }, function(erro, servico) {
+            if(servico) {
+                resolve({status : true, servico : servico});
+            } else {
+                reject({status : false, erro : erro});
+            }
+        });
     });
 }
