@@ -68,6 +68,39 @@
             </div>
         </div>
         <!--//END HEADER -->
+
+        <!-- Modal ADD SERVIÇO -->
+        <div class="modal fade" id="addServico-Modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="POST" action="/novo-servico">
+                            <div class="form-group">
+                                <label for="tipoServico">Login:</label>
+                                <select id="tipoServico" name="tipoServico">
+                                    <option>0</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Senha:</label>
+                                <input type="password" class="form-control" id="pwd" name="senha">
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox"> Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- END MODAL ADD SERVIÇO -->
+
         <!--============================= BOOKING =============================-->
 
         <!--//END BOOKING -->
@@ -87,7 +120,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 responsive-wrap">
-                        <!-- DESCROCAO E CHECKBOX -->
+                        <!-- DESCRICAO E CHECKBOX -->
                         
                         <div class="booking-checkbox_wrap">	
                             <form method="POST" action="/cadastro-sala">
@@ -107,6 +140,13 @@
                                 <div class="col-5">
                                     <label for="nome_sala">Nome da Sala</label>
                                     <input class="form-control" id="nome_sala" type="text" name="nome_sala" required>
+                                </div>
+                                <div class="col-5">
+                                    <label for="valor_sala">Serviços:</label>
+                                    <div>
+                                        <a href="#" class="btn btn-success">Add Serviço +</a>&nbsp;&nbsp;<a href="#" class="btn btn-info">Visualizar Serviços</a>
+                                        <br><br>
+                                    </div>
                                 </div>
                                 <div class="col-5">
                                     <label for="valor_sala">Preço por hora</label>
