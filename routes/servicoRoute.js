@@ -9,14 +9,14 @@ router.post('/novo-servico', function(req, res, next) {
     let precoServico = req.body.precoServico;
     let descricaoServico = req.body.descricaoServico;
 
-    let tipoServico = {
+    let servico = {
         'tipoServico':tipoServico,
         'nomeServico':nomeServico,
         'precoServico':precoServico,
         'descricaoServico':descricaoServico
     };
 
-    ServicoBusiness.cadastrarServicos(tipoServico).then(function(objeto) {
+    ServicoBusiness.cadastrarServicos(servico).then(function(objeto) {
         console.log(objeto);
         res.render('');
     }).catch (function(erro) {
