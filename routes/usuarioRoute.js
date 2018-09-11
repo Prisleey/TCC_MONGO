@@ -41,13 +41,41 @@ router.post('/login', function(req, res, next) {
     };
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto){
-        // res.end(JSON.stringify(objeto));
-        res.render('index', {autenticado : true, tipos : {} })
+
+        req.session.login = login;
+        req.session.tipoUser = objeto.usuario.tipo;
+
+        usuarioLogado = {
+            'login'       : req.session.login,
+            'tipoUsuario' : req.session.tipoUser
+        };
+
+        //console.log(usuarioLogado);
+        //res.end(JSON.stringify(usuarioLogado));
+        res.render('index', {tipos : {}, usuarioLogado: req.session.login})
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });
 });
+/*router.get('/login', function(req, res, next) {
+    console.log('tentou fazer login');
+    //nesse req.session.{qualquer merda}
+    //você cria o que você quiser ali, jsonzão
+    if(req.session.user_loged) {
+        res.end("sessão -> "+req.session.user_loged);
+    }else {
+        req.session.user_loged = "bunda"
+        res.end("inseriu a sessão");
+    }
+});
 
+router.get('/logoff', function(req, res, next) {
+    //logout
+    req.session.destroy(function(err) {
+        res.end("sessao destruida");
+    });
+});
+*/
 router.get('/logoff', function(req, res, next) {
     res.render('index', { autenticado : false, tipos : {} });
 });
