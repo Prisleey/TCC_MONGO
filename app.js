@@ -11,6 +11,7 @@ var usersRoute = require('./routes/usuarioRoute');
 var estudioRoute = require('./routes/estudioRoute');
 var salaRoute = require('./routes/salaRoute');
 var buscaRoute = require('./routes/buscaRoute');
+var servicoRoute = require('./routes/servicoRoute');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/', usersRoute);
 app.use('/', estudioRoute);
 app.use('/', salaRoute);
 app.use('/', buscaRoute);
+app.use('/', servicoRoute);
 
 
 app.use(function(req, res, next) {

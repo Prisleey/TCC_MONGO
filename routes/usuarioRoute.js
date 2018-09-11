@@ -1,12 +1,11 @@
 var express = require('express');
-let UsuarioBusiness = require('../business/usuarioBusiness');
 var router = express.Router();
 
-router.get('/cadastro', function(req, res, next) {
+/*router.get('/cadastro', function(req, res, next) {
     UsuarioBusiness.listTipoUsuario().then(function(objeto) {
-        res.end(JSON.stringify(objeto.tipos));
-    });
+    res.end(JSON.stringify(objeto.tipos));
 });
+});*/
 
 router.post('/cadastro', function(req, res, next) {
     let nome = req.body.nome;

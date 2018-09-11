@@ -279,22 +279,6 @@
                                         </label>
                                     <% } %>
                                 <%}%>
-                                <!--<label class="container">
-                                    <input type="radio" checked="checked" value="Músico" name="tpUser">
-                                    <span class="checkmark">Músico</span>
-                                </label>
-                                <label class="container">
-                                    <input type="radio" value="Prestador de Serviços (Músico)" name="tpUser">
-                                    <span class="checkmark" >Prestador de Serviços (Músico)</span>
-                                </label>
-                                <label class="container">
-                                    <input type="radio" value="Prestador de Serviços (Prof)" name="tpUser">
-                                    <span class="checkmark">Prestador de Serviços (Prof)</span>
-                                </label>
-                                <label class="container">
-                                    <input type="radio" value="Estúdio" name="tpUser">
-                                    <span class="checkmark">Estúdio</span>
-                                </label>-->
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
                         </form>
@@ -338,34 +322,7 @@
 
             $(document).ready(function() {
                 $('#btCadastroUser').on('click', function() {
-                    console.log('teste');
                     $('#cadastro-modal').modal('show');
-                    //window.location.replace('cadastro');
-                    $.ajax({
-                        type: "get",
-                        url: "/cadastro",
-                        success: function (data) {
-
-                            let dataJson = eval(data);
-                            console.log(dataJson);
-                            for(let i=0; i<dataJson.length; i++) {
-                                let label = $('<label/>').attr({
-                                    'class': 'container container'+i,
-                                }).appendTo('.optionsTpUser');
-                                let input = $('<input/>').attr({
-                                    'type': 'radio',
-                                    'value': dataJson[i]._id,
-                                    'name': 'tpUser'
-                                }).appendTo('.container'+i);
-                                let span = $('<span/>').attr({
-                                    'class' : 'checkmark',
-                                    'id' : dataJson[i]._id
-                                }).appendTo('.container'+i);
-                                document.getElementById(dataJson[i]._id).innerHTML = " "+dataJson[i].desc;
-
-                            }
-                        }
-                    });
                 });
             });
 
