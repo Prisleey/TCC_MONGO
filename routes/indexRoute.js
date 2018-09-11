@@ -7,7 +7,7 @@ let UsuarioBusiness = require('../business/usuarioBusiness');
 router.get('/', function(req, res, next) {
     UsuarioBusiness.listTipoUsuario().then(function(objeto) {
         //res.end(JSON.stringify(objeto.tipos));
-        res.render('index', { tipos: objeto.tipos, usuarioLogado: req.session.login});
+        res.render('index', { tiposUser: objeto.tipos, usuarioLogado: req.session.login});
     });
 });
 

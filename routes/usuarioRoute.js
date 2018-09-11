@@ -24,7 +24,7 @@ router.post('/cadastro', function(req, res, next) {
     };
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
-        res.render('index', { autenticado : false, tipos : {} });
+        res.render('index', { autenticado : false, tiposUser : {} });
     }).catch (function(erro) {
         console.log(erro);
         res.render('index', { autenticado : erro });
@@ -40,19 +40,10 @@ router.post('/login', function(req, res, next) {
         'senha':senha
     };
 
-    UsuarioBusiness.verificarUsuario(usuario).then(function(objeto){
+    UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
+        req.session.usuarioLogado = objeto;
 
-        req.session.login = login;
-        req.session.tipoUser = objeto.usuario.tipo;
-
-        usuarioLogado = {
-            'login'       : req.session.login,
-            'tipoUsuario' : req.session.tipoUser
-        };
-
-        //console.log(usuarioLogado);
-        //res.end(JSON.stringify(usuarioLogado));
-        res.render('index', {tipos : {}, usuarioLogado: req.session.login})
+        res.render('index', {tiposUser : {}, usuarioLogado: req.session.usuarioLogado})
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });
@@ -77,7 +68,7 @@ router.get('/logoff', function(req, res, next) {
 });
 */
 router.get('/logoff', function(req, res, next) {
-    res.render('index', { autenticado : false, tipos : {} });
+    res.render('index', { autenticado : false, tiposUser : {} });
 });
 
 module.exports = router;
