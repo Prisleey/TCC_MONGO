@@ -5,7 +5,7 @@ let servicoSchema = new Schema({
     _id : {type: Schema.Types.ObjectId},
     nomeServico : {type: String},
     descServico : {type: String},
-    precoServico : {type: Decimal, required: true},
+    precoServico : {type: Number, required: true},
     idTipoServico : {type: Schema.Types.ObjectId, ref : 'TipoServico'}
 });
 

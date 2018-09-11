@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var session = require('express-session')
 
 let mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/PortalDaMusicaDB');
@@ -12,12 +13,15 @@ var estudioRoute = require('./routes/estudioRoute');
 var salaRoute = require('./routes/salaRoute');
 var buscaRoute = require('./routes/buscaRoute');
 var servicoRoute = require('./routes/servicoRoute');
+var testeRoute = require('./routes/teste');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('trust proxy', 1)
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +33,7 @@ app.use('/', estudioRoute);
 app.use('/', salaRoute);
 app.use('/', buscaRoute);
 app.use('/', servicoRoute);
+app.use('/', testeRoute);
 
 
 app.use(function(req, res, next) {
