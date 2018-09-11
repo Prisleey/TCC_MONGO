@@ -3,9 +3,10 @@ Schema = mongoose.Schema;
 
 let servicoSchema = new Schema({
     _id : {type: Schema.Types.ObjectId},
-    preco : {type: Decimal, required: true},
-    idTipoServico : {type: Schema.Types.ObjectId, ref : 'TipoUsuario'},
-    idUsuario : {type: Schema.Types.ObjectId, ref: "Usuario"}
+    nomeServico : {type: String},
+    descServico : {type: String},
+    precoServico : {type: Decimal, required: true},
+    idTipoServico : {type: Schema.Types.ObjectId, ref : 'TipoServico'}
 });
 
 var servico = mongoose.model('Servico', servicoSchema);

@@ -1,5 +1,5 @@
 let EstudioModel = require('../model/estudioModel');
-let TipoServicoModel = require('../model/tipoServicoModel');
+let ServicoModel = require('../model/servicoModel');
 
 exports.buscar = function(data) {
     return new Promise(function(resolve, reject) {
@@ -99,7 +99,7 @@ exports.buscar = function(data) {
 exports.consultarServicos = function(id_estudio) {
     return new Promise(function(resolve, reject) {
 
-        TipoServicoModel.find({_id: data
+        ServicoModel.find({_id: data
         }, {
             _id: 1,
             nomeEstudio: 1,
@@ -112,5 +112,25 @@ exports.consultarServicos = function(id_estudio) {
                 reject({status : false, erro : erro});
             }
         });
+    });
+}
+
+exports.cadastrarServicos = function(servico) {
+    return new Promise(function(resolve, reject) {
+        /*ServicoModel.findOne({
+
+        }, function(erro, resultado){
+            if(resultado){
+                reject({status :false, erro: "erro"});
+            }else{*/
+                ServicoModel.save(function(err) {
+                    if(err) {
+                        reject({status: false, erro: err});
+                    } else {
+                        resolve({status: true, 'servico': servico});
+                    }
+                });
+          /*  }
+        });*/
     });
 }

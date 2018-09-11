@@ -3,7 +3,8 @@ Schema = mongoose.Schema;
 
 let tipoServicoSchema = new Schema({
     _id : {type: Schema.Types.ObjectId},
-    nomeServico : {type: String, required: true, index: true},
+    nomeTpServico : {type: String, required: true, index: true},
+    idTpUsuario : {type: Schema.Types.ObjectId, ref: "TipoUsuario"}
 });
 
 var tipoServico = mongoose.model('TipoServico', tipoServicoSchema);
