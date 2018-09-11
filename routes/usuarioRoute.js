@@ -48,27 +48,18 @@ router.post('/login', function(req, res, next) {
         res.end(JSON.stringify(erro));
     });
 });
-/*router.get('/login', function(req, res, next) {
-    console.log('tentou fazer login');
-    //nesse req.session.{qualquer merda}
-    //você cria o que você quiser ali, jsonzão
-    if(req.session.user_loged) {
-        res.end("sessão -> "+req.session.user_loged);
-    }else {
-        req.session.user_loged = "bunda"
-        res.end("inseriu a sessão");
-    }
-});
 
 router.get('/logoff', function(req, res, next) {
     //logout
+    console.log('logoff');
     req.session.destroy(function(err) {
-        res.end("sessao destruida");
+        res.render('index', { tiposUser : {}, usuarioLogado : false });
     });
 });
-*/
+/*
 router.get('/logoff', function(req, res, next) {
+    console.log('logoff');
     res.render('index', { autenticado : false, tiposUser : {} });
-});
+});*/
 
 module.exports = router;
