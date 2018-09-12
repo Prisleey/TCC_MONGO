@@ -93,7 +93,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <form method="POST" action="/novo-servico">
+                        <!--<form method="POST" action="/novo-servico">-->
                             <div class="form-group">
                                 <label for="tipoServico">Tipo Serviço:</label>
                                 <select id="tipoServico" class="form-control" name="tipoServico" required>
@@ -112,8 +112,8 @@
                                 <label for="descricaoServico">Descrição do Serviço:</label>
                                 <textarea placeholder="Descrição do Serviço ofertado" class="form-control" id="descricaoServico" name="descricaoServico" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
-                        </form>
+                            <button type="submit" id="cadastrarServico" class="btn btn-primary btn-lg">Cadastrar</button>
+                        <!--</form>-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -278,14 +278,12 @@
             });
             $(document).ready(function(){
                $("#addServico").on("click", function(){
-                   console.log("Clicou");
                    $.ajax({
                         url:"tipos-servico",
                         type:"POST",
                         data: {tipoUsuario : 4}, //MUDAR O 4 PARA A SESSION
                        success: function(data){
                             let tiposServico = data.tiposServico;
-                            console.log(tiposServico);
                             $("#tipoServico").html(""); //limpando a combo
                             $("#tipoServico").append("<option></option>"); //option vazia inicial
                             $.each(tiposServico, function( index, value ){
@@ -297,7 +295,27 @@
                             alert("Erro: " + data);
                        }
                    });
-               })
+               });
+
+               let arrayServicos = [];
+               // onde na teoria submitaria o form;
+               $("#cadastrarServico").on("click", function(){
+
+                   let tipoServico = $("#tipoServico").val().trim();
+                   let nomeServico = $("#nomeServico").val().trim();
+                   let precoServico = $("#precoServico").val().trim();
+                   let descricaoServico = $("#descricaoServico").html().trim();
+
+                   let servico = {
+                       tipoServico : tipoServico,
+                       nomeServico : nomeServico,
+                       precoServico : precoServico,
+                       descricaoServico : descricaoServico
+                   };
+
+                   arrayServicos.push(servico);
+                   $("#addServico-Modal").modal("hide");
+               });
             });
         </script>
         <script>
