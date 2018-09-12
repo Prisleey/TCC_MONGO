@@ -12,7 +12,7 @@ router.get('/listar-estudios', function(req, res, next){
     };
 
     ServicoBusiness.buscar(busca).then(function(objeto){
-        res.render('listarEstudios', {estudios: objeto.resultado});
+        res.render('listarEstudios', {estudios: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
     });
@@ -23,7 +23,7 @@ router.get('/detalhe-estudio', function(req, res, next) {
 
     EstudioBusiness.detalheEstudio(idEstudio).then(function(objeto) {
         console.log('teste');
-        res.render('detalheEstudio', {estudio: objeto}, {servico: obj});
+        res.render('detalheEstudio', {estudio: objeto}, {servico: obj}, {usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });

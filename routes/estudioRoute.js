@@ -3,7 +3,6 @@ let EstudioBusiness = require('../business/estudioBusiness');
 var router = express.Router();
 
 router.get('/cadastro-estudio', function(req, res, next) {
-    console.log('id do usuario session', req.session.usuarioLogado);
     res.render('cadastrarEstudio', {usuarioLogado: req.session.usuarioLogado});
 });
 
@@ -26,10 +25,10 @@ router.post('/cadastro-estudio', function(req, res, next) {
     dadosFormEstudio.idUsuario = req.session.usuarioLogado[0]._id;
 
     EstudioBusiness.salvarEstudio(dadosFormEstudio).then(function(objeto) {
-        res.render('index', { usuarioLogado: req.session.usuarioLogado });
+        res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
     }).catch (function(erro) {
         console.log(erro);
-        res.render('index', { autenticado : erro });
+        res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
     });
 });
 

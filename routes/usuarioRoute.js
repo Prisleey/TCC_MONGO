@@ -58,10 +58,5 @@ router.get('/logoff', function(req, res, next) {
         res.render('index', { tiposUser : {}, usuarioLogado : false });
     });
 });
-/*
-router.get('/logoff', function(req, res, next) {
-    console.log('logoff');
-    res.render('index', { autenticado : false, tiposUser : {} });
-});*/
 
 module.exports = router;
