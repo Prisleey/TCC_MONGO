@@ -24,7 +24,6 @@ router.post('/cadastro', function(req, res, next) {
     };
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
-        console.log('idtpusuario session: ', req.session.usuarioLogado);
         res.render('index', { tiposUser : {} ,usuarioLogado: req.session.usuarioLogado});
     }).catch (function(erro) {
         console.log(erro);
@@ -43,7 +42,7 @@ router.post('/login', function(req, res, next) {
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
         req.session.usuarioLogado = objeto;
-        console.log('session ', req.session.usuarioLogado);
+
 
         res.render('index', {tiposUser : {}, usuarioLogado: req.session.usuarioLogado})
     }).catch(function(erro) {
