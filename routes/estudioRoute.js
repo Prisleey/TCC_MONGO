@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/cadastro-estudio', function(req, res, next) {
     console.log('id do usuario session', req.session.usuarioLogado);
-    res.render('cadastrarEstudio');
+    res.render('cadastrarEstudio', {usuarioLogado: req.session.usuarioLogado});
 });
 
 router.post('/cadastro-estudio', function(req, res, next) {
