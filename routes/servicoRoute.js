@@ -17,17 +17,23 @@ router.post('/novo-servico', function(req, res, next) {
     };
 
     ServicoBusiness.cadastrarServicos(servico).then(function(objeto) {
-        console.log(objeto);
         res.render('');
     }).catch (function(erro) {
-        console.log(erro);
         res.render('');
     });
 
 });
 
 router.post('/tipos-servico', function(req, res, next) {
+    console.log("CHEGOU AQUI");
     let tipoUsuario = req.body.tipoUsuario;
+    ServicoBusiness.consultarTipoDeServicoPorTipoDeUsuario(tipoUsuario).then(function(tiposServico) {
+        console.log(tiposServico);
+        res.send('OPA DEU BOM');
+    }).catch (function(erro) {
+        console.log(erro);
+        res.error("DEU RUIM");
+    });
     //res.end()
 });
 

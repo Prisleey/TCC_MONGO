@@ -119,9 +119,18 @@ exports.consultarServicos = function(id_estudio) {
 exports.consultarTipoDeServicoPorTipoDeUsuario = function(idTipoUsuario) {
     return new Promise(function(resolve, reject) {
         TipoServicoModel.find({
-            "b": 2
+            "idTpUsuario": idTipoUsuario
         }, {
-            "nomeTpServico": 1
+            "nomeTpServico": 1,
+            "idTpUsuario": 1
+        }, function(erro, result) {
+            console.log("RESULTADO...");
+            console.log(result);
+            if(result) {
+                resolve({status : true, tiposServico: result});
+            } else {
+                reject({status : false, erro : erro});
+            }
         });
     });
 }
