@@ -4,7 +4,7 @@ Schema = mongoose.Schema;
 let servicoSchema = new Schema({
     _id : {type: Schema.Types.ObjectId},
     nomeServico : {type: String},
-    descServico : {type: String},
+    descricaoServico : {type: String},
     precoServico : {type: Number, required: true},
     idTipoServico : {type: Schema.Types.ObjectId, ref : 'TipoServico'}
 });

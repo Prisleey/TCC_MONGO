@@ -3,6 +3,7 @@ let EstudioBusiness = require('../business/estudioBusiness');
 var router = express.Router();
 
 router.get('/cadastro-estudio', function(req, res, next) {
+    console.log('id do usuario session', req.session.usuarioLogado);
     res.render('cadastrarEstudio');
 });
 
@@ -22,8 +23,10 @@ router.post('/cadastro-estudio', function(req, res, next) {
     delete dadosFormEstudio["horarioFuncionamento"]; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
     delete dadosFormEstudio["diaSemana"];//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
 
+    dadosFormEstudio.idUsuario = req.session.usuarioLogado[0]._id;
+
     EstudioBusiness.salvarEstudio(dadosFormEstudio).then(function(objeto) {
-        res.render('index', { autenticado : true });
+        res.render('index', { usuarioLogado: req.session.usuarioLogado });
     }).catch (function(erro) {
         console.log(erro);
         res.render('index', { autenticado : erro });

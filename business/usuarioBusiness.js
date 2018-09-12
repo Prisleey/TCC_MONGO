@@ -43,12 +43,35 @@ exports.salvarUsuario = function(data) {
 
 exports.verificarUsuario = function(data) {
     return new Promise(function(resolve, reject) {
-        UsuarioModel.findOne({login:data.login, senha:data.senha}, function(err, usuario) {
+
+        UsuarioModel.aggregate([
+            { $match : {login:data.login, senha:data.senha} },
+            { $lookup:{from : "TipoUsuario", localField : "tipo", foreignField : "_id", as : "tipo"}},
+            { $project: {
+                _id:1,
+                nome:1,
+                login:1,
+                email:1,
+                senha:1,
+                'tipo._id':1,
+                'tipo.idTpUsuario':1,
+                'tipo.desc':1,
+            }}
+        ]).exec(function(err, usuario){
+            if(err){
+                reject(JSON.stringify(err));
+            }else {
+                console.log(usuario[0].tipo);
+                resolve(usuario);
+            }
+        });
+
+        /*UsuarioModel.findOne({login:data.login, senha:data.senha}, function(err, usuario) {
             if(usuario) {
                 resolve({status : true, 'usuario': usuario});
             } else {
                 reject({status :false, erro: err});
             }
-        });
+        });*/
     });
 }

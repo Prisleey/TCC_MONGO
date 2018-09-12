@@ -3,11 +3,9 @@ var router = express.Router();
 
 let UsuarioBusiness = require('../business/usuarioBusiness');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
     UsuarioBusiness.listTipoUsuario().then(function(objeto) {
-        //res.end(JSON.stringify(objeto.tipos));
-        res.render('index', { tiposUser: objeto.tipos, usuarioLogado: req.session.login});
+        res.render('index', { tiposUser: objeto.tipos, usuarioLogado: req.session.usuarioLogado});
     });
 });
 

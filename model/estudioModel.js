@@ -16,6 +16,7 @@ let estudioSchema = new Schema({
     rua: {type: String, trim: true, required: true},
     cep: {type: String, trim: true, required: true},
     telefone: {type: String, trim: true, required: true},
+    idUsuario : {type: Schema.Types.ObjectId, ref : 'Usuario'},
     salas: {
         type: [salaSchema],
         select: true,

@@ -2,13 +2,11 @@ let EstudioModel = require('../model/estudioModel');
 
 exports.salvarEstudio = function(data) {
     return new Promise(function(resolve, reject) {
-        console.log(data);
         let estudio = new EstudioModel(data);
 
         estudio.save(function(err) {
-
             if(err) {
-                reject({status: false, erro: 'bosta'});
+                reject({status: false, erro: err});
             } else {
                 resolve({status: true, 'estudio' : estudio});
             }
