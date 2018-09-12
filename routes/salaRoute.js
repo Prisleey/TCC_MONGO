@@ -4,8 +4,10 @@ var router = express.Router();
 
 router.get('/cadastro-sala', function(req, res, next) {
 
-    EstudioBusiness.consultarEstudio().then(function(objeto) {
-        res.render('cadastrarSala', {autenticado : true, estudios: objeto.estudios});
+    let idUsuarioLogado = req.session.usuarioLogado[0]._id;
+
+    EstudioBusiness.consultarEstudio(idUsuarioLogado).then(function(objeto) {
+        res.render('cadastrarSala', {estudios: objeto.estudios});
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });

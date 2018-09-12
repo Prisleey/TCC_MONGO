@@ -38,7 +38,10 @@ exports.updateEstudio = function(id_estudio, data) {
 
 exports.consultarEstudio = function(data) {
     return new Promise(function(resolve, reject) {
-        EstudioModel.find(function(err, estudios) {
+        console.log(data);
+        EstudioModel.find({
+            idUsuario : data
+        }, function(err, estudios) {
             if(estudios) {
                 resolve({status : true, 'estudios': estudios});
             } else {
@@ -50,6 +53,7 @@ exports.consultarEstudio = function(data) {
 
 exports.detalheEstudio = function(data) {
     return new Promise(function(resolve, reject) {
+        console.log(data);
         EstudioModel.find({_id: data
         }, {
             _id: 1,
@@ -58,6 +62,7 @@ exports.detalheEstudio = function(data) {
             salas: 1
         }, function(err, estudio) {
             if(estudio) {
+                console.log(estudio);
                 resolve({status : true, 'estudio': estudio});
             } else {
                 reject({status:false, erro: err})
