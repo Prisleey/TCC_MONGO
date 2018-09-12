@@ -25,14 +25,11 @@ router.post('/novo-servico', function(req, res, next) {
 });
 
 router.post('/tipos-servico', function(req, res, next) {
-    console.log("CHEGOU AQUI");
     let tipoUsuario = req.body.tipoUsuario;
     ServicoBusiness.consultarTipoDeServicoPorTipoDeUsuario(tipoUsuario).then(function(tiposServico) {
-        console.log(tiposServico);
-        res.send('OPA DEU BOM');
+        res.send(tiposServico);
     }).catch (function(erro) {
-        console.log(erro);
-        res.error("DEU RUIM");
+        res.error(erro);
     });
     //res.end()
 });

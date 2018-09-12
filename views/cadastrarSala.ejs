@@ -264,12 +264,19 @@
                    $.ajax({
                         url:"tipos-servico",
                         type:"POST",
-                        data: {tipoUsuario : 4},
+                        data: {tipoUsuario : 4}, //MUDAR O 4 PARA A SESSION
                        success: function(data){
-                            alert("OPA DEU BOM");
+                            let tiposServico = data.tiposServico;
+                            console.log(tiposServico);
+                            $("#tipoServico").html(""); //limpando a combo
+                            $("#tipoServico").append("<option></option>"); //option vazia inicial
+                            $.each(tiposServico, function( index, value ){
+                                    //vai popular a combo com os tipos de serviço para estudios
+                                    $("#tipoServico").append("<option value='"+value._id+"'>"+value.nomeTpServico+"</option>");
+                            });
                        },
                        error: function(data){
-                            alert("SHIII DEU RUIM");
+                            alert("Erro: " + data);
                        }
                    });
                })
