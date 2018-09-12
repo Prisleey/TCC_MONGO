@@ -24,7 +24,8 @@ router.post('/cadastro', function(req, res, next) {
     };
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
-        res.render('index', { autenticado : false, tiposUser : {} });
+        console.log('idtpusuario session: ', req.session.usuarioLogado);
+        res.render('index', { tiposUser : {} ,usuarioLogado: req.session.usuarioLogado});
     }).catch (function(erro) {
         console.log(erro);
         res.render('index', { autenticado : erro });

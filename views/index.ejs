@@ -41,18 +41,27 @@
                                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
                                         <% if(usuarioLogado) { %>
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
-                                            </li>
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="cadastro-sala">Cadastrar Sala</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="agenda">Agenda</a>
-                                            </li>
-                                            <li>
-                                                <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
-                                            </li>
+                                            <% if(usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
+                                                </li>
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" href="cadastro-sala">Cadastrar Sala</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="agenda">Agenda</a>
+                                                </li>
+                                                <li>
+                                                    <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
+                                                </li>
+                                            <%} else {%>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="agenda">Agenda</a>
+                                                </li>
+                                                <li>
+                                                    <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
+                                                </li>
+                                            <%} %>
                                         <% } else { %>
                                             <li><!-- data-toggle="modal" data-target="#cadastro-modal" -->
                                                 <a href="/" id='btCadastroUser' class="btn btn-outline-light top-btn" data-toggle="modal" > Novo Usuário</a>
@@ -224,15 +233,15 @@
                         <form method="POST" action="/login">
                             <div class="form-group">
                                 <label for="login">Login:</label>
-                                <input type="login" class="form-control" id="login" name="login">
+                                <input type="login" class="form-control" id="login" name="login" required>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Senha:</label>
-                                <input type="password" class="form-control" id="pwd" name="senha">
+                                <input type="password" class="form-control" id="pwd" name="senha" required>
                             </div>
-                            <div class="checkbox">
+                            <!--<div class="checkbox">
                                 <label><input type="checkbox"> Remember me</label>
-                            </div>
+                            </div>-->
                             <button type="submit" class="btn btn-primary btn-lg">Login</button>
                         </form>
                     </div>

@@ -124,6 +124,8 @@ exports.consultarTipoDeServicoPorTipoDeUsuario = function(idTipoUsuario) {
             "nomeTpServico": 1,
             "idTpUsuario": 1
         }, function(erro, result) {
+            console.log("RESULTADO...");
+            console.log(result);
             if(result) {
                 resolve({status : true, tiposServico: result});
             } else {
