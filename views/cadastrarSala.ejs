@@ -186,14 +186,16 @@
                                 <div class="col-5">
                                     <label for="valor_sala">Serviços:</label>
                                     <div>
-                                        <a href="#" data-toggle="modal" data-target="#addServico-Modal" class="btn btn-success">Add Serviço +</a>&nbsp;&nbsp;<a href="#" class="btn btn-info">Visualizar Serviços</a>
+                                        <a href="#" data-toggle="modal" id="addServico" data-target="#addServico-Modal" class="btn btn-success">Add Serviço +</a>&nbsp;&nbsp;<a href="#" class="btn btn-info">Visualizar Serviços</a>
                                         <br><br>
                                     </div>
                                 </div>
+                                <!--
                                 <div class="col-5">
                                     <label for="valor_sala">Preço por hora</label>
                                     <input class="form-control" id="valor_sala" type="text" name="valor_sala" required>
                                 </div>
+                                -->
                                 <div class="col-5">
                                     <label for="equipamento">Equipamentos</label>
                                     <!-- SPLIT PARA SEPARAR OS EQUIPAMENTOS, PODE SALVAR COMO UMA STRING SO E DA SPLIT QUANDO FOR MEXER -->
@@ -255,6 +257,22 @@
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
+            });
+            $(document).ready(function(){
+               $("#addServico").on("click", function(){
+                   console.log("Clicou");
+                   $.ajax({
+                        url:"tipos-servico",
+                        type:"POST",
+                        data: {tipoUsuario : 4},
+                       success: function(data){
+                            alert("OPA DEU BOM");
+                       },
+                       error: function(data){
+                            alert("SHIII DEU RUIM");
+                       }
+                   });
+               })
             });
         </script>
         <script>

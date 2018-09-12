@@ -26,6 +26,11 @@ router.post('/novo-servico', function(req, res, next) {
 
 });
 
+router.post('/tipos-servico', function(req, res, next) {
+    let tipoUsuario = req.body.tipoUsuario;
+    //res.end()
+});
+
 router.get('/visualizar-servico', function(req, res, next) {
     res.render();
 });

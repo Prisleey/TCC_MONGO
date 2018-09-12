@@ -1,5 +1,6 @@
 let EstudioModel = require('../model/estudioModel');
 let ServicoModel = require('../model/servicoModel');
+let TipoServicoModel = require('../model/tipoServicoModel');
 
 exports.buscar = function(data) {
     return new Promise(function(resolve, reject) {
@@ -111,6 +112,16 @@ exports.consultarServicos = function(id_estudio) {
             } else {
                 reject({status : false, erro : erro});
             }
+        });
+    });
+}
+
+exports.consultarTipoDeServicoPorTipoDeUsuario = function(idTipoUsuario) {
+    return new Promise(function(resolve, reject) {
+        TipoServicoModel.find({
+            "b": 2
+        }, {
+            "nomeTpServico": 1
         });
     });
 }
