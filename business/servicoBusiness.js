@@ -16,7 +16,8 @@ exports.buscar = function(data) {
                     estado: {'$regex': data.local, '$options': 'i'}
                 }, {
                     bairro: {'$regex': data.local, '$options': 'i'}
-                }]
+                }],
+                $where:'this.salas.length>0'
             }, {
                 nomeEstudio: 1,
                 cidade: 1,
@@ -36,7 +37,8 @@ exports.buscar = function(data) {
             EstudioModel.find({
                 "$or": [{
                     nomeEstudio: {'$regex': data.nomeBusca, '$options': 'i'}
-                }]
+                }],
+                $where:'this.salas.length>0'
             }, {
                 nomeEstudio: 1,
                 cidade: 1,
@@ -60,7 +62,8 @@ exports.buscar = function(data) {
                     estado: {'$regex': data.local, '$options': 'i'}
                 }, {
                     bairro: {'$regex': data.local, '$options': 'i'}
-                }]
+                }],
+                $where:'this.salas.length>0'
             }, {
                 nomeEstudio: 1,
                 cidade: 1,
@@ -78,6 +81,7 @@ exports.buscar = function(data) {
             });
         } else {
             EstudioModel.find({
+                $where:'this.salas.length>0'
             }, {
                 nomeEstudio: 1,
                 cidade: 1,

@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/listar-estudios', function(req, res, next){
     let nomeBusca = req.query.nome;
     let local = req.query.local;
-    let busca= {
+    let busca = {
         "nomeBusca": nomeBusca,
         "local": local
     };
@@ -22,8 +22,8 @@ router.get('/detalhe-estudio', function(req, res, next) {
     let idEstudio = req.query.id_estudio;
 
     EstudioBusiness.detalheEstudio(idEstudio).then(function(objeto) {
-        console.log('teste');
-        res.render('detalheEstudio', {estudio: objeto}, {servico: obj}, {usuarioLogado: req.session.usuarioLogado});
+        console.log(objeto);
+        res.render('detalheEstudio', {estudio: objeto, usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
     });
