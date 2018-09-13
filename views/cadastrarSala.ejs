@@ -130,7 +130,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <form method="POST" id="formNovoServico">
+                        <!--<form method="POST" >-->
                             <div class="form-group">
                                 <label for="tipoServico">Tipo Serviço:</label>
                                 <select id="tipoServico" class="form-control" name="tipoServico" required>
@@ -150,7 +150,7 @@
                                 <textarea placeholder="Descrição do Serviço ofertado" class="form-control" id="descricaoServico" name="descricaoServico" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
-                        </form>
+                        <!--</form>-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -183,7 +183,7 @@
                         <!-- DESCRICAO E CHECKBOX -->
                         
                         <div class="booking-checkbox_wrap">	
-                            <form method="POST" action="/cadastro-sala">
+                            <form method="POST" id="formNovoServico" action="/cadastro-sala">
                                 <div class="col-5">
                                     <label for="id_estudio">Estúdio</label>
                                     <select class="form-control" id="id_estudio" name="id_estudio" required>
@@ -277,15 +277,16 @@
                 },
             });
             $(document).ready(function(){
-
+                //#formNovoServico
+                //
                $("#formNovoServico").on("submit", function(e){
-
+                   e.preventDefault();
                    let data = $(this).serialize();
                    console.log("opa serializou");
                    console.log(data);
                    //action="/novo-servico"
-                   e.preventDefault();
-               }) ;
+
+               });
 
                $("#addServico").on("click", function(){
                    $.ajax({
