@@ -130,7 +130,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <form method="POST" action="/novo-servico">
+                        <form method="POST" id="formNovoServico">
                             <div class="form-group">
                                 <label for="tipoServico">Tipo Serviço:</label>
                                 <select id="tipoServico" class="form-control" name="tipoServico" required>
@@ -277,6 +277,16 @@
                 },
             });
             $(document).ready(function(){
+
+               $("#formNovoServico").on("submit", function(e){
+
+                   let data = $(this).serialize();
+                   console.log("opa serializou");
+                   console.log(data);
+                   //action="/novo-servico"
+                   e.preventDefault();
+               }) ;
+
                $("#addServico").on("click", function(){
                    $.ajax({
                         url:"tipos-servico",
@@ -304,7 +314,7 @@
                    let tipoServico = $("#tipoServico").val().trim();
                    let nomeServico = $("#nomeServico").val().trim();
                    let precoServico = $("#precoServico").val().trim();
-                   let descricaoServico = $("#descricaoServico").html().trim();
+                   let descricaoServico = $("#descricaoServico").val().trim();
 
                    let servico = {
                        tipoServico : tipoServico,
@@ -315,6 +325,7 @@
 
                    arrayServicos.push(servico);
                    $("#addServico-Modal").modal("hide");
+                   console.log(arrayServicos);
                });
             });
         </script>
