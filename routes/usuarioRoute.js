@@ -14,14 +14,23 @@ router.post('/cadastro', function(req, res, next) {
     let email = req.body.email;
     let senha = req.body.senha;
     let tpUser = req.body.tpUser;
+    let estado = req.body.estado;
+    let cidade = req.body.cidade;
+    let bairro = req.body.bairro;
+
 
     let usuario = {
         'nome' : nome,
         'login' : login,
         'email' : email,
         'senha' : senha,
-        'tipo'  : tpUser
+        'tipo'  : tpUser,
+        'estado':estado,
+        'cidade':cidade,
+        'bairro':bairro
     };
+
+    console.log(usuario);
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
         res.render('index', { tiposUser : {} ,usuarioLogado: req.session.usuarioLogado});

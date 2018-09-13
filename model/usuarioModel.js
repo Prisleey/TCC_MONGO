@@ -6,7 +6,10 @@ let userSchema = new Schema({
     senha: {type: String, required: true}, 
     login: {type: String, trim: true, index: true, required: true},
     email: {type: String, trim: true, index: true, required: true},
-    tipo: {type: Schema.Types.ObjectId, trim:true, required: true, ref: 'TipoUsuario'}
+    tipo: {type: Schema.Types.ObjectId, trim:true, required: true, ref: 'TipoUsuario'},
+    estado:{type: String, trim: true, required: false},
+    cidade:{type: String, trim: true, required: false},
+    bairro:{type: String, trim: true, required: false}
 }, {collection : 'Usuario'});
 
 var userModel = mongoose.model('Usuario', userSchema);

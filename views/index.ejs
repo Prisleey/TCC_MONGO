@@ -97,19 +97,23 @@
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-center">
-                                <div class="col-md-10">
-                                    <form class="form-wrap mt-4" type='GET' action='/listar-estudios'>
+                                <div class="col-md-11">
+                                    <form class="form-wrap mt-4" type='GET' action='/listar-pesquisa'>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <input type="text" placeholder="O que você procura?" name='nome' class="btn-group1">
+
+                                            <select class="btn-group0" name="who" required>
+                                                <option value="">Quem você procura?</option>
+                                                <% if(tiposUser.length > 0) { %>
+                                                    <% for(let i = 1; i < tiposUser.length; i++) { %>
+                                                        <option value="<%= tiposUser[i].idTpUsuario %>"><%= tiposUser[i].desc %></option>
+                                                    <% } %>
+                                                <%}%>
+                                            </select>
+                                            <input type="text" placeholder="Nome" name='nome' class="btn-group1">
                                             <input type="text" placeholder="Onde?" name='local' class="btn-group2">
                                             <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>BUSCAR<i class="pe-7s-angle-right"></i></button>
                                         </div>
                                     </form>
-                                    <!--
-                                    <div class="slider-link">
-                                        <a href="#">Browse Popular</a><span>or</span> <a href="#">Recently Added</a>
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                         </div>
@@ -285,12 +289,30 @@
                                 <label>Tipo de Usuário:</label><br />
                                 <% if(tiposUser.length > 0) { %>
                                     <% for(let i = 0; i < tiposUser.length; i++) { %>
-                                        <label class="container">
-                                            <input type="radio" checked="checked" value="<%= tiposUser[i]._id %>" name="tpUser">
+                                        <label class="container" id="idRadio">
+                                            <input type="radio" id="tipoUser" value="<%= tiposUser[i]._id %>" name="tpUser" required>
                                             <span class="checkmark"><%= tiposUser[i].desc %></span>
                                         </label>
                                     <% } %>
                                 <%}%>
+                            </div>
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="estado">Estado:</label>
+                                            <input type="text" class="form-control" id="estado" name="estado">
+                                        </div>
+                                        <div class="col">
+                                            <label for="cidade">Cidade:</label>
+                                            <input type="text" class="form-control" id="cidade" name="cidade">
+                                        </div>
+                                        <div class="col">
+                                            <label for="bairro">Bairro:</label>
+                                            <input type="text" class="form-control" id="bairro" name="bairro">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
                         </form>
@@ -335,6 +357,19 @@
             $(document).ready(function() {
                 $('#btCadastroUser').on('click', function() {
                     $('#cadastro-modal').modal('show');
+                });
+
+                $('input:radio[name=tpUser]').on('change', function() {
+                    console.log($(this).val());
+                    if ($(this).val() == '5b85f4f0d7b3ff3a1899e4c3') { //ALTERAR PARA ID NORMAL (1,2,3,4) E NÃO O OBJECT ID
+                        $('#estado').prop('readonly', true);
+                        $('#cidade').prop('readonly', true);
+                        $('#bairro').prop('readonly', true);
+                    } else {
+                        $('#estado').prop('readonly', false);
+                        $('#cidade').prop('readonly', false);
+                        $('#bairro').prop('readonly', false);
+                    }
                 });
             });
 

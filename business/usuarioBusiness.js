@@ -3,9 +3,15 @@ let TipoUsuarioModel = require('../model/tipoUsuarioModel');
 
 exports.listTipoUsuario = function() {
     return new Promise(function(resolve, reject) {
-        let tpUser = new TipoUsuarioModel();
 
-        TipoUsuarioModel.find({}, function(erro, tipoUser) {
+        TipoUsuarioModel.find({
+
+        }, {
+            _id: 1,
+            idTpUsuario:1,
+            desc: 1,
+        }, function(erro, tipoUser) {
+            //console.log('tipoUser>>>>>>>>>>>>> ',tipoUser);
             if(tipoUser) {
                 resolve({status : true, tipos : tipoUser});
             } else {

@@ -14,7 +14,6 @@ var salaRoute = require('./routes/salaRoute');
 var buscaRoute = require('./routes/buscaRoute');
 var servicoRoute = require('./routes/servicoRoute');
 var portfolioRoute = require('./routes/portfolioRoute');
-var testeRoute = require('./routes/teste');
 
 var app = express();
 
@@ -35,7 +34,6 @@ app.use('/', salaRoute);
 app.use('/', buscaRoute);
 app.use('/', servicoRoute);
 app.use('/', portfolioRoute);
-app.use('/', testeRoute);
 
 app.use(function(req, res, next) {
   next(createError(404));
