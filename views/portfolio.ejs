@@ -44,7 +44,7 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
-                                <% if(typeof usuarioLogado !== 'undefined') { %>
+                                <% if(usuarioLogado) { %>
                                     <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                         <li class="nav-item active">
                                             <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
@@ -135,7 +135,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5>NOME</h5>
+                        <h5><%= usuario.nome%></h5>
                         <p><span>$$$</span>$$</p>
                         <p class="reserve-description">Innovative cooking, paired with fine wines in a modern setting.</p>
                     </div>

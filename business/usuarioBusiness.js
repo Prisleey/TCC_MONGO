@@ -81,3 +81,17 @@ exports.verificarUsuario = function(data) {
         });*/
     });
 }
+
+exports.consultaDadosUsuario = function(id) {
+    return new Promise(function(resolve, reject) {
+        UsuarioModel.findOne({
+            _id : id
+        }, function(erro, resultado) {
+            if(resultado) {
+                resolve({status: true, 'usuario': resultado});
+            } else {
+                reject({status: false, 'erro':erro});
+            }
+        });
+    });
+}
