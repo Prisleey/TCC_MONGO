@@ -8,7 +8,7 @@ exports.buscar = function(data) {
     return new Promise(function(resolve, reject) {
 
         if(data.who.trim() == "2") {
-            console.log('if 1');
+
             TipoUsuarioModel.aggregate([
                 { $lookup: { "from": "Usuario", "localField": "_id", "foreignField": "tipo", "as": "User" }},
                 { $match : {
@@ -44,7 +44,7 @@ exports.buscar = function(data) {
                 }
             });
         } else if(data.who.trim() == "3") {
-            console.log('if 2');
+
             TipoUsuarioModel.aggregate([
                 { $lookup: { "from": "Usuario", "localField": "_id", "foreignField": "tipo", "as": "User" }},
                 { $match : {
@@ -80,7 +80,7 @@ exports.buscar = function(data) {
                 }
             });
         } else if(data.who.trim() == "4") {
-            console.log('if 3');
+
             EstudioModel.find({
                 "$or": [{
                     nomeEstudio: {'$regex': data.nomeBusca, '$options': 'i'}

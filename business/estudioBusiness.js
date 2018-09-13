@@ -17,11 +17,16 @@ exports.salvarEstudio = function(data) {
 exports.updateEstudio = function(id_estudio, sala) {
     return new Promise(function(resolve, reject) {
         // let sala = new EstudioModel(data);
-        EstudioModel.findOneAndUpdate({'_id' : id_estudio}, {$push : { salas : sala}}, { new: true }, function (err, salaCallback) {
+        EstudioModel.findOneAndUpdate(
+            {'_id' : id_estudio},
+            {$push : { salas : sala}},
+            { new: true }
+        , function (err) {
             if (err) {
                 resolve(JSON.stringify(err));
             } else {
-                let idSalaSalva = salaCallback.salas[salaCallback.salas.length-1]._id;
+                //let idSalaSalva = salaCallback.salas[salaCallback.salas.length-1]._id;
+                let idSalaSalva =
                 resolve(JSON.stringify({
                     "status": true,
                     "message": "Sala salva com sucesso.",
