@@ -15,13 +15,12 @@ router.get('/listar-pesquisa', function(req, res, next){
     };
 
     ServicoBusiness.buscar(busca).then(function(objeto){
-        //res.end(JSON.stringify(objeto));
         if(who == "2") {
-            res.end(JSON.stringify(objeto));
-            //res.render('listarPesquisa', {prestadorServico: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
+            //res.end(JSON.stringify(objeto));
+            res.render('listarPesquisa', {prestadorServico: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
         } else if(who == "3") {
-            res.end(JSON.stringify(objeto));
-            //res.render('listarPesquisa', {prestadorServico: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
+            //res.end(JSON.stringify(objeto));
+            res.render('listarPesquisa', {prestadorServico: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
         } else if(who == "4") {
             res.render('listarPesquisa', {estudios: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
         }

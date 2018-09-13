@@ -7,7 +7,6 @@ let servicoSchema = new Schema({
     descricaoServico : {type: String},
     precoServico : {type: Number, required: true},
     idTipoServico : {type: Schema.Types.ObjectId, ref : 'TipoServico'},
-    idSala
 });
 
 var servico = mongoose.model('Servico', servicoSchema);

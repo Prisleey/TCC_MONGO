@@ -48,7 +48,7 @@
                             </button>
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
-                                    <% if(usuarioLogado) { %>
+                                    <% if(typeof usuarioLogado !== 'undefined') { %>
                                         <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                             <li class="nav-item active">
                                                 <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
@@ -194,46 +194,6 @@
                                     <button type="submit" class="btn btn-primary">Cadastrar Estúdio</button>
                                 </form>
                             </div>
-                            <!--
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label class="custom-checkbox">
-                                        <span class="ti-check-box"></span>
-                                        <span class="custom-control-description">Bike Parking</span>
-                                    </label> 
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="custom-checkbox">
-                                    <span class="ti-check-box"></span>
-                                    <span class="custom-control-description">Wireless Internet  </span>
-                                    </label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="custom-checkbox">
-                                        <span class="ti-check-box"></span>
-                                        <span class="custom-control-description">Smoking Allowed  </span>
-                                    </label> 
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="custom-checkbox">
-                                        <span class="ti-check-box"></span>
-                                        <span class="custom-control-description">Street Parking</span>
-                                    </label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="custom-checkbox">
-                                    <span class="ti-check-box"></span>
-                                    <span class="custom-control-description">Special</span>
-                                    </label> 
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="custom-checkbox">
-                                    <span class="ti-check-box"></span>
-                                    <span class="custom-control-description">Accepts Credit cards</span>
-                                    </label>
-                                </div>
-                            </div>
-                            -->
                         </div>
                         <!-- END //DESCROCAO E CHECKBOX -->
                     </div>
@@ -261,15 +221,6 @@
             </div>
         </footer>
         <!--//END FOOTER -->
-        
-        
-
-
-        
-        
-        
-        
-        
         <!-- jQuery, Bootstrap JS. -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="js/jquery-3.2.1.min.js"></script>

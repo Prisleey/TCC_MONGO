@@ -40,7 +40,7 @@
                             </button>
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
-                                    <% if(usuarioLogado) { %>
+                                    <% if(typeof usuarioLogado !== 'undefined') { %>
                                         <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                             <li class="nav-item active">
                                                 <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
@@ -115,28 +115,22 @@
                                 </div>
                             </div>
                             <% } %>
-                        <% } %>
-
-                        <% if(typeof prestadorServico !== 'undefined') { %>
-                            <% for(let i = 0; i < prestadorServico.length; i++) { %>
+                        <% } else if(typeof prestadorServico !== 'undefined') {  %>
+                            <% for(let i = 0; i < prestadorServico[0].User.length; i++) { %>
                             <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
                                 <div class="featured-place-wrap">
-                                    <a href="/portfolio?id_estudio=<%=estudios[i]._id%>">
+                                    <a href="/portfolio?id_prestador=<%=prestadorServico[0].User[i]._id%>">
                                         <div class="featured-title-box">
-                                            <h6><%= estudios[i].nomeEstudio %></h6>
+                                            <h6><%= prestadorServico[0].User[i].nome %></h6>
                                             <ul>
                                                 <li><span class="icon-location-pin"></span>
-                                                    <p><%= estudios[i].rua%>, <%= estudios[i].bairro%> - <%= estudios[i].cidade%> - <%= estudios[i].estado%></p>
+                                                    <p><%= prestadorServico[0].User[i].bairro%> - <%= prestadorServico[0].User[i].cidade%> - <%= prestadorServico[0].User[i].estado%></p>
                                                 </li>
                                                 <li><span class="icon-screen-smartphone"></span>
-                                                    <p><%= estudios[i].telefone%></p>
+                                                    <!--<p><%= /*prestadorServico[0].User[i].telefone*/%></p>-->
                                                 </li>
                                             </ul><br />
-                                            <% for(let contSala = 0; contSala < estudios[i].salas.length; contSala++) { %>
-                                                <p><%= estudios[i].salas[contSala].nomeSala %> </p><span> • </span><p>R$ <span><%= estudios[i].salas[contSala].valorSala %></span></p><br />
-                                            <% } %>
                                             <div class="bottom-icons">
-                                                <div class="open-now">OPEN NOW</div>
                                                 <span class="ti-heart"></span>
                                                 <span class="ti-bookmark"></span>
                                             </div>

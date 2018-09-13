@@ -40,7 +40,7 @@
 
                                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
-                                        <% if(usuarioLogado) { %>
+                                        <% if(typeof usuarioLogado !== 'undefined') { %>
                                             <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                                 <li class="nav-item active">
                                                     <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
