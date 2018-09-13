@@ -5,7 +5,7 @@ let UsuarioBusiness = require('../business/usuarioBusiness');
 router.get('/portfolio', function(req, res, next) {
 
     let id_prestador = req.query.id_prestador;
-console.log('teste');
+
     UsuarioBusiness.consultaDadosUsuario(id_prestador).then(function(objeto) {
         console.log(objeto);
         if(req.session.usuarioLogado) {
