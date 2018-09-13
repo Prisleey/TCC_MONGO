@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/portfolio', function(req, res, next) {
-    res.render('portfolio', { tiposUser : {} ,usuarioLogado: false});
-    //res.end(JSON.stringify(objeto.tipos));
+    if(req.session.usuarioLogado) {
+        res.render('portfolio', { tiposUser : {}, usuarioLogado: req.session.usuarioLogado});
+    } else {
+        res.render('portfolio', { tiposUser : {}, usuarioLogado: false});
+    }
 });
 
 module.exports = router;

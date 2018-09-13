@@ -61,7 +61,7 @@ exports.verificarUsuario = function(data) {
             if(err){
                 reject(JSON.stringify(err));
             }else {
-                console.log(usuario[0].tipo);
+                //console.log(usuario[0].tipo);
                 resolve(usuario);
             }
         });

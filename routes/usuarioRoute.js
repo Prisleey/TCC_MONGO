@@ -41,12 +41,9 @@ router.post('/login', function(req, res, next) {
     };
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
-        req.session.usuarioLogado = objeto;
-
-
         res.render('index', {tiposUser : {}, usuarioLogado: req.session.usuarioLogado})
     }).catch(function(erro) {
-        res.end(JSON.stringify(erro));
+        res.render('index', { tiposUser : {}, usuarioLogado : false });
     });
 });
 

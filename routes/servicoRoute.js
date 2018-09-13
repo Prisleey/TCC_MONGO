@@ -17,7 +17,7 @@ router.post('/novo-servico', function(req, res, next) {
     };
 
     ServicoBusiness.cadastrarServicos(servico).then(function(objeto) {
-        res.render('');
+        res.render('index', { tiposUser: objeto.tipos, usuarioLogado: req.session.usuarioLogado});
     }).catch (function(erro) {
         res.render('');
     });

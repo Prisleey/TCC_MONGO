@@ -12,7 +12,7 @@
     <!-- Favicons -->
     <link rel="shortcut icon" href="#">
     <!-- Page Title -->
-    <title>Listing &amp; Directory Website Template</title>
+    <title>Portfólio</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Google Fonts -->
@@ -45,7 +45,7 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <% if(usuarioLogado) { %>
-                                    <% if(usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
+                                    <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                         <li class="nav-item active">
                                             <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
                                         </li>
@@ -54,6 +54,9 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="agenda">Agenda</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="portfolio">Portfólio</a>
                                         </li>
                                         <li>
                                             <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
@@ -142,12 +145,12 @@
                                 <span>9.5</span>
                             </div>
                             <div class="review-btn">
-                                <a href="#" class="btn btn-outline-danger">WRITE A REVIEW</a>
+                                <a href="#" class="btn btn-outline-danger">FAÇA UM COMENTÁRIO</a>
                                 <span>34 reviews</span>
                             </div>
                             <div class="reserve-btn">
                                 <div class="featured-btn-wrap">
-                                    <a href="#" class="btn btn-danger">RESERVE A SEAT</a>
+                                    <a href="#" class="btn btn-danger">AGENDA UM HORÁRIO</a>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +296,7 @@
                                 <p>Mon - Sun 09:30 am - 05:30 pm <br>
                                     <span class="open-now">OPEN NOW</span></p>
                             </div>
-                            <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a>
+                            <a href="#" class="btn btn-outline-danger btn-contact">ENVIE UMA MENSAGEM</a>
                         </div>
                         <div class="follow">
                             <div class="follow-img">
