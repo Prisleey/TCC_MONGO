@@ -9,7 +9,8 @@ let userSchema = new Schema({
     tipo: {type: Schema.Types.ObjectId, trim:true, required: true, ref: 'TipoUsuario'},
     estado:{type: String, trim: true, required: false},
     cidade:{type: String, trim: true, required: false},
-    bairro:{type: String, trim: true, required: false}
+    bairro:{type: String, trim: true, required: false},
+    telefone: {type: String, trim: true, required: false}
 }, {collection : 'Usuario'});
 
 var userModel = mongoose.model('Usuario', userSchema);

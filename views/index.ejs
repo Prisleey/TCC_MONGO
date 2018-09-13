@@ -314,6 +314,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone para contato:</label>
+                                <input type="text" class="form-control" id="telefone" name="telefone">
+                            </div>
                             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
                         </form>
                     </div>
@@ -365,10 +369,12 @@
                         $('#estado').prop('readonly', true);
                         $('#cidade').prop('readonly', true);
                         $('#bairro').prop('readonly', true);
+                        $('#telefone').prop('readonly', true);
                     } else {
                         $('#estado').prop('readonly', false);
                         $('#cidade').prop('readonly', false);
                         $('#bairro').prop('readonly', false);
+                        $('#telefone').prop('readonly', false);
                     }
                 });
             });
