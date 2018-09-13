@@ -3,7 +3,7 @@ Schema = mongoose.Schema;
 
 let salaSchema = new Schema({
     nomeSala : {type: String, required: true, index: true},
-    valorSala : {type: Number, required: true},
+    equipamentosSala : {type: String, required: true},
     // equipamentos : {type: [Schema.Types.ObjectId], ref: 'Equipamento' },
 });
 

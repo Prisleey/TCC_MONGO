@@ -14,21 +14,31 @@ router.get('/cadastro-sala', function(req, res, next) {
 });
 
 router.post('/cadastro-sala', function(req, res, next) {
-    var id_estudio = req.body.id_estudio;
-    var nome = req.body.nome_sala;
-    var valor = req.body.valor_sala;
+
+    console.log("chegou na rota");
+    let dadosSala = req.body;
+    console.log(dadosSala[0]);
+   // console.log(dadosSala[0]);
+
+    let id_estudio = dadosSala[0].value;
+    let nome = dadosSala[1].value;
+    let equipamentos = dadosSala[2].value;
+
 
     let sala = {
         'nomeSala' : nome,
-        'valorSala' : valor
+        'equipamentosSala' : equipamentos
     };
-
+    console.log("AAAA SALAAAA");
+    console.log(sala);
     EstudioBusiness.updateEstudio(id_estudio, sala).then(function(objeto) {
         console.log(objeto);
-        res.render('index', { usuarioLogado: req.session.usuarioLogado });
+        res.send(objeto);
+        //res.render('index', { usuarioLogado: req.session.usuarioLogado });
     }).catch (function(erro) {
         console.log(erro);
-        res.render('index', { usuarioLogado: req.session.usuarioLogado });
+        res.send(erro);
+        //res.render('index', { usuarioLogado: req.session.usuarioLogado });
     });
 });
 

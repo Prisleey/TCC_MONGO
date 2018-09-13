@@ -14,22 +14,19 @@ exports.salvarEstudio = function(data) {
     });
 }
 
-exports.updateEstudio = function(id_estudio, data) {
+exports.updateEstudio = function(id_estudio, sala) {
     return new Promise(function(resolve, reject) {
         // let sala = new EstudioModel(data);
-        // console.log('id_estudio:   ',id_estudio);
-        EstudioModel.where({
-            '_id' : id_estudio
-        }).update({
-            $push : { salas : data}
-        },function (err) {
+        EstudioModel.findOneAndUpdate({'_id' : id_estudio}, {$push : { salas : sala}}, { new: true }, function (err, salaCallback) {
             if (err) {
                 resolve(JSON.stringify(err));
             } else {
+                let idSalaSalva = salaCallback.salas[salaCallback.salas.length-1]._id;
                 resolve(JSON.stringify({
                     "status": true,
                     "message": "Sala salva com sucesso.",
-                    "sala": data
+                    "sala": sala,
+                    "idSala": idSalaSalva
                 }));
             }
         });
