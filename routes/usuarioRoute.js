@@ -17,7 +17,8 @@ router.post('/cadastro', function(req, res, next) {
     let estado = req.body.estado;
     let cidade = req.body.cidade;
     let bairro = req.body.bairro;
-
+    let telefone = req.body.telefone;
+    let descricao = req.body.descricao;
 
     let usuario = {
         'nome' : nome,
@@ -27,7 +28,9 @@ router.post('/cadastro', function(req, res, next) {
         'tipo'  : tpUser,
         'estado':estado,
         'cidade':cidade,
-        'bairro':bairro
+        'bairro':bairro,
+        'telefone':telefone,
+        'descricao':descricao
     };
 
     console.log(usuario);
@@ -51,6 +54,7 @@ router.post('/login', function(req, res, next) {
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
         req.session.usuarioLogado = objeto;
+        console.log('resultado objeto user logado: ',objeto)
         UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
             res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado})
         });
