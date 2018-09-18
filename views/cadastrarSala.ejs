@@ -302,9 +302,22 @@
                        data: formData,
                        success: function(data){
                            let idSala = data.idSala;
+                           let arrayServicoAdd;
                            $.each(arrayServicos, function( index, value ){
                                value.idSala = idSala;
                                console.log(value);
+                               arrayServicoAdd = value;
+                           });
+console.log(JSON.stringify(arrayServicoAdd));
+                           $.ajax({
+                               type: "POST",
+                               url: "cadastro-servico",
+                               data: arrayServicoAdd,
+                               success: function(result) {
+
+                               },error: function(result) {
+
+                               }
                            });
 
                            alert("sala cadastrada com sucesso! ID: " + idSala);

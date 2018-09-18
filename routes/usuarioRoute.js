@@ -51,9 +51,11 @@ router.post('/login', function(req, res, next) {
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
         req.session.usuarioLogado = objeto;
-        res.render('index', {tiposUser : {}, usuarioLogado: req.session.usuarioLogado})
+        UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
+            res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado})
+        });
     }).catch(function(erro) {
-        res.render('index', { tiposUser : {}, usuarioLogado : false });
+        res.render('index', { tiposUser : {}, usuarioLogado : false});
     });
 });
 
@@ -61,7 +63,9 @@ router.get('/logoff', function(req, res, next) {
     //logout
     console.log('logoff');
     req.session.destroy(function(err) {
-        res.render('index', { tiposUser : {}, usuarioLogado : false });
+        UsuarioBusiness.listTipoUsuario().then(function(objeto) {
+            res.render('index', { tiposUser : objeto.tipos, usuarioLogado : false });
+        });
     });
 });
 

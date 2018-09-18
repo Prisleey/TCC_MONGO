@@ -40,7 +40,7 @@
 
                                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
-                                        <% if(typeof usuarioLogado !== 'undefined') { %>
+                                        <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado) { %>
                                             <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                                 <li class="nav-item active">
                                                     <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
@@ -104,6 +104,7 @@
                                             <select class="btn-group0" name="who" required>
                                                 <option value="">Quem você procura?</option>
                                                 <% if(tiposUser.length > 0) { %>
+                                                <h1>oi</h1>
                                                     <% for(let i = 1; i < tiposUser.length; i++) { %>
                                                         <option value="<%= tiposUser[i].idTpUsuario %>"><%= tiposUser[i].desc %></option>
                                                     <% } %>

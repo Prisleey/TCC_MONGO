@@ -3,8 +3,8 @@ let router = express.Router();
 
 let ServicoBusiness = require('../business/servicoBusiness');
 
-router.post('/novo-servico', function(req, res, next) {
-    let tipoServico = req.body.tipoServico;
+router.post('/cadastro-servico', function(req, res, next) {
+    /*let tipoServico = req.body.tipoServico;
     let nomeServico = req.body.nomeServico;
     let precoServico = req.body.precoServico;
     let descricaoServico = req.body.descricaoServico;
@@ -14,7 +14,8 @@ router.post('/novo-servico', function(req, res, next) {
         'nomeServico':nomeServico,
         'precoServico':precoServico,
         'descricaoServico':descricaoServico
-    };
+    };*/
+
 
     ServicoBusiness.cadastrarServicos(servico).then(function(objeto) {
         res.render('index', { tiposUser: objeto.tipos, usuarioLogado: req.session.usuarioLogado});
