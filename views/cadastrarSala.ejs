@@ -302,7 +302,13 @@
                        data: formData,
                        success: function(data){
                            let idSala = data.idSala;
-                           alert("sala cadastrada com sucesso!");
+                           $.each(arrayServicos, function( index, value ){
+                               value.idSala = idSala;
+                               console.log(value);
+                           });
+
+                           alert("sala cadastrada com sucesso! ID: " + idSala);
+                           return false;
                        },error: function(data){
                             console.log('errooooo');
                             console.log(data);
