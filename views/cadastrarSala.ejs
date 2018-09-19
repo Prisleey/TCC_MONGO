@@ -302,22 +302,26 @@
                        data: formData,
                        success: function(data){
                            let idSala = data.idSala;
-                           let arrayServicoAdd;
+                           let arrayServicoAdd =[];
                            $.each(arrayServicos, function( index, value ){
                                value.idSala = idSala;
                                console.log(value);
-                               arrayServicoAdd = value;
+                               arrayServicoAdd.push(value);
                            });
-console.log(JSON.stringify(arrayServicoAdd));
+
+                           console.log(JSON.stringify(arrayServicoAdd));
+
                            $.ajax({
                                type: "POST",
                                url: "cadastro-servico",
-                               data: arrayServicoAdd,
+                               data: JSON.stringify(arrayServicoAdd),
                                success: function(result) {
-
+                                    alert("sucessoooo, SERVICO!");
                                },error: function(result) {
-
-                               }
+                                    alert("ERROUWWW O SERVICO")
+                               },
+                               dataType: "json",
+                               contentType : "application/json"
                            });
 
                            alert("sala cadastrada com sucesso! ID: " + idSala);
