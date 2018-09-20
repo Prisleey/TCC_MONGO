@@ -13,8 +13,7 @@ router.get('/agenda', function(req, res, next) {
 });
 
 router.post('/agendar', function(req, res, next) {
-    console.log('formulario: ', req.body);
-    /*let idSala = req.body.idSala;
+    let idSala = req.body.idSala;
     let idServico = req.body.id_servico;
     let idUsuario = req.session.usuarioLogado[0]._id;
     let dataAgendamento = req.body.data_agendamento;
@@ -22,21 +21,23 @@ router.post('/agendar', function(req, res, next) {
     console.log('horarioAgendamento: ', req.body.horarioAgendamento);
 
     var resultSplit = horarioAgendamento.split(" - ");
+    var horario_inicio = resultSplit[0].split(" ");
+    var horario_fim = resultSplit[1].split(" ");
 
     arrayAgenda = {
         idSala : idSala,
         dataAgendamento : dataAgendamento,
-        horario_inicio : resultadoSplit[0],
-        horario_fim : resultadoSplit[1],
+        horario_inicio : horario_inicio[0],
+        horario_fim : horario_fim[0],
         idServico : idServico,
         idUsuario : idUsuario
     }
 
-    AgendaBusiness.agendar(json.stringify(arrayAgenda)).then(function(result) {
+    AgendaBusiness.agendar(JSON.stringify(arrayAgenda)).then(function(result) {
         res.end(JSON.stringify(result));
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
-    });*/
+    });
 });
 
 module.exports = router;

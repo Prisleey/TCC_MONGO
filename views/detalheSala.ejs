@@ -344,35 +344,7 @@
             // $("#horarioFuncionamento").val("");
 				
 			//SUBMIT	
-			$("#formAgendar").on("submit", function(e){
-			
-				
-				var hora_inicio = $("#horarioFuncionamento").val().split("-")[0].trim();
-				var hora_fim = $("#horarioFuncionamento").val().split("-")[1].trim();
-				
-				console.log("inicio "+hora_inicio);
-				console.log("fim" + hora_fim);
-				
-				$("#horarioFuncionamento").prop("disabled", true);
-				
-				// alert("tentou submitar: " + $("#horarioFuncionamento").prop("disabled"));
-				
-				//https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
-				$('<input />').attr('type', 'hidden')
-				  .attr('name', "hora_inicio")
-				  .attr('value', hora_inicio)
-				  .appendTo('#formAgendar');
-				  
-				  $('<input />').attr('type', 'hidden')
-				  .attr('name', "hora_fim")
-				  .attr('value', hora_fim)
-				  .appendTo('#formAgendar');
-				  
-				  console.log($("#formAgendar"));
-				  
-				  return true;
-				  
-			});
+
 		});
 	</script>
 	<!--
