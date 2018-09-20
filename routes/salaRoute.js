@@ -42,4 +42,12 @@ router.post('/cadastro-sala', function(req, res, next) {
     });
 });
 
+router.get('/detalhe-sala', function(req, res, next) {
+    let idEstudio = req.query.id_estudio;
+    let idSala = req.query.id_sala;
+
+    
+    res.render('detalheSala');
+});
+
 module.exports = router;

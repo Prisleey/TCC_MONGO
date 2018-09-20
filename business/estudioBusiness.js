@@ -51,10 +51,10 @@ exports.consultarEstudio = function(data) {
     });
 }
 
-exports.detalheEstudio = function(data) {
+exports.detalheEstudio = function(id_estudio) {
     return new Promise(function(resolve, reject) {
-        console.log(data);
-        EstudioModel.find({_id: data
+        EstudioModel.findOne({
+            _id: id_estudio
         }, {
             _id: 1,
             nomeEstudio: 1,
@@ -62,7 +62,23 @@ exports.detalheEstudio = function(data) {
             salas: 1
         }, function(err, estudio) {
             if(estudio) {
-                console.log(estudio);
+                resolve({status : true, 'estudio': estudio});
+            } else {
+                reject({status:false, erro: err})
+            }
+        });
+    });
+}
+
+exports.detalhSala = function(id_estudio, id_sala) {
+    return new Promise(function(resolve, reject) {
+        EstudioModel.findOne({ // não será find eu acho
+            _id: id_estudio,
+            'salas._id': id_sala
+        }, {
+            'colunas':1
+        }, function(err, estudio) {
+            if(estudio) {
                 resolve({status : true, 'estudio': estudio});
             } else {
                 reject({status:false, erro: err})

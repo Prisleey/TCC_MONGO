@@ -135,10 +135,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <% if(estudio.length > 0) { %>
-                        <h5><%= estudio[0].nomeEstudio %></h5><br>
+                    <% if(estudio.estudio) { %>
+                        <h5><%= estudio.estudio.nomeEstudio %></h5><br>
                     <% } %>
-                    <!-- <p class="reserve-description"><%= /*salas[0].descricao*/ %></p> -->
+                    <!--<p class="reserve-description"><%= /*estudio.descricao */%></p>-->
                 </div>
                 <!-- <div class="col-md-6">
                     <div class="reserve-seat-block">
@@ -171,8 +171,8 @@
                             <div align="col-md-1">
                                 <h5>Descrição</h5>
                             </div>
-                            <% if(estudio.length > 0) { %>
-                                <p><%= estudio[0].descricao %></p>
+                            <% if(estudio.estudio) { %>
+                                <p><%= estudio.estudio.descricao %></p>
                             <% } %>
                             <hr>
                         </div>
@@ -184,10 +184,10 @@
                             <div>
                                 <h5>Salas:</h5>
                             </div>
-                            <% if(estudio.length > 0) { %>
-                                <% for(let i = 0; i < estudio[0].salas.length; i++) { %>
+                            <% if(estudio.estudio) { %>
+                                <% for (var i = 0; i < estudio.estudio.salas.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].salas[i]._id %>&id_sala=<%= estudio[0].salas[i]._id %>&'><%= estudio[0].salas[i].nomeSala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio.estudio.salas[i]._id %>&id_sala=<%= estudio.estudio.salas[i]._id %>&'><%= estudio.estudio.salas[i].nomeSala %></a>
                                     </div>
                                 <% } %>
                             <% } %>
