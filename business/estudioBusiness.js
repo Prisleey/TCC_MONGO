@@ -73,24 +73,24 @@ exports.detalheEstudio = function(id_estudio) {
 exports.detalheSala = function(id_estudio, id_sala) {
     return new Promise(function(resolve, reject) {
         EstudioModel.aggregate([
+            { $unwind: { path: "$salas",preserveNullAndEmptyArrays: true } },
             { $match: {
-                _id: ObjectId(id_estudio),
-                'salas._id': ObjectId(id_sala)}},
+                'salas._id': ObjectId(id_sala)}}, //id sala
             { $lookup: {
                 from : "Servico",
-                localField : "salas._id",
-                foreignField : "idSala",
+                localField : "salas._id", //campo de Estudio
+                foreignField : "idSala", //campo de Servico
                 as : "servicoSala"}},
             { $project: {
-                _id:1,
-                salas:1,
-                'servicoSala._id':1
+                _id: 1,
+                'salas': 1,
+                'servicoSala': 1
             }}
         ]).exec(function(err, servicoSala){
             if(err){
                 reject(JSON.stringify(err));
             }else {
-                console.log(servicoSala);
+                console.log(JSON.stringify(servicoSala));
                 resolve(servicoSala);
             }
         });
