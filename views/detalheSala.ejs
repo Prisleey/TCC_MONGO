@@ -158,6 +158,7 @@
 						<div>
                             <form action='/agendar' id='formAgendar' method='post'>
                                 <input type="hidden" value="<%= sala[0]._id%>" name="idSala"/>
+                                <input type="hidden" value="<%= usuarioLogado[0]._id %>" name="idUsuario"/>
                                 <p style='font-size:25px; font-weight:bold'>Serviço:</p>
                                 <select class="form-control" id="id_servico" name="id_servico" required>
                                     <option value="0">Selecione Serviço</option>

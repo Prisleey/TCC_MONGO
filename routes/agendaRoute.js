@@ -17,7 +17,7 @@ router.post('/agendar', function(req, res, next) {
 
     let idSala = req.body.idSala;
     let idServico = req.body.id_servico;
-    let idUsuario = req.session.usuarioLogado[0]._id;
+    let idUsuario = req.body.idUsuario;
     let dataAgendamento = req.body.data_agendamento;
     let horarioAgendamento = req.body.horarioAgendamento;
    // console.log('horarioAgendamento: ', req.body.horarioAgendamento);

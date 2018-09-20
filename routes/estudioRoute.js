@@ -1,5 +1,6 @@
 var express = require('express');
 let EstudioBusiness = require('../business/estudioBusiness');
+var UsuarioBusiness = require('../business/usuarioBusiness');
 var router = express.Router();
 
 router.get('/cadastro-estudio', function(req, res, next) {
