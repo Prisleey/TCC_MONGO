@@ -187,7 +187,7 @@
                             <% if(estudio.estudio) { %>
                                 <% for (var i = 0; i < estudio.estudio.salas.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' id='<%= estudio.estudio.salas[i]._id %>;<%= i %>' href='detalhe-sala?id_estudio=<%= estudio.estudio.salas[i]._id %>&id_sala=<%= estudio.estudio.salas[i]._id %>&'><%= estudio.estudio.salas[i].nomeSala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio.estudio._id %>&id_sala=<%= estudio.estudio.salas[i]._id %>&'><%= estudio.estudio.salas[i].nomeSala %></a>
                                     </div>
                                 <% } %>
                             <% } %>
@@ -312,19 +312,6 @@
             $('#selectServico').on('change', function() {
                 var varServico = 'id_servico=' + $(this).val();
                 $('.linkDetalheSala').attr('href', linkOld + varServico);
-            });
-
-            //ao clickar em um link, faço a busca no array e crio uma var json com os dados da sala necessarios
-            $(".linkDetalheSala").on("click", function(){
-                console.log("CLICOU");
-                let idSala = $(this).attr("id").split(";")[0].trim();
-                let index = $(this).attr("id").split(";")[1].trim();
-                <% console.log("FOI ***************************") %>
-                <% console.log(estudio.estudio.salas[0]) %>
-                let salas = <% JSON.stringify(estudio.estudio.salas) %>
-                console.log(idSala);
-                console.log(index);
-                console.log(salas);
             });
         });
     </script>

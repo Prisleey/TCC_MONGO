@@ -46,8 +46,16 @@ router.get('/detalhe-sala', function(req, res, next) {
     let idEstudio = req.query.id_estudio;
     let idSala = req.query.id_sala;
 
-    
-    res.render('detalheSala');
+    console.log('idEstudio ', idEstudio);
+    console.log('idSala ', idSala);
+
+    EstudioBusiness.detalheSala(idEstudio, idSala).then(function(result) {
+        console.log('detalhe-sala: ', result);
+        res.render('detalheSala');
+    }).catch(function(erro){
+        console.log('erro detalhe-sala: ', erro);
+        res.end(erro);
+    })
 });
 
 module.exports = router;

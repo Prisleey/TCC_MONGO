@@ -70,18 +70,28 @@ exports.detalheEstudio = function(id_estudio) {
     });
 }
 
-exports.detalhSala = function(id_estudio, id_sala) {
+exports.detalheSala = function(id_estudio, id_sala) {
     return new Promise(function(resolve, reject) {
-        EstudioModel.findOne({ // não será find eu acho
-            _id: id_estudio,
-            'salas._id': id_sala
-        }, {
-            'colunas':1
-        }, function(err, estudio) {
-            if(estudio) {
-                resolve({status : true, 'estudio': estudio});
-            } else {
-                reject({status:false, erro: err})
+        EstudioModel.aggregate([
+            { $match: {
+                _id: ObjectId(id_estudio),
+                'salas._id': ObjectId(id_sala)}},
+            { $lookup: {
+                from : "Servico",
+                localField : "salas._id",
+                foreignField : "idSala",
+                as : "servicoSala"}},
+            { $project: {
+                _id:1,
+                salas:1,
+                'servicoSala._id':1
+            }}
+        ]).exec(function(err, servicoSala){
+            if(err){
+                reject(JSON.stringify(err));
+            }else {
+                console.log(servicoSala);
+                resolve(servicoSala);
             }
         });
     });

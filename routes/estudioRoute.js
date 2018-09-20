@@ -34,10 +34,9 @@ router.post('/cadastro-estudio', function(req, res, next) {
 
 router.get('/detalhe-estudio', function(req, res, next) {
     let idEstudio = req.query.id_estudio;
-
+console.log('idEstudio ',idEstudio);
     EstudioBusiness.detalheEstudio(idEstudio).then(function(objeto) {
-        console.log('estudio: ', objeto);
-        console.log('sala: ', objeto.estudio.salas);
+
         res.render('detalheEstudio', {estudio: objeto, usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.end(JSON.stringify(erro));
