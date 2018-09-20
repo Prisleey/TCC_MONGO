@@ -316,9 +316,11 @@
                                url: "cadastro-servico",
                                data: JSON.stringify(arrayServicoAdd),
                                success: function(result) {
-                                    alert("sucessoooo, SERVICO!");
+                                    alert("Serviço Inserido com sucesso!");
+                                    window.location.href = "./";
                                },error: function(result) {
-                                    alert("ERROUWWW O SERVICO")
+                                    alert("Erro ao inserir");
+                                    location.reload();
                                },
                                dataType: "json",
                                contentType : "application/json"
@@ -375,6 +377,8 @@
 
                    arrayServicos.push(servico);
                    $("#addServico-Modal").modal("hide");
+                   $("#addServico-Modal").find('input:text').val('');
+                   $("#addServico-Modal").find('textArea').val('');
                    console.log(arrayServicos);
                });
             });

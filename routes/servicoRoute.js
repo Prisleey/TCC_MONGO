@@ -4,17 +4,12 @@ let router = express.Router();
 let ServicoBusiness = require('../business/servicoBusiness');
 
 router.post('/cadastro-servico', function(req, res, next) {
-    console.log("OPAA ROTA SERVICO");
-    console.log(req.body);
     let servicos = req.body;
 
-    ServicoBusiness.cadastrarServicosBulk(servicos).then(function(objeto) {
-        console.log("deu certo");
-        //res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
+    ServicoBusiness.cadastrarServicosBulk(servicos).then(function(servicos) {
+        res.send(servicos);
     }).catch (function(erro) {
-        console.log("deu erro");
-        console.log(erro);
-        //res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
+        res.error(erro);
     });
     /*let tipoServico = req.body.tipoServico;
     let nomeServico = req.body.nomeServico;
