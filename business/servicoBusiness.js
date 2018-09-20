@@ -3,6 +3,7 @@ let UsuarioModel = require('../model/usuarioModel');
 let TipoUsuarioModel = require('../model/tipoUsuarioModel');
 let ServicoModel = require('../model/servicoModel');
 let TipoServicoModel = require('../model/tipoServicoModel');
+let ObjectId = require('mongoose').Types.ObjectId;
 
 exports.buscar = function(data) {
     return new Promise(function(resolve, reject) {
@@ -169,6 +170,15 @@ exports.cadastrarServicos = function(servico) {
 
 //bulk insert
 exports.cadastrarServicosBulk = function(servicos) {
+    let idSala = servicos[0].idSala.trim();
+    let novoIdSala = ObjectId(idSala);
+    console.log("IDS SALA");
+    console.log(idSala);
+    console.log(novoIdSala);
+
+    for(let i in servicos){
+        servicos[i].idSala = novoIdSala;
+    }
     return new Promise(function(resolve, reject) {
         ServicoModel.collection.insert(servicos, function(err) {
             if(err) {
