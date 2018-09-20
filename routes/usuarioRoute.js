@@ -33,10 +33,11 @@ router.post('/cadastro', function(req, res, next) {
         'descricao':descricao
     };
 
-    console.log(usuario);
-
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
-        res.render('index', { tiposUser : {} ,usuarioLogado: req.session.usuarioLogado});
+        UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
+            res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado})
+        });
+
     }).catch (function(erro) {
         console.log(erro);
         res.render('index', { autenticado : erro });
