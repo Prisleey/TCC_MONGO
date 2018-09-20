@@ -29,8 +29,6 @@ router.post('/cadastro-sala', function(req, res, next) {
         'nomeSala' : nome,
         'equipamentosSala' : equipamentos
     };
-    console.log("AAAA SALAAAA");
-    console.log(sala);
     EstudioBusiness.updateEstudio(id_estudio, sala).then(function(objeto) {
         console.log(objeto);
         res.send(objeto);
@@ -51,7 +49,7 @@ router.get('/detalhe-sala', function(req, res, next) {
 
     EstudioBusiness.detalheSala(idEstudio, idSala).then(function(result) {
         console.log('detalhe-sala: ', result);
-        res.render('detalheSala', {sala: result});
+        res.render('detalheSala', {sala: result, usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro){
         console.log('erro detalhe-sala: ', erro);
         res.end(erro);

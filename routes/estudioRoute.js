@@ -22,6 +22,7 @@ router.post('/cadastro-estudio', function(req, res, next) {
     delete dadosFormEstudio["horarioFuncionamento"]; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
     delete dadosFormEstudio["diaSemana"];//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
 
+    console.log(req.session.usuarioLogado);
     dadosFormEstudio.idUsuario = req.session.usuarioLogado[0]._id;
 
     EstudioBusiness.salvarEstudio(dadosFormEstudio).then(function(objeto) {

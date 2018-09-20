@@ -1,10 +1,13 @@
 let express = require('express');
 let router = express.Router();
 
+
 let ServicoBusiness = require('../business/servicoBusiness');
 
 router.post('/cadastro-servico', function(req, res, next) {
     let servicos = req.body;
+
+    //servico.ObjectId(idSala);
 
     ServicoBusiness.cadastrarServicosBulk(servicos).then(function(servicos) {
         res.send(servicos);

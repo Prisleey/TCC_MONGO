@@ -18,20 +18,20 @@ router.post('/agendar', function(req, res, next) {
     let idUsuario = req.session.usuarioLogado[0]._id;
     let dataAgendamento = req.body.data_agendamento;
     let horarioAgendamento = req.body.horarioAgendamento;
-    console.log('horarioAgendamento: ', req.body.horarioAgendamento);
+   // console.log('horarioAgendamento: ', req.body.horarioAgendamento);
 
     var resultSplit = horarioAgendamento.split(" - ");
     var horario_inicio = resultSplit[0].split(" ");
     var horario_fim = resultSplit[1].split(" ");
 
     arrayAgenda = {
-        idSala : idSala,
-        dataAgendamento : dataAgendamento,
-        horario_inicio : horario_inicio[0],
-        horario_fim : horario_fim[0],
-        idServico : idServico,
-        idUsuario : idUsuario
-    }
+        idSala: idSala,
+        dataAgendamento: dataAgendamento,
+        horario_inicio: horario_inicio[0],
+        horario_fim: horario_fim[0],
+        idServico: idServico,
+        idUsuario: idUsuario
+    };
 
     AgendaBusiness.agendar(JSON.stringify(arrayAgenda)).then(function(result) {
         res.end(JSON.stringify(result));
