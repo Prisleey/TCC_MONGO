@@ -166,3 +166,19 @@ exports.cadastrarServicos = function(servico) {
         });*/
     });
 }
+
+//bulk insert
+exports.cadastrarServicosBulk = function(servicos) {
+    return new Promise(function(resolve, reject) {
+        console.log("prometido");
+        ServicoModel.collection.insert(servicos, function(err) {
+            if(err) {
+                reject({status: false, erro: err});
+            } else {
+                resolve({status: true, 'servicos': servicos});
+            }
+        });
+        /*  }
+      });*/
+    });
+}
