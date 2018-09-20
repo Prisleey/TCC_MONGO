@@ -14,3 +14,16 @@ exports.consultarAgendamento = function(id_usuario) {
         });
     });
 }
+
+exports.agendar = function(info_agendamento) {
+    return new Promise(function(resolve, reject) {
+        agenda = new AgendaModel(info_agendamento);
+        agenda.save(function(erro){
+            if(err) {
+                reject({status: false, erro: err});
+            } else {
+                resolve({status: true, 'usuario': usuario});
+            }
+        });
+    });
+}

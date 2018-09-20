@@ -83,6 +83,7 @@ exports.detalheSala = function(id_estudio, id_sala) {
                 as : "servicoSala"}},
             { $project: {
                 _id: 1,
+                nomeEstudio: 1,
                 'salas': 1,
                 'servicoSala': 1
             }}

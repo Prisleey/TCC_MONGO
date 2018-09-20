@@ -51,7 +51,7 @@ router.get('/detalhe-sala', function(req, res, next) {
 
     EstudioBusiness.detalheSala(idEstudio, idSala).then(function(result) {
         console.log('detalhe-sala: ', result);
-        res.render('detalheSala');
+        res.render('detalheSala', {sala: result});
     }).catch(function(erro){
         console.log('erro detalhe-sala: ', erro);
         res.end(erro);

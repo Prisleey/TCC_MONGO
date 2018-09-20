@@ -193,7 +193,6 @@
                                         <option value="0">Selecione Estúdio</option>
                                         <!-- aqui vai um loop lendo uma lista de estudios -->
                                         <% if(estudios.length > 0) { %>
-                                            <h1>top</h1>
                                             <% for(var i = 0; i < estudios.length; i++) { %>
                                                 <option value="<%= estudios[i]._id %>"><%= estudios[i].nomeEstudio %></option>
                                             <% } %>

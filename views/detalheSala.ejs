@@ -140,8 +140,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <% if(estudio.length > 0 && sala.length > 0) { %>
-                        <h5><%= estudio[0].nomeEstudio%>: <%= sala[0].nome_sala %></h5><br>
+                    <% if(sala.length > 0) { %>
+                        <h5><%= sala[0].nomeEstudio%>: <%= sala[0].salas.nomeSala %></h5><br>
                     <% } %>
                     <p class="reserve-description">Veja os detalhes da sala e agende o serviço desejado.</p>
                 </div>
@@ -155,37 +155,42 @@
                 <div class="col-md-12 responsive-wrap">
 					<!-- DESCROCAO E CHECKBOX -->
                     <div class="booking-checkbox_wrap">	
-						<div>	
-							<p style='font-size:25px; font-weight:bold'>Equipamentos:</p>
-							<!-- gerado pelo banco de dados -->
-							<ul class="list-group">
-							<%
-								var equipamentosSala = sala[0].equipamento.split(",");
-                                console.log("FOI TESTE");
-                                
-								console.log(equipamentosSala);
-								if(equipamentosSala.length > 0){
-									for(var i = 0; i < equipamentosSala.length; i++){
-									
-							%>
-							
-							  <li class="list-group-item"><%= equipamentosSala[i]%></li>
-							 <%
-									}
-								}
-							%>
-							</ul>
-							<hr/>
-						</div>
-						<br>
-						<form action='/detalhe-sala' id='formAgendar' method='post'>
+						<div>
+                            <form action='/agendar' id='formAgendar' method='post'>
+                                <input type="hidden" value="<%= sala[0]._id%>" name="idSala"/>
+                                <p style='font-size:25px; font-weight:bold'>Serviço:</p>
+                                <select class="form-control" id="id_servico" name="id_servico" required>
+                                    <option value="0">Selecione Serviço</option>
+                                    <!-- aqui vai um loop lendo uma lista de estudios -->
+                                    <% if(sala[0].servicoSala.length > 0) { %>
+                                        <% for(var i = 0; i < sala[0].servicoSala.length; i++) { %>
+                                            <option value="<%= sala[0].servicoSala[i]._id %>"><%= sala[0].servicoSala[i].nomeServico %></option>
+                                        <% } %>
+                                    <% } %>
+                                </select><br/><hr>
+
+                                <p style='font-size:25px; font-weight:bold'>Equipamentos:</p>
+                                <ul class="list-group">
+                                <%
+                                    var equipamentosSala = sala[0].salas.equipamentosSala.split(",");
+
+                                    console.log(equipamentosSala);
+                                    if(equipamentosSala.length > 0){
+                                        for(var i = 0; i < equipamentosSala.length; i++) {
+                                %>
+
+                                    <li class="list-group-item"><%= equipamentosSala[i]%></li>
+                                 <%
+                                        }
+                                    }
+                                %>
+                                </ul>
+                                <hr/>
+                            </div>
+                            <br>
 						
 							<!-- GAMBIARRA DA BRABA, SE PENSAR EM UMA MANEIRA MELHOR, PODE MUDAR (pegando os IDS para inserir depois no agendamento) -->
-							<input name='id_estudio' type='hidden' value='<%=sala[0].id_estudio%>' />
-							<input name='id_sala' type='hidden' value='<%=sala[0].id_sala%>' />
-							<input name='descricao' type='hidden' value='<%=servico[0].nome%>' />
-							<input name='id_servico' type='hidden' value='<%=servico[0].id_servico%>' />
-							<input name='id_musico' type='hidden' value='1' />
+
 							
 							<div class="col-5">
 								<label for="dataAgendamento">Data Agendamento</label>
@@ -218,7 +223,7 @@
 							  </label>
 							</div>
 							-->
-							<input type="text" class="form-control" id="horarioFuncionamento" name='horarioFuncionamento' placeholder="" readonly required>
+							<input type="text" class="form-control" id="horarioFuncionamento" name='horarioAgendamento' placeholder="" readonly required>
 							</div>
                             <br/>
                             <hr>
