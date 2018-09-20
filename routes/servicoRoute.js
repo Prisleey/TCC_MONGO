@@ -13,6 +13,7 @@ router.post('/cadastro-servico', function(req, res, next) {
         //res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
     }).catch (function(erro) {
         console.log("deu erro");
+        console.log(erro);
         //res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
     });
     /*let tipoServico = req.body.tipoServico;

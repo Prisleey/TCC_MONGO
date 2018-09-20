@@ -171,6 +171,7 @@ exports.cadastrarServicos = function(servico) {
 exports.cadastrarServicosBulk = function(servicos) {
     return new Promise(function(resolve, reject) {
         console.log("prometido");
+        console.log(servicos);
         ServicoModel.collection.insert(servicos, function(err) {
             if(err) {
                 reject({status: false, erro: err});
