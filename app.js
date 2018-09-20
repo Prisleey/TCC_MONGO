@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var session = require('express-session')
+var session = require('express-session');
 
 let mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/PortalDaMusicaDB');
@@ -14,6 +14,7 @@ var salaRoute = require('./routes/salaRoute');
 var buscaRoute = require('./routes/buscaRoute');
 var servicoRoute = require('./routes/servicoRoute');
 var portfolioRoute = require('./routes/portfolioRoute');
+var agendaRoute = require('./routes/agendaRoute');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', salaRoute);
 app.use('/', buscaRoute);
 app.use('/', servicoRoute);
 app.use('/', portfolioRoute);
+app.use('/', agendaRoute);
 
 app.use(function(req, res, next) {
   next(createError(404));
