@@ -14,6 +14,7 @@ router.get('/agenda', function(req, res, next) {
 });
 
 router.post('/agendar', function(req, res, next) {
+
     let idSala = req.body.idSala;
     let idServico = req.body.id_servico;
     let idUsuario = req.session.usuarioLogado[0]._id;
@@ -35,7 +36,10 @@ router.post('/agendar', function(req, res, next) {
     };
 
     AgendaBusiness.agendar(arrayAgenda).then(function(result) {
-        res.end(JSON.stringify(result));
+        AgendaBusiness.consultarAgendamento(idUsuario).then(function(agendamentos){
+            console.log(agendamentos);
+            res.render('agenda', {'agendamentos': agendamentos.agendamentos, usuarioLogado: req.session.usuarioLogado});
+        })
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
     });

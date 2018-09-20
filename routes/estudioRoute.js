@@ -26,7 +26,9 @@ router.post('/cadastro-estudio', function(req, res, next) {
     dadosFormEstudio.idUsuario = req.session.usuarioLogado[0]._id;
 
     EstudioBusiness.salvarEstudio(dadosFormEstudio).then(function(objeto) {
-        res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
+        UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
+            res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado});
+        });
     }).catch (function(erro) {
         console.log(erro);
         res.render('index', { tiposUser:{}, usuarioLogado: req.session.usuarioLogado });
