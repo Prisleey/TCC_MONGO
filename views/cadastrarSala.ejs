@@ -112,6 +112,14 @@
                                 <input type="text" placeholder="99,99" class="form-control" id="precoServico" name="precoServico" required>
                             </div>
                             <div class="form-group">
+                                <label for="taxaDesconto">Taxa de Desconto %</label>
+                                <input type="text" placeholder="30" class="form-control" id="taxaDesconto" name="taxaDesconto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="valorComDesconto">valor com desconto</label>
+                                <input type="text" placeholder="" class="form-control" id="valorComDesconto" name="valorComDesconto" disabled required>
+                            </div>
+                            <div class="form-group">
                                 <label for="descricaoServico">Descrição do Serviço:</label>
                                 <textarea placeholder="Descrição do Serviço ofertado" class="form-control" id="descricaoServico" name="descricaoServico" required></textarea>
                             </div>
@@ -338,6 +346,12 @@
 
                });
 
+               $("#taxaDesconto").on("blur",function(){
+                    let valorReal = parseFloat($("#precoServico").val().trim());
+                    let desconto = parseFloat("0." + $("#taxaDesconto").val().trim());
+                    let novoValor = valorReal - (valorReal * desconto);
+                    $("#valorComDesconto").val(novoValor);
+               });
                $("#addServico").on("click", function(){
                    $.ajax({
                         url:"tipos-servico",
@@ -365,13 +379,17 @@
                    let tipoServico = $("#tipoServico").val().trim();
                    let nomeServico = $("#nomeServico").val().trim();
                    let precoServico = $("#precoServico").val().trim();
+                   let taxaDesconto = $("#taxaDesconto").val().trim();
+                   let valorComDesconto = $("#valorComDesconto").val().trim();
                    let descricaoServico = $("#descricaoServico").val().trim();
 
                    let servico = {
                        tipoServico : tipoServico,
                        nomeServico : nomeServico,
                        precoServico : precoServico,
-                       descricaoServico : descricaoServico
+                       descricaoServico : descricaoServico,
+                       taxaDesconto : taxaDesconto,
+                       valorComDesconto : valorComDesconto
                    };
 
                    arrayServicos.push(servico);

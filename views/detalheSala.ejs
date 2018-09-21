@@ -163,12 +163,28 @@
                                 <select class="form-control" id="id_servico" name="id_servico" required>
                                     <option value="0">Selecione Serviço</option>
                                     <!-- aqui vai um loop lendo uma lista de estudios -->
+                                    <% console.log("TESTE DO SERVICO") %>
+                                    <% console.log(sala[0].servicoSala[0])%>
                                     <% if(sala[0].servicoSala.length > 0) { %>
                                         <% for(var i = 0; i < sala[0].servicoSala.length; i++) { %>
-                                            <option value="<%= sala[0].servicoSala[i]._id %>"><%= sala[0].servicoSala[i].nomeServico %></option>
+                                            <option value="<%= sala[0].servicoSala[i]._id %>;<%= sala[0].servicoSala[i].precoServico %>;<%= sala[0].servicoSala[i].taxaDesconto %>;<%= sala[0].servicoSala[i].valorComDesconto %>"><%=i+1%> - <%= sala[0].servicoSala[i].nomeServico %></option>
                                         <% } %>
                                     <% } %>
-                                </select><br/><hr>
+                                </select><br/>
+                                <div class="col-5">
+                                    <label for="preco">Preço Inicial</label><br>
+                                    <span id="preco"></span>
+                                </div>
+                                <div class="col-5">
+                                    <label for="tx">Taxa de desconto</label><br>
+                                    <span id="tx"></span>
+                                </div>
+
+                                <div class="col-5">
+                                    <label for="pf">Preço Final</label><br>
+                                    <span id="pf"></span>
+                                </div>
+                                <br><hr>
 
                                 <p style='font-size:25px; font-weight:bold'>Equipamentos:</p>
                                 <ul class="list-group">
@@ -305,6 +321,20 @@
     </script>
 	<script>
 		$(document).ready(function(){
+		    $("#id_servico").on("change", function(){
+                let index = parseInt($( "#id_servico option:selected" ).text())-1;
+                let preco = $("#id_servico option:selected").val().split(";")[1];
+                let tx = $("#id_servico option:selected" ).val().split(";")[2];
+                let preco2 = $("#id_servico option:selected" ).val().split(";")[3];
+                console.log(preco);
+                console.log(tx);
+                console.log(preco2);
+                $("#preco").html(preco);
+                $("#tx").html(tx);
+                $("#pf").html(preco2);
+
+
+            });
 			$("#dataAgendamento").daterangepicker({
 				timePicker: false,
 				singleDatePicker: true,
