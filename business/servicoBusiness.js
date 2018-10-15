@@ -179,6 +179,8 @@ exports.cadastrarServicosBulk = function(servicos) {
     for(let i in servicos){
         servicos[i].idSala = novoIdSala;
     }
+    console.log("OPA BUSINESS SERVICO");
+    console.log(servicos);
     return new Promise(function(resolve, reject) {
         ServicoModel.collection.insert(servicos, function(err) {
             if(err) {
