@@ -16,7 +16,7 @@ router.get('/agenda', function(req, res, next) {
 router.post('/agendar', function(req, res, next) {
 
     let idSala = req.body.idSala;
-    let idServico = req.body.id_servico;
+    let idServico = req.body.id_servico.split(";")[0];
     let idUsuario = req.body.idUsuario;
     let dataAgendamento = req.body.data_agendamento;
     let horarioAgendamento = req.body.horarioAgendamento;
@@ -26,6 +26,8 @@ router.post('/agendar', function(req, res, next) {
     var horario_inicio = resultSplit[0].split(" ");
     var horario_fim = resultSplit[1].split(" ");
 
+    console.log("EEEEEETA PORRA");
+    console.log(idSala);
     arrayAgenda = {
         idSala: idSala,
         dataAgendamento: dataAgendamento,

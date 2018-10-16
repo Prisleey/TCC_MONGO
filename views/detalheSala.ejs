@@ -167,7 +167,7 @@
                                     <% console.log(sala[0].servicoSala[0])%>
                                     <% if(sala[0].servicoSala.length > 0) { %>
                                         <% for(var i = 0; i < sala[0].servicoSala.length; i++) { %>
-                                            <option value="<%= sala[0].servicoSala[i]._id %>;<%= //sala[0].servicoSala[i].precoServico %>;<%= //sala[0].servicoSala[i].taxaDesconto %>;<%= //sala[0].servicoSala[i].valorComDesconto %>"><%=i+1%> - <%= sala[0].servicoSala[i].nomeServico %></option>
+                                            <option value="<%= sala[0].servicoSala[i]._id %>;<%= sala[0].servicoSala[i].precoServico %> <%= //sala[0].servicoSala[i].taxaDesconto %> <%= //sala[0].servicoSala[i].valorComDesconto %>"><%=i+1%> - <%= sala[0].servicoSala[i].nomeServico %></option>
                                         <% } %>
                                     <% } %>
                                 </select><br/>
@@ -325,9 +325,14 @@
 		$(document).ready(function(){
 		    $("#id_servico").on("change", function(){
                 //let index = parseInt($( "#id_servico option:selected" ).text())-1;
-                let preco = $("#id_servico option:selected").val().split(";")[1];
-                $("#preco").html(preco);
-                console.log(preco);
+
+                if($("#id_servico").val()== 0){
+                    $("#preco").html("");
+                }else{
+                    let preco = $("#id_servico option:selected").val().split(";")[1];
+                    $("#preco").html(preco);
+                    console.log(preco);
+                }
                 /* DEFESA TCC
                 let tx = $("#id_servico option:selected" ).val().split(";")[2];
                 let preco2 = $("#id_servico option:selected" ).val().split(";")[3];
