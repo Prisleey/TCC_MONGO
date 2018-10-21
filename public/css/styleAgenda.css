@@ -471,7 +471,7 @@ Main Components
   transition: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1000px) {
   .cd-schedule .event-modal {
     /* reset style */
     right: auto;
@@ -544,6 +544,17 @@ Main Components
     background: #222222;
     height: 16px;
   }
+
+  .cd-schedule .events {
+    float: left;
+    width: 100%;
+  }
+  .cd-schedule .events .events-group {
+    width: 14%; /* This 20% is the culprit. 100%/20% = 5. For 7 days, 14% works */
+    float: left;
+    border: 1px solid #EAEAEA;
+    /* reset style */
+    margin-bottom: 0;}
 }
 
 @media only screen and (min-width: 1000px) {
