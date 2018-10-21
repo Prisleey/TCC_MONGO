@@ -1,5 +1,6 @@
 let UsuarioModel = require('../model/usuarioModel');
 let TipoUsuarioModel = require('../model/tipoUsuarioModel');
+let ObjectId = require('mongoose').Types.ObjectId;
 
 exports.listTipoUsuario = function() {
     return new Promise(function(resolve, reject) {
@@ -91,6 +92,32 @@ exports.consultaDadosUsuario = function(id) {
                 resolve({status: true, 'usuario': resultado});
             } else {
                 reject({status: false, 'erro':erro});
+            }
+        });
+    });
+}
+
+exports.consultarDadosUsuario = function(id_usuario) {
+    return new Promise(function(resolve, reject) {
+
+        UsuarioModel.aggregate([
+            {
+                $match: {
+                    '_id': ObjectId(id_usuario)
+                } //id user
+            }, {
+                $lookup: {
+                    from: 'TipoUsuario',
+                    localField: 'tipo',
+                    foreignField: '_id',
+                    as: 'results'
+                }
+            }
+        ]).exec(function(err, result){
+            if(err){
+                reject({status: false, 'erro':erro});
+            }else {
+                resolve({status: true, 'usuario': result});
             }
         });
     });

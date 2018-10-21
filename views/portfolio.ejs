@@ -65,6 +65,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="agenda">Agenda</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="portfolio?id_prestador=<%=usuarioLogado[0]._id%>">Gerenciar Portfólio</a>
+                                        </li>
                                         <li>
                                             <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
                                         </li>
@@ -135,8 +138,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5><%= usuario.nome%></h5><br/>
-                        <p class="reserve-description">Membro extra de banda!</p>
+                        <h5><%= usuario[0].nome%></h5><br/>
+                        <p class="reserve-description"><%=usuario[0].results[0].desc%></p>
                     </div>
                     <div class="col-md-6">
                         <div class="reserve-seat-block">
@@ -165,7 +168,7 @@
                     <div class="col-md-8 responsive-wrap">
                         <div class="booking-checkbox_wrap">
                             <div class="booking-checkbox">
-                                <p><%= usuario.descricao%></p>
+                                <p><%= usuario[0].descricao%></p>
                                 <hr>
                             </div>
                             <!-- <div class="row">
@@ -213,15 +216,15 @@
                             <!--<img src="images/map.jpg" class="img-fluid" alt="#">-->
                             <div class="address">
                                 <span class="icon-location-pin"></span>
-                                <p> <%= usuario.estado%><br> <%= usuario.cidade%><br> <%= usuario.bairro%><br></p>
+                                <p> <%= usuario[0].estado%><br> <%= usuario[0].cidade%><br> <%= usuario[0].bairro%><br></p>
                             </div>
                             <div class="address">
                                 <span class="icon-screen-smartphone"></span>
-                                <p><%= usuario.telefone%></p>
+                                <p><%= usuario[0].telefone%></p>
                             </div>
                             <div class="address">
                                 <span class="icon-envelope"></span>
-                                <p><%= usuario.email%></p>
+                                <p><%= usuario[0].email%></p>
                             </div>
                             <div class="address">
                                 <!--<span class="icon-clock"></span>
