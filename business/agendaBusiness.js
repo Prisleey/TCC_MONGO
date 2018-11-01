@@ -3,7 +3,7 @@ let ObjectId = require('mongoose').Types.ObjectId;
 
 exports.consultarAgendamento = function(id_usuario) {
     return new Promise(function(resolve, reject) {
-
+        console.log("teste agenda bs");
         AgendaModel.find({
             idUsuario : id_usuario
         }, function(erro, agendamentos) {

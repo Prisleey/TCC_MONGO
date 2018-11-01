@@ -20,7 +20,7 @@ router.post('/agendamentos', function(req, res, next) {
         console.log("NOVA AGENDA LOOKUP --------------------");
         console.log(agendamentos);
         //console.log(agendamentos[0].sala[0].nomeEstudio);
-        console.log("OPA -------------");
+        console.log("OPA -------------1");
         let jsonAgendamentos = [];
         for (var i in agendamentos ) {
             val = agendamentos [i];
