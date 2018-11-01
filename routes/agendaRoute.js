@@ -20,12 +20,31 @@ router.post('/agendamentos', function(req, res, next) {
         console.log("NOVA AGENDA LOOKUP --------------------");
         console.log(agendamentos);
         //console.log(agendamentos[0].sala[0].nomeEstudio);
+        console.log("OPA -------------");
+        let jsonAgendamentos = [];
+        for (var i in agendamentos ) {
+            val = agendamentos [i];
+            console.log(val);
+            let idAgendamento = val._id;
+            let tituloAgendamento = val.sala[0].nomeEstudio + " - " +  val.servico[0].nomeServico;
+            let dataAgendamentoFormat = val.dataAgendamento.split("/")[2].trim() + "-" + val.dataAgendamento.split("/")[1].trim() + "-" +  val.dataAgendamento.split("/")[0].trim();
+            let startAgendamento = dataAgendamentoFormat + " " + val.horario_inicio + ":00";
+            let endAgendamento = dataAgendamentoFormat + " " + val.horario_fim + ":00";
+
+            let jsonTemp = {
+                id : idAgendamento,
+                title : tituloAgendamento,
+                start : startAgendamento,
+                end : endAgendamento
+            };
+
+            jsonAgendamentos.push(jsonTemp);
+        }
+        console.log(jsonAgendamentos);
         console.log("END NOVA AGENDA LOOKUP ----------------");
 
 
-        $.each(agendamentos, function( i, val ) {
-            console.log(val);
-        });
+
             /*let agendaEvents = {
                 id:,
                 title:,
@@ -35,7 +54,7 @@ router.post('/agendamentos', function(req, res, next) {
 
         //});
 
-        res.send(agendamentos);
+        res.send(jsonAgendamentos);
     }).catch(function(erro) {
         res.end(erro);
     });

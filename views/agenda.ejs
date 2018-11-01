@@ -166,13 +166,8 @@
             url:"agendamentos",
             type:"POST",
             datatype: 'JSON',
-            success: function(data){
-                console.log(data);
-                let dataOld = data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-');
-                let dataNew = dataOld.split("-")[2].trim() + "-" + dataOld.split("-")[1].trim() + "-" + dataOld.split("-")[0].trim();
-                console.log('old: ', dataOld);
-                console.log('new: ', dataNew);
-                //console.log('format: ', moment(new Date(data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-'))).format('yyyy-MM-dd'));
+            success: function(agendamentos){
+                console.log(agendamentos);
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
@@ -183,63 +178,7 @@
                     navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
-                    events: [
-                        /*{
-                            id: data.agendamentos[0]._id,
-                            title: 'agendamento top',
-                            start: data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-').split("-")[2].trim() + "-" + data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-').split("-")[1].trim() + "-" + data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-').split("-")[0].trim()
-                        }/*,
-                        {
-                            title: 'Long Event',
-                            start: '2018-03-07',
-                            end: '2018-03-10'
-                        },
-                        {
-                            id: data.agendamentos[0]._id,
-                            title: 'agendamento top',
-                            start: '2018-03-09T16:00:00'
-                        },
-                        {
-                            id: 999,
-                            title: 'Repeating Event',
-                            start: '2018-03-16T16:00:00'
-                        },
-                        {
-                            title: 'Conference',
-                            start: '2018-03-11',
-                            end: '2018-03-13'
-                        },
-                        {
-                            title: 'Meeting',
-                            start: '2018-03-12T10:30:00',
-                            end: '2018-03-12T12:30:00'
-                        },
-                        {
-                            title: 'Lunch',
-                            start: '2018-03-12T12:00:00'
-                        },
-                        {
-                            title: 'Meeting',
-                            start: '2018-03-12T14:30:00'
-                        },
-                        {
-                            title: 'Happy Hour',
-                            start: '2018-03-12T17:30:00'
-                        },
-                        {
-                            title: 'Dinner',
-                            start: '2018-03-12T20:00:00'
-                        },
-                        {
-                            title: 'Birthday Party',
-                            start: '2018-03-13T07:00:00'
-                        },
-                        {
-                            title: 'Click for Google',
-                            url: 'http://google.com/',
-                            start: '2018-03-28'
-                        }*/
-                    ]
+                    events: agendamentos
                 });
             },
             error: function(data){
