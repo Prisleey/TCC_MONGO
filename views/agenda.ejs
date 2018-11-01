@@ -181,18 +181,48 @@
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     events: agendamentos,
+                    timeFormat: 'HH:mm', // uppercase H for 24-hour clock
                     eventDrop: function(event, delta, revertFunc) {
 
                         let data = event.start.format().split("T")[0].trim();
-                        let dataFinal = data.split("-")[2]+"/"+data.split("-")[1]+"/"+data.split("-")[0];
-                        let horarioStart = event.start.format().split("T")[1].trim().slice(0,-3);
-                        let horarioEnd = event.end.format().split("T")[1].trim().slice(0,-3);
+                        let dataAgend = data.split("-")[2] + "/" + data.split("-")[1] + "/" + data.split("-")[0];
+                        let horarioStart = event.start.format().split("T")[1].trim().slice(0, -3);
+                        let horarioEnd = event.end.format().split("T")[1].trim().slice(0, -3);
                         let idAgendamento = event.id;
-                        alert(horarioEnd);
+                        //alert(horarioEnd);
 
-                        if (!confirm("Você tem certeza que deseja reprogramar o agendamento?")) {
-                            revertFunc();
+                        let agendamento = {
+                            idAgendamento : idAgendamento,
+                            horario_inicio : horarioStart,
+                            horario_fim : horarioEnd,
+                            dataAgendamento : dataAgend
+                        };
+
+                        if (confirm("Você tem certeza que deseja alterar o seu agendamento?")) {
+
+                            $.ajax({
+                                url: "updateAgendamento",
+                                type: "post",
+                                data: agendamento,
+                                datatype: 'json',
+                                success: function (agendamentos) {
+                                    console.log(agendamentos)
+                                },
+                                error: function(data){
+                                    alert("Erro: " + data);
+                                }
+                            });
+                            //revertFunc();
+                        } else {
+                            alert('só opa');
                         }
+
+                    },
+                    eventClick: function(event, element) { //para a modal de visualizar detalhes
+
+                        event.title = "CLICKED!";
+                        alert(event.title);
+                        //$('#calendar').fullCalendar('updateEvent', event);
 
                     }
                 });

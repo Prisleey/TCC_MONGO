@@ -13,6 +13,17 @@ router.get('/agenda', function(req, res, next) {
     });
 });
 
+router.post('/updateAgendamento', function(req, res, next) {
+    let agendamento = req.body;
+
+    AgendaBusiness.agendamentoUpdate(agendamento).then(function (agendamentoUpdated) {
+        res.send(agendamentoUpdated);
+    }).catch(function(erro) {
+
+        res.end(erro);
+    });
+});
+
 router.post('/agendamentos', function(req, res, next) {
     let id_user = req.session.usuarioLogado[0]._id;
 

@@ -16,6 +16,27 @@ exports.consultarAgendamento = function(id_usuario) {
     });
 }
 
+exports.agendamentoUpdate = function(agendamento) {
+
+    return new Promise(function(resolve, reject) {
+        AgendaModel.where({
+            "_id": agendamento.idAgendamento
+        }).update({
+            $set: {
+                "horario_inicio": agendamento.horario_inicio,
+                "horario_fim": agendamento.horario_fim,
+                "dataAgendamento": agendamento.dataAgendamento
+            }
+        }, function (err, agendamentoUpdated) {
+            if (err) {
+                reject({'status': false, 'erro': err})
+            } else {
+                resolve({'status': true, 'agendamentos': agendamentoUpdated});
+            }
+        });
+    });
+}
+
 exports.consultarAgendamentoLookup = function(id_usuario) {
     return new Promise(function(resolve, reject) {
 
