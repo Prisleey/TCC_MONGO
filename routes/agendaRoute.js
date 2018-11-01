@@ -7,7 +7,18 @@ router.get('/agenda', function(req, res, next) {
 
     AgendaBusiness.consultarAgendamento(id_user).then(function(agendamentos){
         console.log(agendamentos);
-        res.render('agenda', {'agendamentos': agendamentos.agendamentos, usuarioLogado: req.session.usuarioLogado});
+        res.render('agenda', {usuarioLogado: req.session.usuarioLogado});
+    }).catch(function(erro) {
+        res.end(erro);
+    });
+});
+
+router.post('/agendamentos', function(req, res, next) {
+    let id_user = req.session.usuarioLogado[0]._id;
+
+    AgendaBusiness.consultarAgendamento('5ba3fa42e291bd1ccce77367').then(function(agendamentos){
+        console.log(agendamentos);
+        res.send(agendamentos);
     }).catch(function(erro) {
         res.end(erro);
     });
