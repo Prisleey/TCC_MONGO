@@ -7,7 +7,7 @@ router.get('/agenda', function(req, res, next) {
 
     AgendaBusiness.consultarAgendamento(id_user).then(function(agendamentos){
         console.log(agendamentos);
-        res.render('agenda-old', {'agendamentos': agendamentos.agendamentos, usuarioLogado: req.session.usuarioLogado});
+        res.render('agenda', {'agendamentos': agendamentos.agendamentos, usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.end(erro);
     });
@@ -40,7 +40,7 @@ router.post('/agendar', function(req, res, next) {
     AgendaBusiness.agendar(arrayAgenda).then(function(result) {
         AgendaBusiness.consultarAgendamento(idUsuario).then(function(agendamentos){
             console.log(agendamentos);
-            res.render('agenda-old', {'agendamentos': agendamentos.agendamentos, usuarioLogado: req.session.usuarioLogado});
+            res.render('agenda', {'agendamentos': agendamentos.agendamentos, usuarioLogado: req.session.usuarioLogado});
         })
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
