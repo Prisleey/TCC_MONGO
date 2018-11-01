@@ -6,6 +6,7 @@ router.get('/agenda', function(req, res, next) {
     let id_user = req.session.usuarioLogado[0]._id;
 
     AgendaBusiness.consultarAgendamento(id_user).then(function(agendamentos){
+        console.log(agendamentos);
         res.render('agenda', {usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.end(erro);
@@ -18,11 +19,13 @@ router.post('/agendamentos', function(req, res, next) {
     AgendaBusiness.consultarAgendamentoLookup(id_user).then(function(agendamentos){
         console.log("NOVA AGENDA LOOKUP --------------------");
         console.log(agendamentos);
-        console.log(agendamentos[0].sala[0].nomeEstudio);
+        //console.log(agendamentos[0].sala[0].nomeEstudio);
         console.log("END NOVA AGENDA LOOKUP ----------------");
 
-        /*$(agendamentos).each(function(index) {
 
+        $.each(agendamentos, function( i, val ) {
+            console.log(val);
+        });
             /*let agendaEvents = {
                 id:,
                 title:,
