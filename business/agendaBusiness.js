@@ -1,4 +1,5 @@
 let AgendaModel = require('../model/agendaModel');
+let ObjectId = require('mongoose').Types.ObjectId;
 
 exports.consultarAgendamento = function(id_usuario) {
     return new Promise(function(resolve, reject) {
@@ -20,7 +21,7 @@ exports.consultarAgendamentoLookup = function(id_usuario) {
 
         AgendaModel.aggregate([
             { $match: {
-                    'idUsuario': ObjectId(id_usuario)} //id user
+                'idUsuario': ObjectId(id_usuario)} //id user
             }, {
                 $lookup: {
                     from: "Usuario",
@@ -47,7 +48,6 @@ exports.consultarAgendamentoLookup = function(id_usuario) {
                     dataAgendamento:1,
                     horario_inicio:1,
                     horario_fim:1,
-                    'usuario.nome': 1,
                     'sala.nomeSala':1,
                     'sala.nomeEstudio':1,
                     'servico.nomeServico': 1
@@ -57,7 +57,7 @@ exports.consultarAgendamentoLookup = function(id_usuario) {
             if(err){
                 reject(err);
             }else {
-                //console.log('resultado agenda: ', result);
+                console.log('resultado agenda: ', result);
 
                 resolve(result);
             }

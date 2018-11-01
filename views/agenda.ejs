@@ -165,9 +165,9 @@
         $.ajax({
             url:"agendamentos",
             type:"POST",
+            datatype: 'JSON',
             success: function(data){
                 console.log(data);
-                console.log();
                 let dataOld = data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-');
                 let dataNew = dataOld.split("-")[2].trim() + "-" + dataOld.split("-")[1].trim() + "-" + dataOld.split("-")[0].trim();
                 console.log('old: ', dataOld);
@@ -184,7 +184,7 @@
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     events: [
-                        {
+                        /*{
                             id: data.agendamentos[0]._id,
                             title: 'agendamento top',
                             start: data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-').split("-")[2].trim() + "-" + data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-').split("-")[1].trim() + "-" + data.agendamentos[0].dataAgendamento.replace('/','-').replace('/','-').split("-")[0].trim()

@@ -16,8 +16,20 @@ router.get('/agenda', function(req, res, next) {
 router.post('/agendamentos', function(req, res, next) {
     let id_user = req.session.usuarioLogado[0]._id;
 
-    AgendaBusiness.consultarAgendamento('5ba3fa42e291bd1ccce77367').then(function(agendamentos){
+    AgendaBusiness.consultarAgendamentoLookup('5ba3fa42e291bd1ccce77367').then(function(agendamentos){
         console.log(agendamentos);
+
+        /*$(agendamentos).each(function(index) {
+
+            /*let agendaEvents = {
+                id:,
+                title:,
+                start:,
+                end:
+            }*/
+
+        //});
+
         res.send(agendamentos);
     }).catch(function(erro) {
         res.end(erro);
