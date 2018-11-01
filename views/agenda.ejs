@@ -114,6 +114,7 @@
 			<div class="col-md-12 responsive-wrap">
 				<div class="booking-checkbox_wrap">
 					<div class="row d-flex">
+						<!--
 						<table class="table">
 							<thead class="thead-light">
 							<tr>
@@ -127,6 +128,7 @@
 
 							</tbody>
 						</table>
+						!-->
 					</div>
 				</div>
 			</div>
@@ -179,7 +181,20 @@
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     events: agendamentos,
-                    timeFormat: 'HH:mm' // uppercase H for 24-hour clock
+                    eventDrop: function(event, delta, revertFunc) {
+
+                        let data = event.start.format().split("T")[0].trim();
+                        let dataFinal = data.split("-")[2]+"/"+data.split("-")[1]+"/"+data.split("-")[0];
+                        let horarioStart = event.start.format().split("T")[1].trim().slice(0,-3);
+                        let horarioEnd = event.end.format().split("T")[1].trim().slice(0,-3);
+                        let idAgendamento = event.id;
+                        alert(horarioEnd);
+
+                        if (!confirm("Você tem certeza que deseja reprogramar o agendamento?")) {
+                            revertFunc();
+                        }
+
+                    }
                 });
             },
             error: function(data){
