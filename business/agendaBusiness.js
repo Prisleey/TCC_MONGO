@@ -57,7 +57,6 @@ exports.consultarAgendamentoLookup = function(id_usuario) {
             if(err){
                 reject(err);
             }else {
-                console.log('resultado agenda: ', result);
 
                 resolve(result);
             }
