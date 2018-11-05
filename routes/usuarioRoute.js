@@ -55,7 +55,6 @@ router.post('/login', function(req, res, next) {
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
         req.session.usuarioLogado = objeto;
-        console.log('resultado objeto user logado: ',objeto)
         UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
             res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado})
         });

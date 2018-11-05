@@ -12,3 +12,5 @@ router.get('/carteira', function(req, res, next) {
         res.end(erro);
     });
 });
+
+module.exports = router;

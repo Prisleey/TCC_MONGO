@@ -37,6 +37,9 @@
 	<script src='js/moment.min.js'></script>
 	<script src='js/jquery.min.js'></script>
 	<script src='fullcalendar.min.js'></script>
+
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -163,7 +166,6 @@
 <script>
 
     $(document).ready(function() {
-
         $.ajax({
             url:"agendamentos",
             type:"POST",
@@ -181,6 +183,17 @@
                     navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
+                    eventRender: function(event, element){
+                        element.popover({
+                            animation:true,
+                            title: event.title,
+                            content: event.description,
+                            trigger: 'hover',
+                            placement: 'top',
+                            container: 'body',
+							html: true
+                        });
+                    },
                     events: agendamentos,
                     timeFormat: 'HH:mm', // uppercase H for 24-hour clock
                     eventResize: function(event, delta, revertFunc) {

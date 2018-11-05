@@ -60,6 +60,7 @@ exports.verificarUsuario = function(data) {
                 login:1,
                 email:1,
                 senha:1,
+                telefone:1,
                 'tipo._id':1,
                 'tipo.idTpUsuario':1,
                 'tipo.desc':1,

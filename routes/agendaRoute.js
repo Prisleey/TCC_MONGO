@@ -45,6 +45,7 @@ router.post('/agendamentos', function(req, res, next) {
             let jsonTemp = {
                 id : idAgendamento,
                 title : tituloAgendamento,
+                description: tituloAgendamento + " <br/>" + val.horario_inicio + " até " + val.horario_fim,
                 start : startAgendamento,
                 end : endAgendamento
             };
@@ -53,18 +54,6 @@ router.post('/agendamentos', function(req, res, next) {
         }
         console.log(jsonAgendamentos);
         console.log("END NOVA AGENDA LOOKUP ----------------");
-
-
-
-            /*let agendaEvents = {
-                id:,
-                title:,
-                start:,
-                end:
-            }*/
-
-        //});
-
         res.send(jsonAgendamentos);
     }).catch(function(erro) {
         res.end(erro);
@@ -78,21 +67,21 @@ router.post('/agendar', function(req, res, next) {
     let idUsuario = req.body.idUsuario;
     let dataAgendamento = req.body.data_agendamento;
     let horarioAgendamento = req.body.horarioAgendamento;
+    let valorAgendamento = req.body.valorAgendamento.replace(',','.');
    // console.log('horarioAgendamento: ', req.body.horarioAgendamento);
 
     var resultSplit = horarioAgendamento.split(" - ");
     var horario_inicio = resultSplit[0].split(" ");
     var horario_fim = resultSplit[1].split(" ");
 
-    console.log("EEEEEETA PORRA");
-    console.log(idSala);
     arrayAgenda = {
         idSala: idSala,
         dataAgendamento: dataAgendamento,
         horario_inicio: horario_inicio[0],
         horario_fim: horario_fim[0],
         idServico: idServico,
-        idUsuario: idUsuario
+        idUsuario: idUsuario,
+        valorAgendamento : valorAgendamento
     };
 
     AgendaBusiness.agendar(arrayAgenda).then(function(result) {

@@ -7,7 +7,8 @@ let agendamentoSchema = new Schema({
     horario_inicio: {type: String, trim: true, required: true},
     horario_fim: {type: String, trim: true, required: true},
     idServico: {type: Schema.Types.ObjectId, ref : 'Servico'},
-    idUsuario:{type: Schema.Types.ObjectId, ref : 'Usuario'}
+    idUsuario:{type: Schema.Types.ObjectId, ref : 'Usuario'},
+    valorAgendamento: {type: Number, required: true, trim: true}
 }, {collection : 'Agenda'});
 
 let agendaModel = mongoose.model('Agenda', agendamentoSchema);

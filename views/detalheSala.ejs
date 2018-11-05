@@ -145,6 +145,7 @@
                     <% } %>
                     <p class="reserve-description">Veja os detalhes da sala e agende o serviço desejado.</p>
                 </div>
+            </div>
         </div>
     </section>
     <!--//END RESERVE A SEAT -->
@@ -174,6 +175,7 @@
                                 <div class="col-5">
                                     <label for="preco">Preço</label><br>
                                     <span id="preco"></span>
+                                    <input type="hidden" class="precoAgendamento" value="" name="valorAgendamento">
                                 </div>
                                 <!-- DEFESA TCC
                                 <div class="col-5">
@@ -205,47 +207,47 @@
                                 %>
                                 </ul>
                                 <hr>
-                            </div>
-                            <br>
-							
-							<div class="col-5">
-								<label for="dataAgendamento">Data Agendamento</label>
-								<input class="form-control" id="dataAgendamento" name='data_agendamento' type="text">
-							</div>
-							</br>
-							<hr>
-							<div class="col-5">
-							<p style='font-size:25px; font-weight:bold'>Horários Agendamento:</p>
-							<!-- Ao selecionar a data, dispara o evento que gera as checkboxes de horário, de acordo com os horários disponiveis -->
-							<!--
-							<div class="form-check">
-							  <label class="form-check-label">
-								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00-11:00"> 10:00 - 11:00
-							  </label>
-							</div>
-							<div class="form-check">
-							  <label class="form-check-label">
-								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="11:00-12:00"> 11:00 - 12:00
-							  </label>
-							</div>
-							<div class="form-check">
-							  <label class="form-check-label">
-								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="12:00-13:00"> 12:00 - 13:00
-							  </label>
-							</div>
-							<div class="form-check">
-							  <label class="form-check-label">
-								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="13:00-14:00"> 13:00 - 14:00
-							  </label>
-							</div>
-							-->
-							<input type="text" class="form-control" id="horarioFuncionamento" name='horarioAgendamento' placeholder="" readonly required>
-							</div>
-                            <br/>
-                            <hr>
-                            <button id="pagarme" type="button" class="btn btn-success">Pagar.me</button>
-							<button type="submit" class="btn btn-primary">Agendar</button>
-						</form>
+                                <br>
+
+                                <div class="col-5">
+                                    <label for="dataAgendamento">Data Agendamento</label>
+                                    <input class="form-control" id="dataAgendamento" name='data_agendamento' type="text">
+                                </div>
+                                </br>
+                                <hr>
+                                <div class="col-5">
+                                    <p style='font-size:25px; font-weight:bold'>Horários Agendamento:</p>
+                                    <!-- Ao selecionar a data, dispara o evento que gera as checkboxes de horário, de acordo com os horários disponiveis -->
+                                    <!--
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00-11:00"> 10:00 - 11:00
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="11:00-12:00"> 11:00 - 12:00
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="12:00-13:00"> 12:00 - 13:00
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="13:00-14:00"> 13:00 - 14:00
+                                      </label>
+                                    </div>
+                                    -->
+                                    <input type="text" class="form-control" id="horarioFuncionamento" name='horarioAgendamento' placeholder="" readonly required>
+                                </div>
+                                <br/>
+                                <hr>
+                                <button id="pagarme" type="button" class="btn btn-success">Pagar.me</button>
+                                <button type="submit" class="btn btn-primary">Agendar</button>
+                            </form>
+                        </div>
                     </div>
 					<!-- END //DESCROCAO E CHECKBOX -->
                 </div>
@@ -294,12 +296,15 @@
 
     <script>
         //console.log('USER LOGADO:            ', <%usuarioLogado%>);
+        var json_usuario = <%- JSON.stringify( usuarioLogado ); %>;
+        console.log('DAOWJDIWAJDO', json_usuario);
         let button = document.getElementById("pagarme");
 
         button.addEventListener('click', function() {
             function handleSuccess (data) {
                 console.log(data);
                 console.log("success");
+                $("#formAgendar").submit();
             }
 
             function handleError (data) {
@@ -313,32 +318,33 @@
                 error: handleError
             });
 
+            let telefoneFormatado = json_usuario[0].telefone.replace(' ','').replace(' ','').replace('-','');
             checkout.open({
-                amount: document.getElementById('preco').innerHTML,
+                amount: parseInt($('#preco').text().replace('.','').replace(',','')),
                 createToken: 'true',
                 paymentMethods: 'credit_card',
                 customerData: false,
                 customer: {
                     external_id: '#123456789',
-                    name: 'Fulano',
+                    name: json_usuario[0].nome,
                     type: 'individual',
                     country: 'br',
-                    email: 'fulano@email.com',
+                    email: json_usuario[0].email,
                     documents: [
                         {
                             type: 'cpf',
                             number: '71404665560',
                         },
                     ],
-                    phone_numbers: ['+5511999998888', '+5511888889999'],
-                    birthday: '1985-01-01',
+                    phone_numbers: [telefoneFormatado],
+                    birthday: '1995-01-01',
                 },
                 billing: {
-                    name: 'Ciclano de Tal',
+                    name: json_usuario[0].nome,
                     address: {
                         country: 'br',
-                        state: 'SP',
-                        city: 'São Paulo',
+                        state: 'PR',
+                        city: 'Curitiba',
                         neighborhood: 'Fulanos bairro',
                         street: 'Rua dos fulanos',
                         street_number: '123',
@@ -346,14 +352,14 @@
                     }
                 },
                 shipping: {
-                    name: 'Ciclano de Tal',
+                    name: json_usuario[0].nome,
                     fee: 12345,
                     delivery_date: '2017-12-25',
                     expedited: true,
                     address: {
                         country: 'br',
-                        state: 'SP',
-                        city: 'São Paulo',
+                        state: 'PR',
+                        city: 'Curitiba',
                         neighborhood: 'Fulanos bairro',
                         street: 'Rua dos fulanos',
                         street_number: '123',
@@ -362,18 +368,11 @@
                 },
                 items: [
                     {
-                        id: '1',
-                        title: 'Bola de futebol',
-                        unit_price: 12000,
+                        id: '123',
+                        title: 'teste',
+                        unit_price: parseInt($('#preco').text().replace('.','').replace(',','')),
                         quantity: 1,
-                        tangible: true
-                    },
-                    {
-                        id: 'a123',
-                        title: 'Caderno do Goku',
-                        unit_price: 3200,
-                        quantity: 3,
-                        tangible: true
+                        tangible: false
                     }
                 ]
             })
@@ -424,6 +423,8 @@
                 }else{
                     let preco = $("#id_servico option:selected").val().split(";")[1];
                     $("#preco").html(preco);
+                    $(".precoAgendamento").val(preco);
+
                     console.log(preco);
                 }
                 /* DEFESA TCC
