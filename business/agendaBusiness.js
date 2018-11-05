@@ -16,8 +16,27 @@ exports.consultarAgendamento = function(id_usuario) {
     });
 }
 
-exports.agendamentoUpdate = function(agendamento) {
+exports.cancelarAgendamento = function(id_agendamento) {
+    return new Promise(function(resolve, reject) {
+        AgendaMovel.findOne({
+            '_id': id_agendamento
+        }, function(erro, resultado){
+            if(resultado){
+                reject({status :false});
+            }else{
+                /*(function(err) { CONTINUAR DAQUI CANCELAMENTO
+                    if(err) {
+                        reject({status: false, erro: err});
+                    } else {
+                        resolve({status: true});
+                    }
+                });*/
+            }
+        });
+    });
+}
 
+exports.agendamentoUpdate = function(agendamento) {
     return new Promise(function(resolve, reject) {
         AgendaModel.where({
             "_id": agendamento.idAgendamento
@@ -85,56 +104,6 @@ exports.consultarAgendamentoLookup = function(id_usuario) {
         });
     });
 }
-
-exports.consultarAgendamentoLookupByEstudio = function(id_estudio) {
-    return new Promise(function(resolve, reject) {
-
-        AgendaModel.aggregate([
-            { $match: {
-                'idSala': ObjectId(id_estudio)} //id user
-            }, {
-                $lookup: {
-                    from: "Usuario",
-                    localField: "idUsuario",
-                    foreignField: "_id",
-                    as: "usuario"
-                }
-            }, {
-                $lookup: {
-                    from: "Servico",
-                    localField: "idServico",
-                    foreignField: "_id",
-                    as: "servico"
-                }
-            }, {
-                $lookup: {
-                    from: "Estudio",
-                    localField: "idSala",
-                    foreignField: "_id",
-                    as: "sala"
-                }
-            }, {
-                $project: {
-                    dataAgendamento:1,
-                    horario_inicio:1,
-                    horario_fim:1,
-                    'sala.nomeSala':1,
-                    'sala.nomeEstudio':1,
-                    'servico.nomeServico': 1
-                }
-            }
-        ]).exec(function(err, result){
-            if(err){
-                reject(err);
-            } else {
-                console.log('resultado agenda: ', result);
-
-                resolve(result);
-            }
-        });
-    });
-}
-
 
 exports.consultarAgendamento = function(id_usuario) {
     return new Promise(function(resolve, reject) {

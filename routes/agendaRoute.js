@@ -13,6 +13,16 @@ router.get('/agenda', function(req, res, next) {
     });
 });
 
+router.post('/cancelarAgendamento', function(req, res, next) {
+    let id_agendamento = req.body.idAgendamento;
+
+    AgendaBusiness.cancelarAgendamento(id_agendamento).then(function(result) {
+        res.end(JSON.stringify(result));
+    }).catch(function(err) {
+        res.end(err);
+    });
+});
+
 router.post('/updateAgendamento', function(req, res, next) {
     let agendamento = req.body;
 
@@ -95,5 +105,7 @@ router.post('/agenda', function(req, res, next) {
         res.end(JSON.stringify(erro));
     });
 });
+
+
 
 module.exports = router;

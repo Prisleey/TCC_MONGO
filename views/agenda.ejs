@@ -147,6 +147,32 @@
 		</div>
 	</div>
 </section>
+
+<div class="modal fade" id="detail-event" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="form-group">
+					<h4 id="txtEstudio"></h4>
+					<!--<input type="login" class="form-control" id="login" name="login" required>-->
+				</div><br />
+				<div class="form-group">
+					Data Agendamento: <p id="dtAgendamento"></p>
+				</div><br/>
+				<div class="form-group">
+					Hora Inicio: <p id="horaInicio"></p>
+					Hora Fim: <p id="horaFim"></p>
+				</div><br />
+				<button type="button" id="cancelarAgendamento" class="btn btn-danger btn-lg">Cancelar Agendamento</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <footer class="main-block dark-bg">
 	<div class="container">
 		<div class="row">
@@ -163,6 +189,7 @@
 		</div>
 	</div>
 </footer>
+
 <script>
 
     $(document).ready(function() {
@@ -260,7 +287,6 @@
                                     alert("Erro: " + data);
                                 }
                             });
-                            //
                         } else {
                             //alert('só opa');
                             revertFunc();
@@ -268,11 +294,33 @@
 
                     },
                     eventClick: function(event, element) { //para a modal de visualizar detalhes
+                        let data = event.start.format().split("T")[0].trim();
+                        let dataAgend = data.split("-")[2] + "/" + data.split("-")[1] + "/" + data.split("-")[0];
+                        let horarioStart = event.start.format().split("T")[1].trim().slice(0, -3);
+                        let horarioEnd = event.end.format().split("T")[1].trim().slice(0, -3);
 
-                        event.title = "CLICKED!";
-                        alert(event.title);
-                        //$('#calendar').fullCalendar('updateEvent', event);
+                        $('#txtEstudio').text(event.title);
+                        $('#dtAgendamento').text(dataAgend);
+                        $('#horaInicio').text(horarioStart);
+                        $('#horaFim').text(horarioEnd);
+                        $('#detail-event').modal('show');
 
+						$('#cancelarAgendamento').on('click', function() {
+						   	let idAgendamento = event.id;
+
+						   	$.ajax({
+                                url: "cancelarAgendamento",
+                                type: "post",
+                                data: {idAgendamento : idAgendamento},
+                                datatype: 'json',
+                                success: function (result) {
+                                    console.log(result)
+                                },
+                                error: function(data){
+                                    alert("Erro: " + data);
+                                }
+							});
+						});
                     }
                 });
             },
