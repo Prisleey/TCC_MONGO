@@ -2,6 +2,7 @@ let mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 let agendamentoSchema = new Schema({
+    //idEstudio: {type: Schema.Types.ObjectId, ref : 'Estudio'},
     idSala: {type: Schema.Types.ObjectId, ref : 'Estudio.Sala'},
     dataAgendamento : {type: String, required: true},
     horario_inicio: {type: String, trim: true, required: true},

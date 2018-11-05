@@ -25,7 +25,9 @@ router.post('/updateAgendamento', function(req, res, next) {
 });
 
 router.post('/agendamentos', function(req, res, next) {
+    let idTpUser = req.session.usuarioLogado[0].tipo[0].idTpUsuario;
     let id_user = req.session.usuarioLogado[0]._id;
+    //console.log('SEXIUMMMMMMMMMMMMMMMM', req.session.usuarioLogado);
 
     AgendaBusiness.consultarAgendamentoLookup(id_user).then(function(agendamentos){
         console.log("NOVA AGENDA LOOKUP --------------------");
