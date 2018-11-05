@@ -54,12 +54,18 @@ router.post('/login', function(req, res, next) {
     };
 
     UsuarioBusiness.verificarUsuario(usuario).then(function(objeto) {
-        req.session.usuarioLogado = objeto;
-        UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
-            res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado})
-        });
+
+        req.session.usuarioLogado = objeto.usuario;
+        if (objeto.status) {
+            UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
+                res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado});
+            });
+        } else {
+            alert('Login ou senha incorretos.');
+            res.render('index', {tiposUser: {}, usuarioLogado: req.session.usuarioLogado});
+        }
     }).catch(function(erro) {
-        res.render('index', { tiposUser : {}, usuarioLogado : false});
+        res.render('index', { tiposUser : {}, usuarioLogado : {}});
     });
 });
 

@@ -187,7 +187,7 @@
                             <% if(estudio.estudio) { %>
                                 <% for (var i = 0; i < estudio.estudio.salas.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio.estudio._id %>&id_sala=<%= estudio.estudio.salas[i]._id %>&'><%= estudio.estudio.salas[i].nomeSala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio.estudio._id %>&id_sala=<%= estudio.estudio.salas[i]._id %>'><%= estudio.estudio.salas[i].nomeSala %></a>
                                     </div>
                                 <% } %>
                             <% } %>

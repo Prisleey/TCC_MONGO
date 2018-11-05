@@ -157,7 +157,7 @@
 					<!-- DESCROCAO E CHECKBOX -->
                     <div class="booking-checkbox_wrap">	
 						<div>
-                            <form action='/agendar' id='formAgendar' method='post'>
+                            <form action='/agendar' method='POST' id='formAgendar'>
                                 <input type="hidden" value="<%= sala[0]._id%>" name="idSala"/>
                                 <input type="hidden" value="<%= usuarioLogado[0]._id %>" name="idUsuario"/>
                                 <p style='font-size:25px; font-weight:bold'>Serviço:</p>
@@ -245,7 +245,7 @@
                                 <br/>
                                 <hr>
                                 <button id="pagarme" type="button" class="btn btn-success">Pagar.me</button>
-                                <button type="submit" class="btn btn-primary">Agendar</button>
+                                <!--<button type="submit" class="btn btn-primary">Agendar</button>-->
                             </form>
                         </div>
                     </div>
@@ -304,7 +304,8 @@
             function handleSuccess (data) {
                 console.log(data);
                 console.log("success");
-                $("#formAgendar").submit();
+                //$("#formAgendar").submit();
+                $.post('/agendar', $('#formAgendar').serialize())
             }
 
             function handleError (data) {
