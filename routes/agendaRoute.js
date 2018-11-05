@@ -62,7 +62,7 @@ router.post('/agendamentos', function(req, res, next) {
     });
 });
 
-router.post('/agendar', function(req, res, next) {
+router.post('/agenda', function(req, res, next) {
 
     let idSala = req.body.idSala;
     let idServico = req.body.id_servico.split(";")[0];
