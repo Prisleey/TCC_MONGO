@@ -1,4 +1,5 @@
 var UsuarioBusiness = require('../business/usuarioBusiness');
+var CarteiraBusiness = require('../business/carteiraBusiness');
 var express = require('express');
 var router = express.Router();
 
@@ -35,7 +36,19 @@ router.post('/cadastro', function(req, res, next) {
 
     UsuarioBusiness.salvarUsuario(usuario).then(function(objeto) {
         UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
-            res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado})
+            console.log(typeof(objeto.usuario._id));
+            let carteira = {
+                'creditos' : 0.00,
+                'idUsuario' : objeto.usuario._id
+            };
+            console.log("teste1234");
+            console.log(carteira);
+            CarteiraBusiness.criarCarteira(carteira).then(function(status){
+                res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado});
+            }).catch(function(erro){
+               res.end(JSON.stringify(erro));
+            });
+
         });
 
     }).catch (function(erro) {
