@@ -383,6 +383,23 @@
                 ]
             })
         });
+
+        //pagando com creditos
+        $("#carteiraPagamento").on("click", function(){
+            let id_usuario = json_usuario[0]._id;
+            $.ajax({
+                type: "POST",
+                url: "/checarSaldo",
+                data: {id_usuario: id_usuario} ,
+                success: function(result) {
+                    alert("valor na carteira! " + result);
+                },error: function(result) {
+                    alert("Erro ao consultar a carteira");
+                },
+                dataType: "json",
+                contentType : "application/json"
+            });
+        });
     </script>
 
     <script>
