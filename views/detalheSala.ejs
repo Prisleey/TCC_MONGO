@@ -244,7 +244,8 @@
                                 </div>
                                 <br/>
                                 <hr>
-                                <button id="pagarme" type="button" class="btn btn-success">Pagar.me</button>
+                                <button id="pagarme" type="button" class="btn btn-success">Pagar com cartão</button>
+                                <button id="carteiraPagamento" type="button" class="btn btn-primary">Pagar com a carteira</button>
                                 <!--<button type="submit" class="btn btn-primary">Agendar</button>-->
                             </form>
                         </div>
@@ -319,7 +320,8 @@
                 error: handleError
             });
 
-            let telefoneFormatado = json_usuario[0].telefone.replace(' ','').replace(' ','').replace('-','');
+            //let telefoneFormatado = json_usuario[0].telefone.replace(' ','').replace(' ','').replace('-','');
+            let telefoneFormatado = "+5541999998888";
             checkout.open({
                 amount: parseInt($('#preco').text().replace('.','').replace(',','')),
                 createToken: 'true',
