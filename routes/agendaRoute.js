@@ -9,7 +9,7 @@ router.get('/agenda', function(req, res, next) {
         console.log(agendamentos);
         res.render('agenda', {usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
-        res.end(erro);
+        res.send(erro);
     });
 });
 
