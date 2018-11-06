@@ -1,4 +1,5 @@
 let CarteiraModel = require('../model/carteiraModel');
+let AgendaModel = require('../model/agendaModel');
 let ObjectId = require('mongoose').Types.ObjectId;
 
 
@@ -13,6 +14,35 @@ exports.criarCarteira = function(carteiraTemp) {
                 reject({status: false, erro: err});
             } else {
                 resolve({status: true});
+            }
+        });
+    });
+}
+
+exports.estornarComoCredito = function(id_agendamento) {
+    return new Promise(function(resolve, reject) {
+        AgendaModel.findOne({
+            _id : id_agendamento
+        }, {
+            idUsuario:1,
+            valorAgendamento:1
+        }, function(err, infoAgendamento) {
+            if(!err && infoAgendamento) {
+                CarteiraModel.where({
+                    "idUsuario": infoAgendamento.idUsuario
+                }).update({
+                    $set: {
+                        "creditos": infoAgendamento.valorAgendamento
+                    }
+                }, function (err, estorno) {
+                    if (err) {
+                        reject({'status': false, 'erro': err})
+                    } else {
+                        resolve({'status': true});
+                    }
+                });
+            } else {
+                reject({status :false, erro: err});
             }
         });
     });

@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let AgendaBusiness = require('../business/agendaBusiness');
+let CarteiraBusiness = require('../business/carteiraBusiness');
 
 router.get('/agenda', function(req, res, next) {
     let id_user = req.session.usuarioLogado[0]._id;
@@ -16,10 +17,12 @@ router.get('/agenda', function(req, res, next) {
 router.post('/cancelarAgendamento', function(req, res, next) {
     let id_agendamento = req.body.idAgendamento;
 
-    AgendaBusiness.cancelarAgendamento(id_agendamento).then(function(result) {
-        res.send(result);
-    }).catch(function(err) {
-        res.send(err);
+    CarteiraBusiness.estornarComoCredito(id_agendamento).then(function(resultEstorno) {
+        AgendaBusiness.cancelarAgendamento(id_agendamento).then(function(result) {
+            res.send(result);
+        }).catch(function(err) {
+            res.send(err);
+        });
     });
 });
 
@@ -53,6 +56,8 @@ router.post('/agendamentos', function(req, res, next) {
             let dataAgendamentoFormat = val.dataAgendamento.split("/")[2].trim() + "-" + val.dataAgendamento.split("/")[1].trim() + "-" +  val.dataAgendamento.split("/")[0].trim();
             let startAgendamento = dataAgendamentoFormat + " " + val.horario_inicio + ":00";
             let endAgendamento = dataAgendamentoFormat + " " + val.horario_fim + ":00";
+            //let valorAgendamento = val.valorAgendamento.toFixed(2);
+            //console.log('VALORRRRRRRRRRRRRRRRRRR> ', valorAgendamento);
 
             let jsonTemp = {
                 id : idAgendamento,
