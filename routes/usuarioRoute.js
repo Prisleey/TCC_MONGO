@@ -71,7 +71,13 @@ router.post('/login', function(req, res, next) {
         req.session.usuarioLogado = objeto.usuario;
         if (objeto.status) {
             UsuarioBusiness.listTipoUsuario().then(function(listTpUser) {
-                res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado});
+                CarteiraBusiness.consultarCarteira(objeto.usuario[0]._id).then(function(carteira){
+                    console.log("EITA");
+                    console.log(carteira.carteira[0].creditos);
+                    res.render('index', {tiposUser: listTpUser.tipos, usuarioLogado: req.session.usuarioLogado, creditos: carteira.carteira[0].creditos});
+                }).catch(function(error){
+                   res.end(JSON.stringify(error));
+                });
             });
         } else {
             alert('Login ou senha incorretos.');
@@ -89,6 +95,7 @@ router.get('/logoff', function(req, res, next) {
         UsuarioBusiness.listTipoUsuario().then(function(objeto) {
             res.render('index', { tiposUser : objeto.tipos, usuarioLogado : false });
         });
+
     });
 });
 

@@ -39,7 +39,7 @@
                                         <img src="images/carteira3.png"  width="60" height="40" class="img-fluid" alt="img13" />
                                     </a>
                                     <a href="./carteira" style="display: inline;text-decoration:none">
-                                        <span style="color:#d9d9d9;">R$5600,00</span>
+                                        <span style="color:#d9d9d9;">R$<%= creditos.toFixed(2)%></span>
                                     </a>
                                 <% }%>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,9 +59,11 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="agenda">Agenda</a>
                                                 </li>
+                                            <!--
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="carteira">Minha Carteira</a>
                                                 </li>
+                                             -->
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="portfolio?id_prestador=<%=usuarioLogado[0]._id%>&flag=1">Gerenciar Portfólio</a>
                                                 </li>
