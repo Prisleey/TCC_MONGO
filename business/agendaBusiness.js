@@ -82,6 +82,7 @@ exports.consultarAgendamentoLookup = function(id_usuario) {
                     dataAgendamento:1,
                     horario_inicio:1,
                     horario_fim:1,
+                    valorAgendamento:1,
                     'sala.nomeSala':1,
                     'sala.nomeEstudio':1,
                     'servico.nomeServico': 1

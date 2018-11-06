@@ -387,17 +387,41 @@
         //pagando com creditos
         $("#carteiraPagamento").on("click", function(){
             let id_usuario = json_usuario[0]._id;
+            let precoAgendamento = $('.precoAgendamento').val();
+            console.log('preço agendamento: ', precoAgendamento);
+
             $.ajax({
-                type: "POST",
-                url: "/checarSaldo",
-                data: {id_usuario: id_usuario} ,
-                success: function(result) {
-                    alert("valor na carteira! " + result);
-                },error: function(result) {
-                    alert("Erro ao consultar a carteira");
+                url: "checarSaldo",
+                type: "post",
+                data: {id_usuario: id_usuario},
+                datatype: 'json',
+                success: function (result) {
+
+                    if(result.creditos >= precoAgendamento) {
+                        alert('Agendamento realizado com sucesso!');
+
+                        $.ajax({
+                            url: "descontarSaldo",
+                            type: "post",
+                            data: {id_usuario: id_usuario, valorAgendamento : precoAgendamento},
+                            datatype: 'json',
+                            success: function (result) {
+                                console.log('RESULTADO DO DESCONTO NA CARTEIRA>>> ', result);
+                            },
+                            error: function(error) {
+
+                            }
+                        });
+
+
+                        $("#formAgendar").submit();
+                    } else {
+                        alert('Saldo insuficiente!');
+                    }
                 },
-                dataType: "json",
-                contentType : "application/json"
+                error: function(data){
+                    alert("Erro ao consultar a carteira. ");
+                }
             });
         });
     </script>

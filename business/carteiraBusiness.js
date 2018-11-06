@@ -28,11 +28,50 @@ exports.estornarComoCredito = function(id_agendamento) {
             valorAgendamento:1
         }, function(err, infoAgendamento) {
             if(!err && infoAgendamento) {
+                CarteiraModel.findOne({
+                    'idUsuario': infoAgendamento.idUsuario
+                }, function (err, carteira) {
+                    console.log('RESULTADO CARTEIRA: ', carteira);
+                    if(carteira) {
+
+                        let totalCreditos = parseFloat(carteira.creditos) + parseFloat(infoAgendamento.valorAgendamento);
+
+                        CarteiraModel.where({
+                            "idUsuario": infoAgendamento.idUsuario
+                        }).update({
+                            $set: {
+                                "creditos": totalCreditos
+                            }
+                        }, function (err, estorno) {
+                            if (err) {
+                                reject({'status': false, 'erro': err})
+                            } else {
+                                resolve({'status': true});
+                            }
+                        });
+                    }
+                });
+
+            } else {
+                reject({status :false, erro: err});
+            }
+        });
+    });
+}
+
+exports.descontarSaldoCarteira = function(id_usuario, valorAgendamento) {
+    return new Promise(function(resolve, reject){
+        CarteiraModel.find({
+            idUsuario : id_usuario
+        }, function(erro, carteira) {
+            if(carteira) {
+                let desconto = parseFloat(carteira[0].creditos) - parseFloat(valorAgendamento);
+
                 CarteiraModel.where({
-                    "idUsuario": infoAgendamento.idUsuario
+                    "idUsuario": id_usuario
                 }).update({
                     $set: {
-                        "creditos": infoAgendamento.valorAgendamento
+                        "creditos": desconto
                     }
                 }, function (err, estorno) {
                     if (err) {
@@ -42,7 +81,7 @@ exports.estornarComoCredito = function(id_agendamento) {
                     }
                 });
             } else {
-                reject({status :false, erro: err});
+                reject({'status' : false, 'erro' : erro});
             }
         });
     });
@@ -50,7 +89,7 @@ exports.estornarComoCredito = function(id_agendamento) {
 
 exports.consultarCarteira = function(id_usuario) {
     return new Promise(function(resolve, reject) {
-        console.log("consultando a carteira!");
+
         CarteiraModel.find({
             idUsuario : id_usuario
         }, function(erro, carteira) {

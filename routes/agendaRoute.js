@@ -43,14 +43,10 @@ router.post('/agendamentos', function(req, res, next) {
     //console.log('SEXIUMMMMMMMMMMMMMMMM', req.session.usuarioLogado);
 
     AgendaBusiness.consultarAgendamentoLookup(id_user).then(function(agendamentos){
-        console.log("NOVA AGENDA LOOKUP --------------------");
-        console.log(agendamentos);
         //console.log(agendamentos[0].sala[0].nomeEstudio);
-        console.log("OPA -------------1");
         let jsonAgendamentos = [];
         for (var i in agendamentos ) {
             val = agendamentos [i];
-            console.log(val);
             let idAgendamento = val._id;
             let tituloAgendamento = val.sala[0].nomeEstudio + " - " +  val.servico[0].nomeServico;
             let dataAgendamentoFormat = val.dataAgendamento.split("/")[2].trim() + "-" + val.dataAgendamento.split("/")[1].trim() + "-" +  val.dataAgendamento.split("/")[0].trim();
@@ -62,15 +58,13 @@ router.post('/agendamentos', function(req, res, next) {
             let jsonTemp = {
                 id : idAgendamento,
                 title : tituloAgendamento,
-                description: tituloAgendamento + " <br/>" + val.horario_inicio + " até " + val.horario_fim,
+                description: tituloAgendamento + " <br/>" + val.horario_inicio + " até " + val.horario_fim + " - " +val.valorAgendamento,
                 start : startAgendamento,
                 end : endAgendamento
             };
 
             jsonAgendamentos.push(jsonTemp);
         }
-        console.log(jsonAgendamentos);
-        console.log("END NOVA AGENDA LOOKUP ----------------");
         res.send(jsonAgendamentos);
     }).catch(function(erro) {
         res.end(erro);
@@ -103,7 +97,6 @@ router.post('/agenda', function(req, res, next) {
 
     AgendaBusiness.agendar(arrayAgenda).then(function(result) {
         AgendaBusiness.consultarAgendamento(idUsuario).then(function(agendamentos){
-            console.log(agendamentos);
             res.render('agenda', {/*'agendamentos': agendamentos.agendamentos,*/ usuarioLogado: req.session.usuarioLogado});
         })
     }).catch(function(erro){

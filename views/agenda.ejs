@@ -315,9 +315,7 @@
                                 success: function (result) {
                                     console.log(result);
                                 	$('#detail-event').modal('toggle');
-                                    $('#calendar').fullCalendar('removeEvents');
-                                    $('#calendar').fullCalendar('addEventSource', event);
-                                    $('#calendar').fullCalendar('rerenderEvents' );
+                                	window.location.reload();
                                 },
                                 error: function(data){
                                     alert("Erro: " + data);
