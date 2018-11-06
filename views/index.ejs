@@ -35,13 +35,14 @@
                             <nav class="navbar navbar-expand-lg navbar-light">
                                 <a class="navbar-brand" href="/">Portal Música</a>
                                 <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado.length > 0) { %>
-                                    <a href="./carteira" style="display: inline;text-decoration:none">
-                                        <img src="images/carteira3.png"  width="60" height="40" class="img-fluid" alt="img13" />
-                                    </a>
-                                    <a href="./carteira" style="display: inline;text-decoration:none">
-                                        <span style="color:#d9d9d9;">R$<%= creditos.toFixed(2)%></span>
-                                    </a>
-                                <% }%>
+                                    <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
+                                        <a href="./carteira" style="display: inline;text-decoration:none">
+                                            <img src="images/carteira3.png"  width="60" height="40" class="img-fluid" alt="img13" />
+                                        </a>
+                                        <a href="./carteira" style="display: inline;text-decoration:none">
+                                            <span style="color:#d9d9d9;">R$<%= creditos.toFixed(2)%></span>
+                                        </a>
+                                <%} }%>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="icon-menu"></span>
                                 </button> 
