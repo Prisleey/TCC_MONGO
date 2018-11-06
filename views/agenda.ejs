@@ -312,9 +312,10 @@
                                 url: "cancelarAgendamento",
                                 type: "post",
                                 data: {idAgendamento : idAgendamento},
-                                datatype: 'json',
                                 success: function (result) {
-                                    console.log(result)
+                                    console.log(result);
+                                	$('#detail-event').modal('toggle');
+                                    $('#calendar').fullCalendar('rerenderEvents');
                                 },
                                 error: function(data){
                                     alert("Erro: " + data);

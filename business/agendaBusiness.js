@@ -18,19 +18,13 @@ exports.consultarAgendamento = function(id_usuario) {
 
 exports.cancelarAgendamento = function(id_agendamento) {
     return new Promise(function(resolve, reject) {
-        AgendaMovel.findOne({
+        AgendaModel.deleteOne({
             '_id': id_agendamento
         }, function(erro, resultado){
-            if(resultado){
+            if(erro){
                 reject({status :false});
             }else{
-                /*(function(err) { CONTINUAR DAQUI CANCELAMENTO
-                    if(err) {
-                        reject({status: false, erro: err});
-                    } else {
-                        resolve({status: true});
-                    }
-                });*/
+                resolve({status: true, 'resultado': resultado});
             }
         });
     });

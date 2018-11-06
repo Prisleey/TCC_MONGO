@@ -17,9 +17,9 @@ router.post('/cancelarAgendamento', function(req, res, next) {
     let id_agendamento = req.body.idAgendamento;
 
     AgendaBusiness.cancelarAgendamento(id_agendamento).then(function(result) {
-        res.end(JSON.stringify(result));
+        res.send(result);
     }).catch(function(err) {
-        res.end(err);
+        res.send(err);
     });
 });
 
