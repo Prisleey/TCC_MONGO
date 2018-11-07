@@ -22,7 +22,9 @@ console.log('ID DO USUARIO: ', req.query.id_prestador);
         });
     } else {
         EstudioBusiness.consultarEstudioById(id_prestador).then(function(objectEstudio) {
-            res.render('portfolio', {tiposUser: {}, usuarioLogado: req.session.usuarioLogado, usuario: objectEstudio.estudios})
+            console.log("OPA CHEGOU AQUI");
+            console.log(objectEstudio.estudios);
+            res.render('portfolio', {tiposUser: {}, tp_user: id_tp_user, usuarioLogado: req.session.usuarioLogado, usuario: objectEstudio.estudios})
         }).catch(function(erro) {
             res.end(JSON.stringify(erro));
         });

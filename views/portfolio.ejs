@@ -149,7 +149,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h5><%= usuario.nome%></h5><br/>
-                        <p class="reserve-description"><%=usuario.results[0].desc%></p>
+                        <p class="reserve-description"><!--< %=usuario.results[0].desc % > --></p>
                     </div>
                     <div class="col-md-6">
                         <div class="reserve-seat-block">
@@ -178,8 +178,12 @@
                     <div class="col-md-8 responsive-wrap">
                         <div class="booking-checkbox_wrap">
                             <div class="booking-checkbox">
-                                <p><%= usuario[0].descricao%></p>
+                                <% if(tp_user == 4){%>
+                                    <h2><%=usuario[0].nomeEstudio%></h2>
+                                <% } %>
                                 <hr>
+                                <p><%= usuario[0].descricao%></p>
+
                             </div>
                             <!-- <div class="row">
                                  <div class="col-md-4">
