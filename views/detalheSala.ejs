@@ -298,20 +298,15 @@
     <script>
         //console.log('USER LOGADO:            ', <%usuarioLogado%>);
         var json_usuario = <%- JSON.stringify( usuarioLogado ); %>;
-        console.log('DAOWJDIWAJDO', json_usuario);
+
         let button = document.getElementById("pagarme");
 
         button.addEventListener('click', function() {
             function handleSuccess (data) {
-                console.log(data);
-                console.log("success");
                 $("#formAgendar").submit();
-                //$.post('/agendar', $('#formAgendar').serialize());
             }
 
             function handleError (data) {
-                console.log(data);
-                console.log("error");
             }
 
             var checkout = new PagarMeCheckout.Checkout({
@@ -388,7 +383,6 @@
         $("#carteiraPagamento").on("click", function(){
             let id_usuario = json_usuario[0]._id;
             let precoAgendamento = $('.precoAgendamento').val();
-            console.log('preço agendamento: ', precoAgendamento);
 
             $.ajax({
                 url: "checarSaldo",
@@ -406,13 +400,11 @@
                             data: {id_usuario: id_usuario, valorAgendamento : precoAgendamento},
                             datatype: 'json',
                             success: function (result) {
-                                console.log('RESULTADO DO DESCONTO NA CARTEIRA>>> ', result);
                             },
                             error: function(error) {
 
                             }
                         });
-
 
                         $("#formAgendar").submit();
                     } else {
@@ -472,7 +464,6 @@
                     $("#preco").html(preco);
                     $(".precoAgendamento").val(preco);
 
-                    console.log(preco);
                 }
                 /* DEFESA TCC
                 let tx = $("#id_servico option:selected" ).val().split(";")[2];

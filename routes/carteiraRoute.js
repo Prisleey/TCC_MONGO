@@ -6,7 +6,6 @@ router.get('/carteira', function(req, res, next) {
     let id_user = req.session.usuarioLogado[0]._id;
 
     CarteiraBusiness.consultarCarteira(id_user).then(function(carteira){
-
         res.render('carteira', {"creditos": carteira.carteira[0].creditos, usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.end(erro);

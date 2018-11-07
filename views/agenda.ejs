@@ -198,7 +198,7 @@
             type:"POST",
             datatype: 'JSON',
             success: function(agendamentos){
-                console.log(agendamentos);
+
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
@@ -281,7 +281,7 @@
                                 data: agendamento,
                                 datatype: 'json',
                                 success: function (agendamentos) {
-                                    console.log(agendamentos)
+
                                 },
                                 error: function(data){
                                     alert("Erro: " + data);
@@ -313,7 +313,7 @@
                                 type: "post",
                                 data: {idAgendamento : idAgendamento},
                                 success: function (result) {
-                                    console.log(result);
+
                                 	$('#detail-event').modal('toggle');
                                 	window.location.reload();
                                 },

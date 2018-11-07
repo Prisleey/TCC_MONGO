@@ -24,7 +24,6 @@ exports.updateEstudio = function(id_estudio, sala) {
             if (err) {
                 reject(JSON.stringify(err));
             } else {
-                //let idSalaSalva = salaCallback.salas[salaCallback.salas.length-1]._id;
                 resolve(JSON.stringify({
                     "status": true,
                     "message": "Sala salva com sucesso.",
@@ -38,7 +37,7 @@ exports.updateEstudio = function(id_estudio, sala) {
 
 exports.consultarEstudio = function(data) {
     return new Promise(function(resolve, reject) {
-        console.log(data);
+
         EstudioModel.find({
             idUsuario : data
         }, function(err, estudios) {

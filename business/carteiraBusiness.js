@@ -4,10 +4,8 @@ let ObjectId = require('mongoose').Types.ObjectId;
 
 
 exports.criarCarteira = function(carteiraTemp) {
-
-    console.log(carteiraTemp);
     return new Promise(function(resolve, reject) {
-        console.log("CHEGOU AQUI ANTES DA CARTEIRA");
+
         let carteira = new CarteiraModel(carteiraTemp);
         carteira.save(function(err) {
             if(err) {
@@ -31,9 +29,7 @@ exports.estornarComoCredito = function(id_agendamento) {
                 CarteiraModel.findOne({
                     'idUsuario': infoAgendamento.idUsuario
                 }, function (err, carteira) {
-                    console.log('RESULTADO CARTEIRA: ', carteira);
                     if(carteira) {
-
                         let totalCreditos = parseFloat(carteira.creditos) + parseFloat(infoAgendamento.valorAgendamento);
 
                         CarteiraModel.where({

@@ -7,7 +7,6 @@ router.get('/agenda', function(req, res, next) {
     let id_user = req.session.usuarioLogado[0]._id;
 
     AgendaBusiness.consultarAgendamento(id_user).then(function(agendamentos){
-        console.log(agendamentos);
         res.render('agenda', {usuarioLogado: req.session.usuarioLogado});
     }).catch(function(erro) {
         res.send(erro);
@@ -40,10 +39,8 @@ router.post('/updateAgendamento', function(req, res, next) {
 router.post('/agendamentos', function(req, res, next) {
     let idTpUser = req.session.usuarioLogado[0].tipo[0].idTpUsuario;
     let id_user = req.session.usuarioLogado[0]._id;
-    //console.log('SEXIUMMMMMMMMMMMMMMMM', req.session.usuarioLogado);
 
     AgendaBusiness.consultarAgendamentoLookup(id_user).then(function(agendamentos){
-        //console.log(agendamentos[0].sala[0].nomeEstudio);
         let jsonAgendamentos = [];
         for (var i in agendamentos ) {
             val = agendamentos [i];
@@ -79,7 +76,6 @@ router.post('/agenda', function(req, res, next) {
     let dataAgendamento = req.body.data_agendamento;
     let horarioAgendamento = req.body.horarioAgendamento;
     let valorAgendamento = req.body.valorAgendamento.replace(',','.');
-   // console.log('horarioAgendamento: ', req.body.horarioAgendamento);
 
     var resultSplit = horarioAgendamento.split(" - ");
     var horario_inicio = resultSplit[0].split(" ");
@@ -103,7 +99,5 @@ router.post('/agenda', function(req, res, next) {
         res.end(JSON.stringify(erro));
     });
 });
-
-
 
 module.exports = router;
