@@ -91,7 +91,7 @@
                             <% for(let i = 0; i < estudios.length; i++) { %>
                             <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
                                 <div class="featured-place-wrap">
-                                    <a href="/detalhe-estudio?id_estudio=<%=estudios[i]._id%>">
+                                    <a href="/portfolio?id_prestador=<%=estudios[i]._id%>&tp_user=<%=who%>">
                                         <div class="featured-title-box">
                                             <h6><%= estudios[i].nomeEstudio %></h6>
                                             <ul>
@@ -119,7 +119,7 @@
                             <% for(let i = 0; i < prestadorServico[0].User.length; i++) { %>
                             <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
                                 <div class="featured-place-wrap">
-                                    <a href="/portfolio?id_prestador=<%=prestadorServico[0].User[i]._id%>">
+                                    <a href="/portfolio?id_prestador=<%=prestadorServico[0].User[i]._id%>&tp_user=<%=who%>">
                                         <div class="featured-title-box">
                                             <h6><%= prestadorServico[0].User[i].nome %></h6>
                                             <ul>

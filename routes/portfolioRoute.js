@@ -6,6 +6,7 @@ router.get('/portfolio', function(req, res, next) {
 console.log('ID DO USUARIO: ', req.query.id_prestador);
 
     let id_prestador = req.query.id_prestador;
+    let id_tp_user = req.query.tp_user;
     let flag_portfolio = req.query.flag;
 
     UsuarioBusiness.consultarDadosUsuario(id_prestador).then(function(objetoUser) {

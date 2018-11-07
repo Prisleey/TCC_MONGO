@@ -17,12 +17,12 @@ router.get('/listar-pesquisa', function(req, res, next){
     ServicoBusiness.buscar(busca).then(function(objeto){
         if(who == "2") {
             //res.end(JSON.stringify(objeto));
-            res.render('listarPesquisa', {prestadorServico: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
+            res.render('listarPesquisa', {prestadorServico: objeto.resultado, 'who': who, usuarioLogado: req.session.usuarioLogado});
         } else if(who == "3") {
             //res.end(JSON.stringify(objeto));
-            res.render('listarPesquisa', {prestadorServico: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
+            res.render('listarPesquisa', {prestadorServico: objeto.resultado, 'who': who, usuarioLogado: req.session.usuarioLogado});
         } else if(who == "4") {
-            res.render('listarPesquisa', {estudios: objeto.resultado, usuarioLogado: req.session.usuarioLogado});
+            res.render('listarPesquisa', {estudios: objeto.resultado, 'who': who, usuarioLogado: req.session.usuarioLogado});
         }
     }).catch(function(erro){
         res.end(JSON.stringify(erro));
