@@ -34,6 +34,7 @@
                         <div class="col-md-12">
                             <nav class="navbar navbar-expand-lg navbar-light">
                                 <a class="navbar-brand" href="/">Portal Música</a>
+
                                 <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado.length > 0) { %>
                                     <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
                                         <input type="hidden" id="usr" value="<%=usuarioLogado[0]._id%>" />
@@ -52,6 +53,9 @@
                                     <ul class="navbar-nav">
                                         <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado.length > 0) { %>
                                             <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" href="upload-photo">TESTE UPLOAD</a>
+                                                </li>
                                                 <li class="nav-item active">
                                                     <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
                                                 </li>

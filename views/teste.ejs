@@ -10,18 +10,9 @@
   <link rel="stylesheet" href="css/daterangepicker.css">
 </head>
 <body>
-  <input type='text' id="horarioAbertura" name="horarioAbertura" class="form-control col-md-3" >
-  <script>
-  $(document).ready(function(){
-		//alert("vou inserir um 0 no input e depois rodar o datepicker");
-		$("#horarioAbertura").val(0);
-		$("#horarioAbertura").daterangepicker({
-			locale : {
-				format : 'DD/MM/YYYY HH:mm'
-			}
-		});
-	});
-
-  </script>
+  <form action="/photos/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="gallery" />
+    <input type="submit" value="OPA">
+  </form>
 </body>
 </html>

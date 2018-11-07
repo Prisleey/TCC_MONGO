@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var session = require('express-session');
+var multer = require('multer');
 
 let mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/PortalDaMusicaDB');
