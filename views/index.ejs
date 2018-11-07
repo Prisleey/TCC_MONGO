@@ -379,9 +379,7 @@
         <script>
             $(document).ready(function(){
                 var id_usuario = $("#usr").val();
-                if(typeof(id_usuario) == 'undefined'){
-
-                }else{
+                if(typeof(id_usuario) != 'undefined') {
                     $.ajax({
                         url: "checarSaldo",
                         type: "post",
@@ -394,10 +392,7 @@
                             alert("Erro ao consultar a carteira. ");
                         }
                     });
-
                 }
-
-
             });
         </script>
         <script>
