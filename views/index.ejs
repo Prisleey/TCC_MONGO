@@ -36,7 +36,7 @@
                                 <a class="navbar-brand" href="/">Portal Música</a>
 
                                 <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado.length > 0) { %>
-                                    <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
+                                    <% /*if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {*/%>
                                         <input type="hidden" id="usr" value="<%=usuarioLogado[0]._id%>" />
                                         <a href="./carteira" style="display: inline;text-decoration:none">
                                             <img src="images/carteira3.png"  width="60" height="40" class="img-fluid" alt="img13" />
@@ -44,7 +44,7 @@
                                         <a href="./carteira" style="display: inline;text-decoration:none">
                                             <span id='carteiraDisplay' style="color:#d9d9d9;"></span>
                                         </a>
-                                <%} }%>
+                                <%} /*}*/%>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="icon-menu"></span>
                                 </button> 

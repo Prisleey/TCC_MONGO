@@ -10,17 +10,17 @@ console.log('ID DO USUARIO: ', req.query.id_prestador);
     let id_tp_user = req.query.tp_user;
     let flag_portfolio = req.query.flag;
 
-    if(id_tp_user != 4){
+    if(id_tp_user != 4){ //prestador de serviços
         UsuarioBusiness.consultarDadosUsuario(id_prestador).then(function(objetoUser) {
             if(req.session.usuarioLogado) {
-                res.render('portfolio', { tiposUser : {}, usuarioLogado: req.session.usuarioLogado, usuario: objetoUser.usuario});
+                res.render('portfolio', { tiposUser : {}, tp_user: id_tp_user, usuarioLogado: req.session.usuarioLogado, usuario: objetoUser.usuario});
             } else {
-                res.render('portfolio', { tiposUser : {}, usuarioLogado: false, usuario: objetoUser.usuario});
+                res.render('portfolio', { tiposUser : {}, tp_user: id_tp_user, usuarioLogado: false, usuario: objetoUser.usuario});
             }
         }).catch(function(erro){
             res.end(JSON.stringify(erro));
         });
-    } else {
+    } else { // estudio
         EstudioBusiness.consultarEstudioById(id_prestador).then(function(objectEstudio) {
             console.log("OPA CHEGOU AQUI");
             console.log(objectEstudio.estudios);
