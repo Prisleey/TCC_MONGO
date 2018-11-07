@@ -148,8 +148,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5><%= usuario.nome%></h5><br/>
+                        <h5><!--< %= usuario.nome% >--></h5><br/>
                         <p class="reserve-description"><!--< %=usuario.results[0].desc % > --></p>
+                        <h5>Portfólio</h5><br>
+                        <p class="reserve-description">Um resumo das infomações do estúdio ou prestador de serviço!</p>
                     </div>
                     <div class="col-md-6">
                         <div class="reserve-seat-block">
@@ -160,11 +162,7 @@
                                 <!--<a href="#" class="btn btn-outline-danger">FAÇA UM COMENTÁRIO</a>
                                 <span>34 reviews</span>-->
                             </div>
-                            <div class="reserve-btn">
-                                <div class="featured-btn-wrap">
-                                    <a href="#" class="btn btn-danger">AGENDE UM HORÁRIO</a>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -180,6 +178,8 @@
                             <div class="booking-checkbox">
                                 <% if(tp_user == 4){%>
                                     <h2><%=usuario[0].nomeEstudio%></h2>
+                                <% }else{ %>
+                                    <h2><%=usuario[0].nome%></h2>
                                 <% } %>
                                 <hr>
                                 <p><%= usuario[0].descricao%></p>
@@ -221,9 +221,20 @@
                                  </div>
                              </div>-->
                         </div>
-                        <div class="booking-checkbox_wrap mt-4">
+                            <div class="booking-checkbox_wrap mt-4">
+                                <% if(tp_user == 4){%>
+                                <h4>Salas:</h4>
+                                <hr>
+                                <% for (var i = 0; i < usuario[0].salas.length; i++) { %>
+                                    <div>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= usuario[0]._id %>&id_sala=<%= usuario[0].salas[i]._id %>'><%= usuario[0].salas[i].nomeSala %></a>
+                                    </div>
+                                <% } %>
+                                <% }else{ %>
+                                <h4>nao é estudio</h4>
+                                <% } %>
 
-                        </div>
+                            </div>
                     </div>
                     <div class="col-md-4 responsive-wrap">
                         <div class="contact-info">
@@ -246,7 +257,13 @@
                                     <span class="open-now">OPEN NOW</span>
                                 </p>-->
                             </div>
-                            <a href="#" class="btn btn-outline-danger btn-contact">ENVIE UMA MENSAGEM</a>
+                            <!--<a href="#" class="btn btn-outline-danger btn-contact">ENVIE UMA MENSAGEM</a>-->
+                            <br>
+                            <div class="reserve-btn">
+                                <div class="featured-btn-wrap">
+                                    <a href="#" class="btn btn-danger">Exibir fotos</a>
+                                </div>
+                            </div>
                         </div>
                         <!--<div class="follow">
                             <div class="follow-img">
