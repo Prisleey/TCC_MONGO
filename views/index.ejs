@@ -36,11 +36,12 @@
                                 <a class="navbar-brand" href="/">Portal Música</a>
                                 <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado.length > 0) { %>
                                     <% if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {%>
+                                        <input type="hidden" id="usr" value="<%=usuarioLogado[0]._id%>" />
                                         <a href="./carteira" style="display: inline;text-decoration:none">
                                             <img src="images/carteira3.png"  width="60" height="40" class="img-fluid" alt="img13" />
                                         </a>
                                         <a href="./carteira" style="display: inline;text-decoration:none">
-                                            <span style="color:#d9d9d9;">R$<%= creditos.toFixed(2)%></span>
+                                            <span id='carteiraDisplay' style="color:#d9d9d9;"></span>
                                         </a>
                                 <%} }%>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -375,10 +376,34 @@
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                var id_usuario = $("#usr").val();
+                if(typeof(id_usuario) == 'undefined'){
 
+                }else{
+                    $.ajax({
+                        url: "checarSaldo",
+                        type: "post",
+                        data: {id_usuario: id_usuario},
+                        datatype: 'json',
+                        success: function (result) {
+                            $("#carteiraDisplay").html("R$"+result.creditos.toFixed(2));
+                        },
+                        error: function(data){
+                            alert("Erro ao consultar a carteira. ");
+                        }
+                    });
+
+                }
+
+
+            });
+        </script>
         <script>
 
             $(document).ready(function() {
+
                 $('#btCadastroUser').on('click', function() {
                     $('#cadastro-modal').modal('show');
                 });
