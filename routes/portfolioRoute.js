@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let UsuarioBusiness = require('../business/usuarioBusiness');
+let EstudioBusiness = require('../business/estudioBusiness');
 
 router.get('/portfolio', function(req, res, next) {
 console.log('ID DO USUARIO: ', req.query.id_prestador);
@@ -9,10 +10,8 @@ console.log('ID DO USUARIO: ', req.query.id_prestador);
     let id_tp_user = req.query.tp_user;
     let flag_portfolio = req.query.flag;
 
-    if(tp_user != 4){
+    if(id_tp_user != 4){
         UsuarioBusiness.consultarDadosUsuario(id_prestador).then(function(objetoUser) {
-            console.log(objetoUser.usuario);
-            //res.end(JSON.stringify(objetoUser.usuario));
             if(req.session.usuarioLogado) {
                 res.render('portfolio', { tiposUser : {}, usuarioLogado: req.session.usuarioLogado, usuario: objetoUser.usuario});
             } else {
@@ -21,8 +20,12 @@ console.log('ID DO USUARIO: ', req.query.id_prestador);
         }).catch(function(erro){
             res.end(JSON.stringify(erro));
         });
-    }else{
-        //consultar da estudio business
+    } else {
+        EstudioBusiness.consultarEstudioById(id_prestador).then(function(objectEstudio) {
+            res.render('portfolio', {tiposUser: {}, usuarioLogado: req.session.usuarioLogado, usuario: objectEstudio.estudios})
+        }).catch(function(erro) {
+            res.end(JSON.stringify(erro));
+        });
     }
 });
 

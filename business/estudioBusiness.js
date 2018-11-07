@@ -50,6 +50,21 @@ exports.consultarEstudio = function(data) {
     });
 }
 
+exports.consultarEstudioById = function(data) {
+    return new Promise(function(resolve, reject) {
+
+        EstudioModel.find({
+            _id : data
+        }, function(err, estudios) {
+            if(estudios) {
+                resolve({status : true, 'estudios': estudios});
+            } else {
+                reject({status :false, erro: err});
+            }
+        });
+    });
+}
+
 exports.detalheEstudio = function(id_estudio) {
     return new Promise(function(resolve, reject) {
         EstudioModel.findOne({
