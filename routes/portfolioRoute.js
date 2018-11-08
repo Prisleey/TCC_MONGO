@@ -4,7 +4,7 @@ let UsuarioBusiness = require('../business/usuarioBusiness');
 let EstudioBusiness = require('../business/estudioBusiness');
 
 router.get('/portfolio', function(req, res, next) {
-console.log('ID DO USUARIO: ', req.query.id_prestador);
+console.log('ID DO USUARIOs: ', req.query.id_prestador);
 
 
     let id_prestador = req.query.id_prestador;
