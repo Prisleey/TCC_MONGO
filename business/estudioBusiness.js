@@ -52,11 +52,12 @@ exports.consultarEstudio = function(data) {
 
 exports.consultarEstudioById = function(data) {
     return new Promise(function(resolve, reject) {
-
+console.log('ID DO USER: ',data);
         EstudioModel.find({
             _id : data
         }, function(err, estudios) {
-            if(estudios) {
+            console.log(estudios);
+            if(!err) {
                 resolve({status : true, 'estudios': estudios});
             } else {
                 reject({status :false, erro: err});

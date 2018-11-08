@@ -147,14 +147,14 @@
                         </div>
                         <div class="booking-checkbox_wrap mt-4">
                             <% if(tp_user == 4){%>
-                            <h4>Salas:</h4>
-                            <hr>
-                            <% for (var i = 0; i < usuario[0].salas.length; i++) { %>
-                                <div>
-                                    <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= usuario[0]._id %>&id_sala=<%= usuario[0].salas[i]._id %>'><%= usuario[0].salas[i].nomeSala %></a>
-                                </div>
-                            <% } %>
-                            <% }else{ %>
+                                <h4>Salas:</h4>
+                                <hr>
+                                <% for (var i = 0; i < usuario[0].salas.length; i++) { %>
+                                    <div>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= usuario[0]._id %>&id_sala=<%= usuario[0].salas[i]._id %>'><%= usuario[0].salas[i].nomeSala %></a>
+                                    </div>
+                                <% } %>
+                            <% } else{ %>
                             <h4>nao é estudio</h4>
                             <% } %>
                         </div>
@@ -184,7 +184,7 @@
                             <br>
                             <div class="reserve-btn">
                                 <div class="">
-                                    <a href="#" class="btn btn-outline-danger btn-contact">Upload Fotos</a>
+                                    <a href="upload-photo" class="btn btn-outline-danger btn-contact">Upload Fotos</a>
                                 </div>
                             </div>
                         </div>
