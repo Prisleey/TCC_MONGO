@@ -61,7 +61,11 @@ exports.descontarSaldoCarteira = function(id_usuario, valorAgendamento) {
             idUsuario : id_usuario
         }, function(erro, carteira) {
             if(carteira) {
-                let desconto = parseFloat(carteira[0].creditos) - parseFloat(valorAgendamento);
+                console.log('TESTANDO VALORES PARA SUBTRAÇÃO ######################################');
+                console.log('CRÉDITO CARTEIRA> ', parseFloat(carteira[0].creditos));
+                console.log('VALOR AGENDAMENTO> ', valorAgendamento);
+                let desconto = carteira[0].creditos - valorAgendamento.replace(',','.')
+                console.log('TESTANDO VALORES PARA SUBTRAÇÃO ######################################');
 
                 CarteiraModel.where({
                     "idUsuario": id_usuario

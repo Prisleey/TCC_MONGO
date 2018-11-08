@@ -70,7 +70,7 @@
                                                 <a class="nav-link" href="agenda">Agenda</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="portfolio?id_prestador=<%=usuarioLogado[0]._id%>&flag=1">Gerenciar Portfólio</a>
+                                                <a class="nav-link" href="gerenciar-portfolio?id_prestador=<%=usuarioLogado[0]._id%>&flag=1">Gerenciar Portfólio</a>
                                             </li>
                                             <li>
                                                 <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
@@ -198,7 +198,7 @@
                                     <span id="pf"></span>
                                 </div>
                                 -->
-                                <br><hr>
+                                <hr>
 
                                 <p style='font-size:25px; font-weight:bold'>Equipamentos:</p>
                                 <ul class="list-group">
@@ -400,8 +400,7 @@
                 data: {id_usuario: id_usuario},
                 datatype: 'json',
                 success: function (result) {
-
-                    if(result.creditos >= precoAgendamento) {
+                    if(result.creditos >= parseFloat(precoAgendamento.replace(',','.'))) {
                         alert('Agendamento realizado com sucesso!');
 
                         $.ajax({
