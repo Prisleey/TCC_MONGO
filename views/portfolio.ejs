@@ -29,8 +29,10 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+
 </head>
-<!-- $$$$$$$$$$$$$$$$$$$$$$$##################################################################################################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%s-->
+
 <body>
     <!--============================= HEADER =============================-->
     <div class="dark-bg sticky-top">
@@ -66,7 +68,7 @@
                                             <a class="nav-link" href="agenda">Agenda</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="gerenciar-portfolio?id_prestador=<%=usuarioLogado[0]._id%>&flag=1">Gerenciar Portfólio</a>
+                                            <a class="nav-link" href="portfolio?id_prestador=<%=usuarioLogado[0]._id%>&flag=1">Gerenciar Portfólio</a>
                                         </li>
                                         <li>
                                             <a href="logoff" id='btLogoff' class="nav-link btn btn-outline-light top-btn"> Logoff</a>
@@ -167,6 +169,7 @@
                     </div>
                 </div>
             </div>
+
         </section>
         <!--//END RESERVE A SEAT -->
         <!--============================= BOOKING DETAILS =============================-->
@@ -220,21 +223,21 @@
                      </label>
                                  </div>
                              </div>-->
-                    </div>
-                        <div class="booking-checkbox_wrap mt-4">
-                            <% if(tp_user == 4){%>
-                            <h4>Salas:</h4>
-                            <hr>
-                            <% for (var i = 0; i < usuario[0].salas.length; i++) { %>
-                                <div>
-                                    <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= usuario[0]._id %>&id_sala=<%= usuario[0].salas[i]._id %>'><%= usuario[0].salas[i].nomeSala %></a>
-                                </div>
-                            <% } %>
-                            <% }else{ %>
-                            <h4>nao é estudio</h4>
-                            <% } %>
-
                         </div>
+                            <div class="booking-checkbox_wrap mt-4">
+                                <% if(tp_user == 4){%>
+                                <h4>Salas:</h4>
+                                <hr>
+                                <% for (var i = 0; i < usuario[0].salas.length; i++) { %>
+                                    <div>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= usuario[0]._id %>&id_sala=<%= usuario[0].salas[i]._id %>'><%= usuario[0].salas[i].nomeSala %></a>
+                                    </div>
+                                <% } %>
+                                <% }else{ %>
+                                <h4>nao é estudio</h4>
+                                <% } %>
+
+                            </div>
                     </div>
                     <div class="col-md-4 responsive-wrap">
                         <div class="contact-info">
@@ -261,7 +264,7 @@
                             <br>
                             <div class="reserve-btn">
                                 <div class="featured-btn-wrap">
-                                    <a href="#" class="btn btn-danger">Exibir fotos</a>
+                                    <a href="#" id='exibirFotos' class="btn btn-danger">Exibir fotos</a>
                                 </div>
                             </div>
                         </div>
@@ -291,6 +294,43 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="modal fade" id="albumFotos" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <% for (var index = 0; index < fotos.length; ++index) { %>
+                                <%
+                                    let active = "";
+                                    if(index == 0){
+                                       active = "active";
+                                    }else{
+                                     active = "";
+                                    }
+                                %>
+                                <div class="carousel-item <%=active%>">
+                                    <img class="d-block w-100" src="<%= fotos[index].split("public\\")[1].replace("\\", "/").replace("\\", "/"); %>">
+                                </div>
+                            <%}%>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
     <!--//END BOOKING DETAILS -->
     <!--============================= FOOTER =============================-->
@@ -328,6 +368,10 @@
     <script src="js/swiper.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            $("#exibirFotos").on("click", function(){
+               $("#albumFotos").modal('show');
+            });
 
             var id_usuario = $("#usr").val();
             if (typeof(id_usuario) != 'undefined') {
