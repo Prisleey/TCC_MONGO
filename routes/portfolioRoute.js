@@ -49,7 +49,7 @@ console.log('ID DO USUARIOs: ', req.query.id_prestador);
             });
 
             console.log(fotos);
-
+//dkawjdnwa
             if(id_tp_user != 4){ //prestador de serviços
                 UsuarioBusiness.consultarDadosUsuario(id_prestador).then(function(objetoUser) {
                     if(req.session.usuarioLogado) {
