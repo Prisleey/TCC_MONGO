@@ -155,7 +155,7 @@
                                     </div>
                                 <% } %>
                             <% } else{ %>
-                            <h4>nao é estudio</h4>
+                            <h4></h4>
                             <% } %>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                             <br>
                             <div class="reserve-btn">
                                 <div class="">
-                                    <a href="upload-photo" class="btn btn-outline-danger btn-contact">Upload Fotos</a>
+                                    <a href="#" id='upFotos' class="btn btn-outline-danger btn-contact">Upload Fotos</a>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +192,19 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="modal fade" id="formFotos" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="/upload-photo" method="post" enctype="multipart/form-data">
+                        <input type="file" name="gallery" />
+                        <input type="submit" value="Enviar Upload">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <!--//END BOOKING DETAILS -->
     <!--============================= FOOTER =============================-->
@@ -229,6 +242,9 @@
     <script src="js/swiper.min.js"></script>
     <script>
         $(document).ready(function() {
+            $("#upFotos").on("click", function(){
+                $("#formFotos").modal('show');
+            });
 
             var id_usuario = $("#usr").val();
             if (typeof(id_usuario) != 'undefined') {

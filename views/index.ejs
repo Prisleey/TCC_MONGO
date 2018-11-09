@@ -34,7 +34,6 @@
                         <div class="col-md-12">
                             <nav class="navbar navbar-expand-lg navbar-light">
                                 <a class="navbar-brand" href="/">Portal Música</a>
-
                                 <% if(typeof usuarioLogado !== 'undefined' && usuarioLogado.length > 0) { %>
                                     <% /*if(usuarioLogado[0].tipo[0].idTpUsuario == 2 || usuarioLogado[0].tipo[0].idTpUsuario == 3 || usuarioLogado[0].tipo[0].idTpUsuario == 4) {*/%>
                                         <input type="hidden" id="usr" value="<%=usuarioLogado[0]._id%>" />
@@ -433,5 +432,10 @@
                 };
             });
         </script>
+        <% if(typeof uploadSucess !== 'undefined') { %>
+            <script>
+                alert("Upload realizado com sucesso!");
+            </script>
+        <%}%>
     </body>
 </html>
